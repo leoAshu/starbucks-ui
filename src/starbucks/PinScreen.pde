@@ -1,9 +1,13 @@
 
 
 class PinScreen {
-  private PImage background;
+  private PImage bg;
   
   PinScreen() {
-    background = loadImage();
+    bg = loadImage("../../assets/images/pinscreen-bg.png");
+  }
+  
+  void display() {
+    image(bg, 0, 31);
   }
 }

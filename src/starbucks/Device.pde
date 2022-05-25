@@ -11,14 +11,17 @@ class Device implements IApp {
   
   private PImage notificationBar;
   //private IApp app;
+  private PinScreen pinScreen;
   private boolean authenticated = false;
   
   private Device() {
     notificationBar = loadImage("../../assets/images/notification-bar-1.5x.png");
+    startUp();
   }
   
   void startUp() {
     //app = getNewAppController();
+    pinScreen = new PinScreen();
   }
   
   void display() {
@@ -32,6 +35,7 @@ class Device implements IApp {
       // App Screen
     } else {
       // Pin Screen
+      pinScreen.display();
     }
   }
   
