@@ -12,7 +12,7 @@ class PinView implements IDisplayComponent, ITouchEventHandler {
   
   public PinView(int pinOption) {
     this.pinOption = pinOption;
-    this.count = 3;
+    this.count = 0;
     pinViewWidth = (pinOption * BLOCK_SIZE) + (pinOption-1) * PADDING;
   }
   

@@ -41,8 +41,6 @@ class KeyPad implements IDisplayComponent, ITouchEventHandler {
     stroke(0);
     strokeWeight(1);
     line(0, 312, width, 312);
-    
-    text(pin, 125, 140);
   }
   
   @Override
