@@ -1,4 +1,4 @@
-import processing.core.PApplet;;
+import processing.core.PApplet;
 
 public class Starbucks extends PApplet {
     private Grid grid;
@@ -12,7 +12,7 @@ public class Starbucks extends PApplet {
 
     public void draw() {
         app.display();
-        grid.display();
+        // grid.display();
     }
 
     public void mousePressed() {

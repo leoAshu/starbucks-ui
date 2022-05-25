@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/** Pin Screen */
 public class PinScreen extends Screen {
     private PImage background;
 

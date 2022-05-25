@@ -1,7 +1,6 @@
-import java.util.List;
-
 import processing.core.PApplet;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
