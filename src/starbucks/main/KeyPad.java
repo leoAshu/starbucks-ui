@@ -9,7 +9,13 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
     private ITouchEventHandler chain;
     private List<IDisplayComponent> buttons;
 
+    private int keyCount;
+    private String lastKey;
+
     public KeyPad(PApplet starbucks) {
+        keyCount = 0;
+        lastKey = " ";
+
         this.starbucks = starbucks;
         buttons = new ArrayList<IDisplayComponent>();
 
@@ -36,6 +42,8 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
             component.display();
 
         drawBorders();
+        starbucks.text(keyCount, starbucks.width/2, 100);
+        starbucks.text("[" + lastKey + "]", starbucks.width/2, 120);
     }
 
     @Override
@@ -77,6 +85,15 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
         starbucks.strokeWeight(4);
         starbucks.line(125, 314, 125, starbucks.height);
         starbucks.line(250, 314, 250, starbucks.height);
+    }
+
+    public void callBack(String key) {
+        lastKey = key;
+        if(key.equalsIgnoreCase("X")) {
+            if(keyCount > 0)
+                keyCount -= 1;
+        } else 
+            keyCount += 1;
     }
 
 }

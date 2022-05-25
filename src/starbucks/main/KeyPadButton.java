@@ -75,6 +75,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         boolean overY = y > this.y && y < (this.y + Constants.CELL_HEIGHT);
         if(!isDisabled && overX && overY) {
             isClicked = true;
+            callBack();
         }
         if(nextButton != null)
             nextButton.touch(x, y);
@@ -158,6 +159,17 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
             starbucks.stroke(c);
             starbucks.line(x, i, x+w, i);
         }
-  }
+    }
+
+    private void callBack() {
+        if(labelValue.isEmpty()) {
+            if(icon != null)
+                keyPad.callBack("X");
+            else
+                keyPad.callBack(null);
+        } else {
+            keyPad.callBack(labelValue);
+        }
+    }
 
 }
