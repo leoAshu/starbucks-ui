@@ -1,4 +1,7 @@
 import java.util.List;
+
+import processing.core.PApplet;
+
 import java.util.ArrayList;
 
 /**
@@ -10,9 +13,11 @@ import java.util.ArrayList;
  * 
  */
 public class Screen implements IScreen, IDisplayComponent {
+    protected PApplet starbucks;
     private List<IDisplayComponent> components;
 
-    public Screen() {
+    public Screen(PApplet starbucks) {
+        this.starbucks = starbucks;
         this.components = new ArrayList<IDisplayComponent>();
     }
 
