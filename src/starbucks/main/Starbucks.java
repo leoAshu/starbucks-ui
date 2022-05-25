@@ -16,11 +16,11 @@ public class Starbucks extends PApplet {
     }
 
     public void mousePressed() {
-
+        app.touch(mouseX, mouseY);
     }
 
     public void mouseReleased() {
-
+        app.release();
     }
 
     public static void main(String[] args) {

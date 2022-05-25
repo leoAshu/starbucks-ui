@@ -51,12 +51,18 @@ public class Device implements IApp  {
 
     @Override
     public void touch(int x, int y) {
-        
+        if(authenticated) {
+            // App Screen
+        } else 
+            pinScreen.touch(x, y);
     }
 
     @Override
     public void release() {
-        
+        if(authenticated) {
+            // App Screen
+        } else 
+            pinScreen.release();
     }
 
     @Override

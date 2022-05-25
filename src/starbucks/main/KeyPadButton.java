@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class KeyPadButton implements IDisplayComponent {
+public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private KeyPad keyPad;
     private int x;
@@ -11,6 +11,8 @@ public class KeyPadButton implements IDisplayComponent {
     private PImage icon;
     private boolean isClicked;
     private boolean isDisabled;
+
+    private ITouchEventHandler nextButton;
 
     KeyPadButton(PApplet starbucks, KeyPad keyPad, int x, int y) {
         this.starbucks = starbucks;
@@ -65,6 +67,29 @@ public class KeyPadButton implements IDisplayComponent {
     @Override
     public void addSubComponent(IDisplayComponent component) {
 
+    }
+
+    @Override
+    public void touch(int x, int y) {
+        boolean overX = x > this.x && x < (this.x + Constants.CELL_WIDTH);
+        boolean overY = y > this.y && y < (this.y + Constants.CELL_HEIGHT);
+        if(!isDisabled && overX && overY) {
+            isClicked = true;
+        }
+        if(nextButton != null)
+            nextButton.touch(x, y);
+    }
+
+    @Override
+    public void release() {
+        isClicked = false;
+        if(nextButton != null)
+            nextButton.release();
+    }
+
+    @Override
+    public void setNext(ITouchEventHandler next) {
+        nextButton = next;
     }
 
     private void drawButtonBackground() {
@@ -134,4 +159,5 @@ public class KeyPadButton implements IDisplayComponent {
             starbucks.line(x, i, x+w, i);
         }
   }
+
 }

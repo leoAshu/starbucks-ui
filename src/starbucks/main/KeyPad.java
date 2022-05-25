@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /** Key Pad */
-public class KeyPad implements IDisplayComponent {
+public class KeyPad implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private ITouchEventHandler chain;
     private List<IDisplayComponent> buttons;
 
     public KeyPad(PApplet starbucks) {
@@ -40,6 +41,29 @@ public class KeyPad implements IDisplayComponent {
     @Override
     public void addSubComponent(IDisplayComponent button) {
         buttons.add(button);
+        if(buttons.size() == 1) {
+            chain = (ITouchEventHandler) button;
+        } else {
+            ITouchEventHandler prev = (ITouchEventHandler) buttons.get(buttons.size()-2);
+            prev.setNext((ITouchEventHandler) button);
+        }
+    }
+
+    @Override
+    public void touch(int x, int y) {
+        if(chain != null)
+            chain.touch(x, y);
+    }
+
+    @Override
+    public void release() {
+        if(chain != null)
+            chain.release();
+    }
+
+    @Override
+    public void setNext(ITouchEventHandler next) {
+           
     }
     
     private void drawBorders() {
@@ -54,4 +78,5 @@ public class KeyPad implements IDisplayComponent {
         starbucks.line(125, 314, 125, starbucks.height);
         starbucks.line(250, 314, 250, starbucks.height);
     }
+
 }
