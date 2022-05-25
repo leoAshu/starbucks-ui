@@ -2,15 +2,15 @@
 
 class PinScreen {
   private PImage bg;
-  private KeyPadButton button;
+  private KeyPad keyPad;
   
   PinScreen() {
     bg = loadImage("../../assets/images/pinscreen-bg.png");
-    button = new KeyPadButton();
+    keyPad = new KeyPad();
   }
   
   void display() {
     image(bg, 0, 31);
-    button.display();
+    keyPad.display();
   }
 }
