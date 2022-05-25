@@ -2,6 +2,7 @@ class Grid {
   private final int CELL_WIDTH = 125;
   private final int CELL_HEIGHT = 70;
   void display() {
+    strokeWeight(1);
     stroke(color(0, 255, 0));
     
     line(0, 31, 0, height);
