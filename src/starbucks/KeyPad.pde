@@ -7,7 +7,7 @@ class KeyPad {
   KeyPad() {
     buttons = new ArrayList<KeyPadButton>();
     
-    buttons.add(new KeyPadButton(0, 312, "1", ""));
+    buttons.add(new KeyPadButton(0, 312, "1"));
     buttons.add(new KeyPadButton(125, 312, "2", "A B C"));
     buttons.add(new KeyPadButton(250, 312, "3", "D E F"));
     
@@ -19,9 +19,9 @@ class KeyPad {
     buttons.add(new KeyPadButton(125, 452, "8", "T U V"));
     buttons.add(new KeyPadButton(250, 452, "9", "W X Y Z"));
     
-    buttons.add(new KeyPadButton(0, 522, "", ""));
-    buttons.add(new KeyPadButton(125, 522, "0", ""));
-    buttons.add(new KeyPadButton(250, 522, "X", ""));
+    buttons.add(new KeyPadButton(0, 522));
+    buttons.add(new KeyPadButton(125, 522, "0"));
+    buttons.add(new KeyPadButton(250, 522, loadImage("../../assets/images/backspace.png")));
   }
   
   void display() {
@@ -42,12 +42,38 @@ class KeyPadButton {
   private int y;
   private String label1;
   private String label2;
+  private PImage icon;
+  
+  KeyPadButton(int x, int y) {
+    this.x = x;
+    this.y = y;
+    this.label1 = "";
+    this.label2 = "";
+    this.icon = null;
+  }
+  
+  KeyPadButton(int x, int y, String label1) {
+    this.x = x;
+    this.y = y;
+    this.label1 = label1;
+    this.label2 = "";
+    this.icon = null;
+  }
   
   KeyPadButton(int x, int y, String label1, String label2) {
     this.x = x;
     this.y = y;
     this.label1 = label1;
     this.label2 = label2;
+    this.icon = null;
+  }
+  
+  KeyPadButton(int x, int y, PImage icon) {
+    this.x = x;
+    this.y = y;
+    this.label1 = "";
+    this.label2 = "";
+    this.icon = icon;
   }
   
   void display() {
@@ -61,11 +87,15 @@ class KeyPadButton {
     fill(255);
     textAlign(CENTER);
     textSize(26);
-    text(label1, x + WIDTH/2, y + (HEIGHT/2) + 2);
+    text(label1, x + WIDTH/2, label2.isEmpty()? y + (HEIGHT/2) + 6: y + (HEIGHT/2) + 2);
     
     fill(255, 0.8*255);
     textSize(14);
     text(label2, x + WIDTH/2, y + (HEIGHT/2) + 20);
+    
+    if(label1.isEmpty() && label2.isEmpty() && icon!=null) {
+      image(icon, x + (WIDTH - icon.width)/2, y + (HEIGHT - icon.height)/2);
+    }
   }
   
   // linear gradient: vertical
