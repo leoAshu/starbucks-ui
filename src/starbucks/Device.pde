@@ -9,8 +9,10 @@ synchronized Device getDevice() {
 
 class Device implements IApp {
   
+  private final int NOTIFICATION_BAR_HEIGHT = 31;
+  private final int NOTIFICATION_BAR_WIDTH = 375;
+  
   private PImage notificationBar;
-  //private IApp app;
   private PinScreen pinScreen;
   private boolean authenticated = false;
   
@@ -20,13 +22,12 @@ class Device implements IApp {
   }
   
   void startUp() {
-    //app = getNewAppController();
     pinScreen = new PinScreen();
   }
   
   void display() {
     fill(color(255, 0, 0));
-    image(notificationBar, 0, 0, 375, 32);
+    image(notificationBar, 0, 0, NOTIFICATION_BAR_WIDTH, NOTIFICATION_BAR_HEIGHT);
     screenDisplay();
   }
   
