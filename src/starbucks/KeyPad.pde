@@ -1,12 +1,19 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class KeyPad implements IDisplayComponent, ITouchEventHandler {
-  private List<IDisplayComponent> components;
+class KeyPad implements IDisplayComponent, ITouchEventHandler, IKeyPadSubject {
+  private int pinDigitsCount;
+  private String lastKey;
+  
   private ITouchEventHandler chain;
-  private String pin = "";
+  private List<IKeyPadObserver> observers;
+  private List<IDisplayComponent> components;
   
   KeyPad() {
+    pinDigitsCount = 0;
+    lastKey = "";
+    
+    observers = new ArrayList<IKeyPadObserver>();
     components = new ArrayList<IDisplayComponent>();
     
     addSubComponent(new KeyPadButton(this, 0, 312, "1"));
@@ -54,17 +61,6 @@ class KeyPad implements IDisplayComponent, ITouchEventHandler {
     }
   }
   
-  void callBack(String label1) {
-    StringBuffer buffer = new StringBuffer(pin);
-    if(!label1.isEmpty() && !label1.equalsIgnoreCase("X")) {
-      buffer.append(label1);
-    } else {
-      if(label1.equalsIgnoreCase("X") && buffer.length()>0)
-        buffer.deleteCharAt(buffer.length()-1);
-    }
-    pin = buffer.toString();
-  }
-  
   @Override
   void touch(int x, int y) {
     if(chain != null)
@@ -79,5 +75,34 @@ class KeyPad implements IDisplayComponent, ITouchEventHandler {
   
   @Override
   void setNext(ITouchEventHandler next) {
+  }
+  
+  @Override
+  void attach(IKeyPadObserver observer) {
+    observers.add(observer);
+  }
+  
+  @Override
+  void removeObserver(IKeyPadObserver observer) {
+    int i = observers.indexOf(observer);
+    if(i>=0)
+      observers.remove(i);
+  }
+  
+  @Override
+  void notifyObservers() {
+    for(IKeyPadObserver observer: observers)
+      observer.keyEventUpdate(pinDigitsCount, lastKey);
+  }
+  
+  void callBack(String value) {
+    lastKey = value;
+    if(value.equalsIgnoreCase("X")) {
+      if(pinDigitsCount > 0)
+        pinDigitsCount--;
+    } else
+      pinDigitsCount++;
+
+    notifyObservers();
   }
 }
