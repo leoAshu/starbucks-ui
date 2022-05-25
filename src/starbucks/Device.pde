@@ -31,6 +31,8 @@ class Device implements IApp {
     
     pinScreen.addSubComponent(pinView);
     pinScreen.addSubComponent(keyPad);
+    
+    ((IKeyPadSubject)keyPad).attach(pinView);
   }
   
   void display() {
