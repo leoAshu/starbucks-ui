@@ -8,17 +8,31 @@ synchronized Device getDevice() {
 }
 
 class Device implements IApp {
-  //private static Device theDevice;
   
-  PImage notificationBar;
+  private PImage notificationBar;
+  //private IApp app;
+  private boolean authenticated = false;
   
   private Device() {
     notificationBar = loadImage("../../assets/images/notification-bar-1.5x.png");
   }
   
+  void startUp() {
+    //app = getNewAppController();
+  }
+  
   void display() {
     fill(color(255, 0, 0));
     image(notificationBar, 0, 0, 375, 32);
+    screenDisplay();
+  }
+  
+  void screenDisplay() {
+    if(authenticated) {
+      // App Screen
+    } else {
+      // Pin Screen
+    }
   }
   
   void landscape() {
