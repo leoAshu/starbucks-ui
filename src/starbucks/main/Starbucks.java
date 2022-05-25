@@ -1,13 +1,16 @@
 import processing.core.PApplet;;
 
 public class Starbucks extends PApplet {
-    
+    private IApp app;
+
     public void settings() {
         size(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        app = (IApp) Device.getDevice(this);
     }
 
     public void draw() {
         background(255);
+        app.display();
     }
 
     public void mousePressed() {

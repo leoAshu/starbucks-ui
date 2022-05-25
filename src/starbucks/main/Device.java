@@ -1,20 +1,27 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
 /**
  * Authentication Proxy for App Controller
  */
 public class Device implements IApp  {
     private static Device theDevice;
+    private PApplet starbucks;
+    private PImage notificationBar;
 
-    private Device() {
+    private Device(PApplet starbucks) {
+        this.starbucks = starbucks;
+        this.notificationBar = starbucks.loadImage(Constants.NOTIF_BAR_IMAGE_PATH);
     }
 
-    public synchronized static Device getDevice() {
+    public synchronized static Device getDevice(PApplet starbucks) {
         if(theDevice == null)
-            theDevice = new Device();
+            return getNewDevice(starbucks);
         return theDevice;
     }
 
-    public synchronized static Device getNewDevice() {
-        theDevice = new Device();
+    public synchronized static Device getNewDevice(PApplet starbucks) {
+        theDevice = new Device(starbucks);
         return theDevice;
     }
 
@@ -30,7 +37,13 @@ public class Device implements IApp  {
 
     @Override
     public void display() {
-        
+        starbucks.image(
+            notificationBar,
+            0,
+            0,
+            Constants.NOTIF_BAR_WIDTH,
+            Constants.NOTIF_BAR_HEIGHT
+        );
     }
     
 }
