@@ -4,25 +4,26 @@ import java.util.ArrayList;
 class KeyPad implements IDisplayComponent, ITouchEventHandler {
   private List<IDisplayComponent> components;
   private ITouchEventHandler chain;
+  private String pin = "";
   
   KeyPad() {
     components = new ArrayList<IDisplayComponent>();
     
-    addSubComponent(new KeyPadButton(0, 312, "1"));
-    addSubComponent(new KeyPadButton(125, 312, "2", "A B C"));
-    addSubComponent(new KeyPadButton(250, 312, "3", "D E F"));
+    addSubComponent(new KeyPadButton(this, 0, 312, "1"));
+    addSubComponent(new KeyPadButton(this, 125, 312, "2", "A B C"));
+    addSubComponent(new KeyPadButton(this, 250, 312, "3", "D E F"));
     
-    addSubComponent(new KeyPadButton(0, 382, "4", "G H I"));
-    addSubComponent(new KeyPadButton(125, 382, "5", "J K L"));
-    addSubComponent(new KeyPadButton(250, 382, "6", "M N O"));
+    addSubComponent(new KeyPadButton(this, 0, 382, "4", "G H I"));
+    addSubComponent(new KeyPadButton(this, 125, 382, "5", "J K L"));
+    addSubComponent(new KeyPadButton(this, 250, 382, "6", "M N O"));
     
-    addSubComponent(new KeyPadButton(0, 452, "7", "P Q R S"));
-    addSubComponent(new KeyPadButton(125, 452, "8", "T U V"));
-    addSubComponent(new KeyPadButton(250, 452, "9", "W X Y Z"));
+    addSubComponent(new KeyPadButton(this, 0, 452, "7", "P Q R S"));
+    addSubComponent(new KeyPadButton(this, 125, 452, "8", "T U V"));
+    addSubComponent(new KeyPadButton(this, 250, 452, "9", "W X Y Z"));
     
-    addSubComponent(new KeyPadButton(0, 522));
-    addSubComponent(new KeyPadButton(125, 522, "0"));
-    addSubComponent(new KeyPadButton(250, 522, loadImage("../../assets/images/backspace.png")));
+    addSubComponent(new KeyPadButton(this, 0, 522));
+    addSubComponent(new KeyPadButton(this, 125, 522, "0"));
+    addSubComponent(new KeyPadButton(this, 250, 522, loadImage("../../assets/images/backspace.png")));
   }
   
   @Override
@@ -40,6 +41,8 @@ class KeyPad implements IDisplayComponent, ITouchEventHandler {
     stroke(0);
     strokeWeight(1);
     line(0, 312, width, 312);
+    
+    text(pin, 125, 140);
   }
   
   @Override
@@ -50,6 +53,12 @@ class KeyPad implements IDisplayComponent, ITouchEventHandler {
     } else {
       ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2);
       prev.setNext((ITouchEventHandler) component);
+    }
+  }
+  
+  void buttonPressed(String label1) {
+    if(!label1.isEmpty()) {
+      pin += label1;
     }
   }
   
@@ -85,9 +94,11 @@ class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
   private PImage icon;
   private boolean isClicked;
   
+  private KeyPad keyPad;
   private ITouchEventHandler nextButton;
   
-  KeyPadButton(int x, int y) {
+  KeyPadButton(KeyPad keyPad, int x, int y) {
+    this.keyPad = keyPad;
     this.x = x;
     this.y = y;
     this.label1 = "";
@@ -95,7 +106,8 @@ class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     this.icon = null;
   }
   
-  KeyPadButton(int x, int y, String label1) {
+  KeyPadButton(KeyPad keyPad, int x, int y, String label1) {
+    this.keyPad = keyPad;
     this.x = x;
     this.y = y;
     this.label1 = label1;
@@ -103,7 +115,8 @@ class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     this.icon = null;
   }
   
-  KeyPadButton(int x, int y, String label1, String label2) {
+  KeyPadButton(KeyPad keyPad, int x, int y, String label1, String label2) {
+    this.keyPad = keyPad;
     this.x = x;
     this.y = y;
     this.label1 = label1;
@@ -111,7 +124,8 @@ class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     this.icon = null;
   }
   
-  KeyPadButton(int x, int y, PImage icon) {
+  KeyPadButton(KeyPad keyPad, int x, int y, PImage icon) {
+    this.keyPad = keyPad;
     this.x = x;
     this.y = y;
     this.label1 = "";
@@ -146,6 +160,7 @@ class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
   void touch(int x, int y) {
     if(x > this.x && x < (this.x + WIDTH) && y > this.y && y < (this.y + HEIGHT)) {
       isClicked = true;
+      keyPad.buttonPressed(label1);
     }
     if(nextButton != null)
       nextButton.touch(x, y);
