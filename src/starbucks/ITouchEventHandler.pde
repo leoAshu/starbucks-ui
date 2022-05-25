@@ -6,6 +6,8 @@ public interface ITouchEventHandler {
    * @param y Y Coord
    */
   void touch(int x, int y);
+  
+  void reset();
 
   /**
    * Set Next Handler in Event Chain

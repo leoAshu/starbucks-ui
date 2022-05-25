@@ -51,6 +51,11 @@ class Device implements IApp {
   }
   
   void touch(int x, int y) {
+    pinScreen.touch(x, y);
+  }
+  
+  void reset() {
+    pinScreen.reset();
   }
   
   void execute(String c) {

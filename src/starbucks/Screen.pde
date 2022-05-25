@@ -17,6 +17,11 @@ class Screen implements IScreen, IDisplayComponent {
     if(chain != null)
       chain.touch(x, y);
   }
+  
+  public void reset() {
+    if(chain != null)
+      chain.reset();
+  }
     
   /** Previous Screen - Not Used */
   @Override
@@ -55,8 +60,14 @@ class Screen implements IScreen, IDisplayComponent {
    * @param c Display Component
    */
   @Override
-  public void addSubComponent(IDisplayComponent c) {
-    components.add(c);
+  public void addSubComponent(IDisplayComponent component) {
+    components.add(component);
+    if(components.size() == 1) {
+      chain = (ITouchEventHandler) component;
+    } else {
+      ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2);
+      prev.setNext((ITouchEventHandler) component);
+    }
   }
     
   /**

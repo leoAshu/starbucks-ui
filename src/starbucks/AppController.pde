@@ -33,6 +33,9 @@ class AppController implements IApp {
   void touch(int x, int y) {
   }
   
+  void reset() {
+  }
+  
   void display() {
   }
   

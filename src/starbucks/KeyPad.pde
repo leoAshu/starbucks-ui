@@ -1,11 +1,12 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class KeyPad implements IDisplayComponent {
-  private List<IDisplayComponent> buttons;
+class KeyPad implements IDisplayComponent, ITouchEventHandler {
+  private List<IDisplayComponent> components;
+  private ITouchEventHandler chain;
   
   KeyPad() {
-    buttons = new ArrayList<IDisplayComponent>();
+    components = new ArrayList<IDisplayComponent>();
     
     addSubComponent(new KeyPadButton(0, 312, "1"));
     addSubComponent(new KeyPadButton(125, 312, "2", "A B C"));
@@ -26,17 +27,50 @@ class KeyPad implements IDisplayComponent {
   
   @Override
   void display() {
-    for(IDisplayComponent button: buttons)
-      button.display();
+    for(IDisplayComponent component: components)
+      component.display();
+    
+    // vertical borders
+    stroke(102);
+    strokeWeight(4);
+    line(125, 314, 125, height);
+    line(250, 314, 250, height);
+    
+    // top border
+    stroke(0);
+    strokeWeight(1);
+    line(0, 312, width, 312);
   }
   
   @Override
   void addSubComponent(IDisplayComponent component) {
-    buttons.add(component);
+    components.add(component);
+    if(components.size() == 1) {
+      chain = (ITouchEventHandler) component;
+    } else {
+      ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2);
+      prev.setNext((ITouchEventHandler) component);
+    }
+  }
+  
+  @Override
+  void touch(int x, int y) {
+    if(chain != null)
+      chain.touch(x, y);
+  }
+  
+  @Override
+  void reset() {
+    if(chain != null)
+      chain.reset();
+  }
+  
+  @Override
+  void setNext(ITouchEventHandler next) {
   }
 }
 
-class KeyPadButton implements IDisplayComponent {
+class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
   private final int WIDTH = 125;
   private final int HEIGHT = 70;
   private final int COLOR_1 = color(102, 102, 102);
@@ -49,6 +83,9 @@ class KeyPadButton implements IDisplayComponent {
   private String label1;
   private String label2;
   private PImage icon;
+  private boolean isClicked;
+  
+  private ITouchEventHandler nextButton;
   
   KeyPadButton(int x, int y) {
     this.x = x;
@@ -83,11 +120,11 @@ class KeyPadButton implements IDisplayComponent {
   }
   
   @Override
-  void display() {
-    strokeWeight(2);
-    stroke(color(102, 102, 102)); //102
-    rect(x, y, WIDTH, HEIGHT);
-    setGradient(x+1, y+1, WIDTH-2, HEIGHT-2);
+  void display() {    
+    if(isClicked)
+      solidFill(x+1, y+1, WIDTH-2, HEIGHT-2);
+    else
+      setGradient(x+1, y+1, WIDTH-2, HEIGHT-2);
     
     textFont(ROBOTO_MED);
     
@@ -106,7 +143,39 @@ class KeyPadButton implements IDisplayComponent {
   }
   
   @Override
+  void touch(int x, int y) {
+    if(x > this.x && x < (this.x + WIDTH) && y > this.y && y < (this.y + HEIGHT)) {
+      isClicked = true;
+    }
+    if(nextButton != null)
+      nextButton.touch(x, y);
+  }
+  
+  @Override
+  void reset() {
+    isClicked = false;
+    if(nextButton != null)
+      nextButton.reset();
+  }
+  
+  @Override
   void addSubComponent(IDisplayComponent component) {
+  }
+  
+  // linear gradient: vertical
+  void solidFill(int x, int y, int w, int h) {
+    noFill();
+    for (int i = y; i <= y+h; i++) {
+      float inter = map(i, y, y+h, 0, 1);
+      color c = lerpColor(COLOR_1, COLOR_1, inter);
+      stroke(c);
+      line(x, i, x+w, i);
+    }
+  }
+  
+  @Override
+  void setNext(ITouchEventHandler next) {
+    nextButton = next;
   }
   
   // linear gradient: vertical
