@@ -1,31 +1,30 @@
-class PinView implements IDisplayComponent, ITouchEventHandler {
+class PinView implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
   private final int BLOCK_SIZE = 45;
   private final int PADDING = 16;
   private final int FONT_SIZE = 32;
   private final int Y = 130;
   
   private int pinOption;
-  private int count;
+  private int pinDigitsCount;
   private int pinViewWidth;
   
   private ITouchEventHandler nextHandler;
   
   public PinView(int pinOption) {
     this.pinOption = pinOption;
-    this.count = 0;
-    pinViewWidth = (pinOption * BLOCK_SIZE) + (pinOption-1) * PADDING;
+    this.pinDigitsCount = 0;
+    this.pinViewWidth = (pinOption * BLOCK_SIZE) + (pinOption-1) * PADDING;
   }
   
   @Override
   void display() {
     int x = (width - pinViewWidth)/2;
     for(int i = 0; i < pinOption; i++) {
-      if(i < count)
+      if(i < pinDigitsCount)
         pinBlock(x);
       else
         emptyBlock(x);
-      x += BLOCK_SIZE + PADDING;
-      
+      x += BLOCK_SIZE + PADDING;  
     }
   }
   
@@ -41,6 +40,8 @@ class PinView implements IDisplayComponent, ITouchEventHandler {
   
   @Override
   void reset() {
+    if(nextHandler != null)
+      nextHandler.reset();
   }
   
   @Override
@@ -65,5 +66,19 @@ class PinView implements IDisplayComponent, ITouchEventHandler {
     textAlign(CENTER);
     textSize(FONT_SIZE);
     text('*', x + BLOCK_SIZE/2, Y + (BLOCK_SIZE + FONT_SIZE)/2);
+  }
+  
+  @Override
+  void keyEventUpdate(int count, String lastKey) {
+    if(lastKey.equalsIgnoreCase("X")) {
+      if(pinDigitsCount > 0)
+        pinDigitsCount -= 1;
+    } else {
+       if(pinDigitsCount < pinOption) {
+         pinDigitsCount += 1;
+         if(pinDigitsCount == pinOption)
+           pinDigitsCount = 0;
+       }
+    }
   }
 }
