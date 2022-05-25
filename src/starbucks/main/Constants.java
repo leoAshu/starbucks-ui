@@ -14,4 +14,12 @@ public class Constants {
 
     // pin screen
     public static final String PIN_SCREEN_BG_PATH = "../../assets/images/pinscreen-bg.png";
+
+    // fonts
+    public static final String ROBOTO_LIGHT_PATH = "../../assets/fonts/Roboto-Light.ttf";
+    public static final String ROBOTO_REG_PATH = "../../assets/fonts/Roboto-Regular.ttf";
+    public static final String ROBOTO_MED_PATH = "../../assets/fonts/Roboto-Medium.ttf";
+    public static final String ROBOTO_BOLD_PATH = "../../assets/fonts/Roboto-Bold.ttf";
+    public static final String ROBOTO_BLACK_PATH = "../../assets/fonts/Roboto-Black.ttf";
+
 }
