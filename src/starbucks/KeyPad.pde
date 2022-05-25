@@ -1,36 +1,42 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class KeyPad {
-  List<KeyPadButton> buttons;
+class KeyPad implements IDisplayComponent {
+  private List<IDisplayComponent> buttons;
   
   KeyPad() {
-    buttons = new ArrayList<KeyPadButton>();
+    buttons = new ArrayList<IDisplayComponent>();
     
-    buttons.add(new KeyPadButton(0, 312, "1"));
-    buttons.add(new KeyPadButton(125, 312, "2", "A B C"));
-    buttons.add(new KeyPadButton(250, 312, "3", "D E F"));
+    addSubComponent(new KeyPadButton(0, 312, "1"));
+    addSubComponent(new KeyPadButton(125, 312, "2", "A B C"));
+    addSubComponent(new KeyPadButton(250, 312, "3", "D E F"));
     
-    buttons.add(new KeyPadButton(0, 382, "4", "G H I"));
-    buttons.add(new KeyPadButton(125, 382, "5", "J K L"));
-    buttons.add(new KeyPadButton(250, 382, "6", "M N O"));
+    addSubComponent(new KeyPadButton(0, 382, "4", "G H I"));
+    addSubComponent(new KeyPadButton(125, 382, "5", "J K L"));
+    addSubComponent(new KeyPadButton(250, 382, "6", "M N O"));
     
-    buttons.add(new KeyPadButton(0, 452, "7", "P Q R S"));
-    buttons.add(new KeyPadButton(125, 452, "8", "T U V"));
-    buttons.add(new KeyPadButton(250, 452, "9", "W X Y Z"));
+    addSubComponent(new KeyPadButton(0, 452, "7", "P Q R S"));
+    addSubComponent(new KeyPadButton(125, 452, "8", "T U V"));
+    addSubComponent(new KeyPadButton(250, 452, "9", "W X Y Z"));
     
-    buttons.add(new KeyPadButton(0, 522));
-    buttons.add(new KeyPadButton(125, 522, "0"));
-    buttons.add(new KeyPadButton(250, 522, loadImage("../../assets/images/backspace.png")));
+    addSubComponent(new KeyPadButton(0, 522));
+    addSubComponent(new KeyPadButton(125, 522, "0"));
+    addSubComponent(new KeyPadButton(250, 522, loadImage("../../assets/images/backspace.png")));
   }
   
+  @Override
   void display() {
-    for(KeyPadButton button: buttons)
+    for(IDisplayComponent button: buttons)
       button.display();
+  }
+  
+  @Override
+  void addSubComponent(IDisplayComponent component) {
+    buttons.add(component);
   }
 }
 
-class KeyPadButton {
+class KeyPadButton implements IDisplayComponent {
   private final int WIDTH = 125;
   private final int HEIGHT = 70;
   private final int COLOR_1 = color(102, 102, 102);
@@ -76,6 +82,7 @@ class KeyPadButton {
     this.icon = icon;
   }
   
+  @Override
   void display() {
     strokeWeight(2);
     stroke(color(102, 102, 102)); //102
@@ -96,6 +103,10 @@ class KeyPadButton {
     if(label1.isEmpty() && label2.isEmpty() && icon!=null) {
       image(icon, x + (WIDTH - icon.width)/2, y + (HEIGHT - icon.height)/2);
     }
+  }
+  
+  @Override
+  void addSubComponent(IDisplayComponent component) {
   }
   
   // linear gradient: vertical
