@@ -10,5 +10,13 @@ void setup() {
 void draw() {
   background(255);
   app.display();
-  grid.display();
+  //grid.display();
+}
+
+void mousePressed() {
+  app.touch(mouseX, mouseY);
+}
+
+void mouseReleased() {
+  app.reset();
 }
