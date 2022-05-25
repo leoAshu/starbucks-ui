@@ -30,7 +30,7 @@ class AppController implements IApp {
   void portrait() {
   }
   
-  void touch() {
+  void touch(int x, int y) {
   }
   
   void display() {
