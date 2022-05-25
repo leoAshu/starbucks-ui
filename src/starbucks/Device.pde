@@ -15,8 +15,9 @@ class Device implements IApp {
   private PImage notificationBar;
   private boolean authenticated = false;
   
-  private PinScreen pinScreen;
   private KeyPad keyPad;
+  private PinView pinView;
+  private PinScreen pinScreen;
   
   private Device() {
     notificationBar = loadImage("../../assets/images/notification-bar-1.5x.png");
@@ -24,8 +25,11 @@ class Device implements IApp {
   }
   
   void startUp() {
-    pinScreen = new PinScreen();
+    pinView = new PinView(4);
     keyPad = new KeyPad();
+    pinScreen = new PinScreen();
+    
+    pinScreen.addSubComponent(pinView);
     pinScreen.addSubComponent(keyPad);
   }
   
