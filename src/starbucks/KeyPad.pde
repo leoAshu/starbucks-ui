@@ -7,21 +7,21 @@ class KeyPad {
   KeyPad() {
     buttons = new ArrayList<KeyPadButton>();
     
-    buttons.add(new KeyPadButton(0, 312, "1\n "));
-    buttons.add(new KeyPadButton(125, 312, "2\nABC"));
-    buttons.add(new KeyPadButton(250, 312, "3\nDEF"));
+    buttons.add(new KeyPadButton(0, 312, "1", ""));
+    buttons.add(new KeyPadButton(125, 312, "2", "A B C"));
+    buttons.add(new KeyPadButton(250, 312, "3", "D E F"));
     
-    buttons.add(new KeyPadButton(0, 382, "4\n "));
-    buttons.add(new KeyPadButton(125, 382, "5\nGHI"));
-    buttons.add(new KeyPadButton(250, 382, "6\nJKL"));
+    buttons.add(new KeyPadButton(0, 382, "4", "G H I"));
+    buttons.add(new KeyPadButton(125, 382, "5", "J K L"));
+    buttons.add(new KeyPadButton(250, 382, "6", "M N O"));
     
-    buttons.add(new KeyPadButton(0, 452, "7\nMNO"));
-    buttons.add(new KeyPadButton(125, 452, "8\nPQRS"));
-    buttons.add(new KeyPadButton(250, 452, "9\nTUV"));
+    buttons.add(new KeyPadButton(0, 452, "7", "P Q R S"));
+    buttons.add(new KeyPadButton(125, 452, "8", "T U V"));
+    buttons.add(new KeyPadButton(250, 452, "9", "W X Y Z"));
     
-    buttons.add(new KeyPadButton(0, 522, ""));
-    buttons.add(new KeyPadButton(125, 522, "0"));
-    buttons.add(new KeyPadButton(250, 522, "X"));
+    buttons.add(new KeyPadButton(0, 522, "", ""));
+    buttons.add(new KeyPadButton(125, 522, "0", ""));
+    buttons.add(new KeyPadButton(250, 522, "X", ""));
   }
   
   void display() {
@@ -39,12 +39,14 @@ class KeyPadButton {
   
   private int x;
   private int y;
-  private String label;
+  private String label1;
+  private String label2;
   
-  KeyPadButton(int x, int y, String label) {
+  KeyPadButton(int x, int y, String label1, String label2) {
     this.x = x;
     this.y = y;
-    this.label = label;
+    this.label1 = label1;
+    this.label2 = label2;
   }
   
   void display() {
@@ -55,7 +57,12 @@ class KeyPadButton {
     
     fill(255);
     textAlign(CENTER);
-    text(label, x + WIDTH/2, y + (HEIGHT/2));
+    textSize(26);
+    text(label1, x + WIDTH/2, y + (HEIGHT/2) + 5);
+    
+    fill(255, 0.8*255);
+    textSize(12);
+    text(label2, x + WIDTH/2, y + (HEIGHT/2) + 22);
   }
   
   // linear gradient: vertical
