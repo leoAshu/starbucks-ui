@@ -11,6 +11,7 @@ public class Device implements IApp  {
     private boolean authenticated;
     private PImage notificationBar;
     private PinScreen pinScreen;
+    private KeyPad keyPad;
 
     private Device(PApplet starbucks) {
         this.starbucks = starbucks;
@@ -41,7 +42,10 @@ public class Device implements IApp  {
      * Sets up the Pin Screen
      */
     private void setUpPinScreen() {
+        keyPad = new KeyPad(starbucks);
         pinScreen = new PinScreen(starbucks);
+
+        pinScreen.addSubComponent(keyPad);
     }
 
 
