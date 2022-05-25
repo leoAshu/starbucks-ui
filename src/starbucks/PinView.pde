@@ -2,7 +2,7 @@ class PinView implements IDisplayComponent, ITouchEventHandler {
   private final int BLOCK_SIZE = 45;
   private final int PADDING = 16;
   private final int FONT_SIZE = 32;
-  private final int Y = 150;
+  private final int Y = 130;
   
   private int pinOption;
   private int count;
