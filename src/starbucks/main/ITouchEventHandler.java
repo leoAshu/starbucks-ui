@@ -8,6 +8,11 @@ public interface ITouchEventHandler {
     void touch(int x, int y);
 
     /**
+     * Send release event to current screen
+     */
+    void release();
+
+    /**
      * Set Next Handler in Event Chain
      * @param next Next Handler Object
      */
