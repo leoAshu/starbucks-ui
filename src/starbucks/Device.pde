@@ -13,8 +13,10 @@ class Device implements IApp {
   private final int NOTIFICATION_BAR_WIDTH = 375;
   
   private PImage notificationBar;
-  private PinScreen pinScreen;
   private boolean authenticated = false;
+  
+  private PinScreen pinScreen;
+  private KeyPad keyPad;
   
   private Device() {
     notificationBar = loadImage("../../assets/images/notification-bar-1.5x.png");
@@ -23,6 +25,8 @@ class Device implements IApp {
   
   void startUp() {
     pinScreen = new PinScreen();
+    keyPad = new KeyPad();
+    pinScreen.addSubComponent(keyPad);
   }
   
   void display() {
