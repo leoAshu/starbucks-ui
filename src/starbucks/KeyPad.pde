@@ -36,6 +36,7 @@ class KeyPadButton {
   private final int COLOR_1 = color(102, 102, 102);
   private final int COLOR_2 = color(60, 60, 60);
   private final int COLOR_3 = color(4, 4, 4);
+  private final PFont ROBOTO_MED = createFont("../../assets/fonts/Roboto-Medium.ttf", 64); 
   
   private int x;
   private int y;
@@ -55,14 +56,16 @@ class KeyPadButton {
     rect(x, y, WIDTH, HEIGHT);
     setGradient(x+1, y+1, WIDTH-2, HEIGHT-2);
     
+    textFont(ROBOTO_MED);
+    
     fill(255);
     textAlign(CENTER);
     textSize(26);
-    text(label1, x + WIDTH/2, y + (HEIGHT/2) + 5);
+    text(label1, x + WIDTH/2, y + (HEIGHT/2) + 2);
     
     fill(255, 0.8*255);
-    textSize(12);
-    text(label2, x + WIDTH/2, y + (HEIGHT/2) + 22);
+    textSize(14);
+    text(label2, x + WIDTH/2, y + (HEIGHT/2) + 20);
   }
   
   // linear gradient: vertical
