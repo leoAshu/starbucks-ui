@@ -11,4 +11,7 @@ public class Constants {
     public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
     public static final int NOTIF_BAR_HEIGHT = 31;
     public static final int NOTIF_BAR_WIDTH = 375;
+
+    // pin screen
+    public static final String PIN_SCREEN_BG_PATH = "../../assets/images/pinscreen-bg.png";
 }
