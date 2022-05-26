@@ -1,26 +1,26 @@
-/** One Pig Digit State */
-public class OnePinDigitState implements IPinState {
+/** No Pin Digits State */
+public class NoPinState implements IPinState {
     private IPinStateMachine machine;
 
     /**
      * Constructor
      * @param  m Reference to State Machine
      */
-    public OnePinDigitState(IPinStateMachine m) {
+    public NoPinState(IPinStateMachine m) {
         this.machine = m;
     }
 
     /**
      * Number Event
      * @param digit Digit pressed
-     */    
+     */
     public void number(String digit) {
-        machine.setStateTwoPinDigits(digit);
+        machine.setStateOnePinDigit(digit);
     }
 
     /** Backspace Event */
     public void backspace() {
-        machine.setStateNoPinDigits();
+
     }
 
     /** Valid Pin Event */
@@ -30,6 +30,7 @@ public class OnePinDigitState implements IPinState {
 
     /** Invalid Pin Event */
     public void invalidPin() {
-
+        
     }
+
 }

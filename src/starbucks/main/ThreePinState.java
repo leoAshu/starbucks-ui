@@ -1,12 +1,12 @@
-/** To Pin Digits State */
-public class TwoPinDigitsState implements IPinState {
+/** Three Pin Digit State */
+public class ThreePinState implements IPinState {
     IPinStateMachine machine;
 
     /**
      * Constructor
      * @param  m Reference to State Machine
-     */    
-    public TwoPinDigitsState(IPinStateMachine m) {
+     */
+    public ThreePinState(IPinStateMachine m) {
         this.machine = m;
     }
 
@@ -15,12 +15,12 @@ public class TwoPinDigitsState implements IPinState {
      * @param digit Digit pressed
      */
     public void number(String digit) {
-        machine.setStateThreePinDigits(digit);
+        machine.setStateFourPinDigits(digit);
     }
 
     /** Backspace Event */
     public void backspace() {
-        machine.setStateOnePinDigit(null);
+        machine.setStateTwoPinDigits(null);
     }
 
     /** Valid Pin Event */
@@ -28,7 +28,7 @@ public class TwoPinDigitsState implements IPinState {
 
     }
 
-    /** Invalid Pin Event */
+    /** Invlid Pin Event */
     public void invalidPin() {
 
     }

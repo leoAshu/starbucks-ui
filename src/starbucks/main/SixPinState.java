@@ -1,12 +1,12 @@
 /** For Pin Digits State */
-public class SixPinDigitsState implements IPinState {
+public class SixPinState implements IPinState {
     IPinStateMachine machine;
 
     /**
      * Constructor
      * @param  m Reference to State Machine
      */
-    public SixPinDigitsState(IPinStateMachine m) {
+    public SixPinState(IPinStateMachine m) {
         this.machine = m;
     }
 

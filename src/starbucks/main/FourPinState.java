@@ -1,12 +1,12 @@
 /** For Pin Digits State */
-public class FourPinDigitsState implements IPinState {
+public class FourPinState implements IPinState {
     IPinStateMachine machine;
 
     /**
      * Constructor
      * @param  m Reference to State Machine
      */
-    public FourPinDigitsState(IPinStateMachine m) {
+    public FourPinState(IPinStateMachine m) {
         this.machine = m;
     }
 
