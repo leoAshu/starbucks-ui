@@ -15,6 +15,17 @@ public class Constants {
     public static final int APP_BAR_WIDTH = 375;
     public static final int APP_BAR_HEIGHT = 55;
 
+    // bottom nav bar
+    public static final int NAV_BAR_WIDTH = 375;
+    public static final int NAV_BAR_HEIGHT = 55;
+    public static final String[] NAV_OPTION_LABELS = new String[]{
+        "Cards",
+        "Payments",
+        "My Rewards",
+        "Stores",
+        "Settings"
+    };
+
     // pin screen
     public static final int PIN_BLOCK_Y = 130;
     public static final int PIN_FONT_SIZE = 32;
@@ -30,6 +41,20 @@ public class Constants {
     public static final String PIN_SCREEN_BG_PATH = "../../assets/images/pinscreen-bg.png";
     public static final String MAIN_SCREEN_BG_PATH = "../../assets/images/mainscreen-bg.png";
     public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
+    public static final String[] NAV_OPTION_ICON_PATHS = new String[]{
+        "../../assets/images/icon-cards.png",
+        "../../assets/images/icon-payments.png",
+        "../../assets/images/icon-rewards.png",
+        "../../assets/images/icon-stores.png",
+        "../../assets/images/icon-settings.png"
+    };
+    public static final String[] ACTIVE_NAV_OPTION_ICON_PATHS = new String[]{
+        "../../assets/images/icon-cards-active.png",
+        "../../assets/images/icon-payments-active.png",
+        "../../assets/images/icon-rewards-active.png",
+        "../../assets/images/icon-stores-active.png",
+        "../../assets/images/icon-settings-active.png"
+    };
 
     // fonts
     public static final String ROBOTO_LIGHT_PATH = "../../assets/fonts/Roboto-Light.ttf";

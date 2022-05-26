@@ -9,9 +9,6 @@ public class MyCardsScreen extends Screen {
     @Override
     public void display() {
         super.display();
-        starbucks.fill(0);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.text("MyCardsScreen", starbucks.width/2, starbucks.height/2);
     }
     
     @Override
