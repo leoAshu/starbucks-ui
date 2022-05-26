@@ -3,7 +3,7 @@ import processing.core.PApplet;
 public class MyCardsScreen extends Screen {
 
     public MyCardsScreen(PApplet starbucks) {
-        super(starbucks, Constants.MAIN_SCREEN_BG_PATH);
+        super(starbucks, Constants.SCREEN_BG_DARK);
     }
 
     @Override

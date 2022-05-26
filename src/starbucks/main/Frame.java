@@ -34,6 +34,9 @@ public class Frame implements IFrame, IDisplayComponent {
 
     @Override
     public void touch(int x, int y) {
+        // needs chain of responsibility
+        // might have to modify screens
+        // screens should implement ITouchEventHandler
         if(y < Constants.NOTIF_BAR_HEIGHT) {
             starbucks.text("Notification Bar Touched!", starbucks.width/2, starbucks.height/2);
         } else if( y < (Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT)) {
@@ -79,7 +82,7 @@ class AppBar implements IDisplayComponent {
     public void display() {
         // background
         starbucks.image(
-            starbucks.loadImage(Constants.APP_BAR_BG_PATH),
+            starbucks.loadImage(Constants.APP_BAR_BG),
             0,
             Constants.NOTIF_BAR_HEIGHT,
             Constants.APP_BAR_WIDTH,
@@ -152,8 +155,8 @@ class NavBar implements IDisplayComponent {
                 new NavBarOption(
                     starbucks, 
                     Constants.NAV_OPTION_LABELS[i], 
-                    Constants.NAV_OPTION_ICON_PATHS[i],
-                    Constants.ACTIVE_NAV_OPTION_ICON_PATHS[i],
+                    Constants.NAV_OPTION_ICONS[i],
+                    Constants.ACTIVE_NAV_OPTION_ICONS[i],
                     x, 
                     starbucks.height - Constants.NAV_BAR_HEIGHT,
                     starbucks.width/5, 

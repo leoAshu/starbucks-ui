@@ -37,18 +37,18 @@ public class Constants {
     public static final int SIX_PIN_OPTION = 6;
 
     // images
-    public static final String APP_BAR_BG_PATH = "../../assets/images/app-bar.png";
-    public static final String PIN_SCREEN_BG_PATH = "../../assets/images/pinscreen-bg.png";
-    public static final String MAIN_SCREEN_BG_PATH = "../../assets/images/mainscreen-bg.png";
-    public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
-    public static final String[] NAV_OPTION_ICON_PATHS = new String[]{
+    public static final String APP_BAR_BG = "../../assets/images/app-bar.png";
+    public static final String PIN_SCREEN_BG = "../../assets/images/pinscreen-bg.png";
+    public static final String SCREEN_BG_DARK = "../../assets/images/mainscreen-bg.png";
+    public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
+    public static final String[] NAV_OPTION_ICONS = new String[]{
         "../../assets/images/icon-cards.png",
         "../../assets/images/icon-payments.png",
         "../../assets/images/icon-rewards.png",
         "../../assets/images/icon-stores.png",
         "../../assets/images/icon-settings.png"
     };
-    public static final String[] ACTIVE_NAV_OPTION_ICON_PATHS = new String[]{
+    public static final String[] ACTIVE_NAV_OPTION_ICONS = new String[]{
         "../../assets/images/icon-cards-active.png",
         "../../assets/images/icon-payments-active.png",
         "../../assets/images/icon-rewards-active.png",

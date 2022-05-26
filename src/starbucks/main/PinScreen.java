@@ -10,7 +10,7 @@ public class PinScreen extends Screen {
     @Override
     public void display() {
         starbucks.image(
-            starbucks.loadImage(Constants.PIN_SCREEN_BG_PATH),
+            starbucks.loadImage(Constants.PIN_SCREEN_BG),
             0,
             Constants.NOTIF_BAR_HEIGHT
         );

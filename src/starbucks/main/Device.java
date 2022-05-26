@@ -23,7 +23,7 @@ public class Device implements IApp, IPinAuthObserver  {
 
     private Device(PApplet starbucks) {
         this.starbucks = starbucks;
-        this.notificationBar = starbucks.loadImage(Constants.NOTIF_BAR_IMAGE_PATH);
+        this.notificationBar = starbucks.loadImage(Constants.NOTIF_BAR_IMAGE);
     }
 
     /**
