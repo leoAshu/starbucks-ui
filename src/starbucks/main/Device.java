@@ -128,9 +128,8 @@ public class Device implements IApp  {
      */
     private void setPin(String p) {
         pin = p;
-        int len = p.length();
-        fourPin = len == Constants.FOUR_PIN_OPTION;
-        sixPin = len == Constants.SIX_PIN_OPTION;
+        fourPin = pin.length() == Constants.FOUR_PIN_OPTION;
+        sixPin = pin.length() == Constants.SIX_PIN_OPTION;
     }
 
     private void screenDisplay() {
