@@ -7,6 +7,7 @@ public class AppController implements IApp {
     private PApplet starbucks;
     private static AppController theController;
 
+    private IFrame frame;
     private IScreen myCardsScreen;
 
     private AppController(PApplet starbucks) {
@@ -27,21 +28,22 @@ public class AppController implements IApp {
 
     @Override
     public void touch(int x, int y) {
-        myCardsScreen.touch(x, y);
+        frame.touch(x, y);
     }
 
     @Override
     public void release() {
-        myCardsScreen.release();
+        frame.release();
     }
 
     @Override
     public void display() {
-        myCardsScreen.display();
+        frame.display();
     }
 
     private void init() {
         myCardsScreen = new MyCardsScreen(starbucks);
+        frame = new Frame(starbucks, myCardsScreen);
     }
     
 }

@@ -22,9 +22,10 @@ public class Constants {
     public static final int SIX_PIN_OPTION = 6;
 
     // images
-    public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
+    public static final String APP_BAR_BG_PATH = "../../assets/images/app-bar.png";
     public static final String PIN_SCREEN_BG_PATH = "../../assets/images/pinscreen-bg.png";
     public static final String MAIN_SCREEN_BG_PATH = "../../assets/images/mainscreen-bg.png";
+    public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
 
     // fonts
     public static final String ROBOTO_LIGHT_PATH = "../../assets/fonts/Roboto-Light.ttf";
