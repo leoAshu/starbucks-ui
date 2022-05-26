@@ -39,7 +39,8 @@ public class Constants {
     // images
     public static final String APP_BAR_BG = "../../assets/images/app-bar.png";
     public static final String PIN_SCREEN_BG = "../../assets/images/pinscreen-bg.png";
-    public static final String SCREEN_BG_DARK = "../../assets/images/mainscreen-bg.png";
+    public static final String SCREEN_BG_DARK = "../../assets/images/screen-bg-dark.png";
+    public static final String SCREEN_BG_LIGHT = "../../assets/images/screen-bg-light.png";
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
     public static final String[] NAV_OPTION_ICONS = new String[]{
         "../../assets/images/icon-cards.png",
