@@ -34,8 +34,18 @@ public class Frame implements IFrame, IDisplayComponent {
 
     @Override
     public void touch(int x, int y) {
-        if(currentScreen != null)
-            currentScreen.touch(x, y);
+        if(y < Constants.NOTIF_BAR_HEIGHT) {
+            starbucks.text("Notification Bar Touched!", starbucks.width/2, starbucks.height/2);
+        } else if( y < (Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT)) {
+            starbucks.text("App Bar Touched!", starbucks.width/2, starbucks.height/2);
+        } else if(y < (starbucks.height - Constants.NAV_BAR_HEIGHT)) {
+            starbucks.text("Screen Touched!", starbucks.width/2, starbucks.height/2);
+        } else {
+            starbucks.text("Nav Bar Touched!", starbucks.width/2, starbucks.height/2);
+            navBar.touch(x, y);
+        }
+        // if(currentScreen != null)
+        //     currentScreen.touch(x, y);
     }
 
     @Override
@@ -97,6 +107,7 @@ class AppBar implements IDisplayComponent {
 
 class NavBar implements IDisplayComponent {
     private PApplet starbucks;
+    private ITouchEventHandler chain;
     private List<IDisplayComponent> options;
 
     public NavBar(PApplet starbucks) {
@@ -121,6 +132,17 @@ class NavBar implements IDisplayComponent {
     @Override
     public void addSubComponent(IDisplayComponent component) {
         options.add(component);
+        if(options.size() == 1)
+            chain = (ITouchEventHandler) component;
+        else {
+            ITouchEventHandler prev = (ITouchEventHandler) options.get(options.size()-2);
+            prev.setNext((ITouchEventHandler) component);
+        }
+    }
+
+    public void touch(int x, int y) {
+        if(chain != null)
+            chain.touch(x, y);
     }
 
     private void addNavBarOptions() {
@@ -155,7 +177,7 @@ class NavBar implements IDisplayComponent {
 
 }
 
-class NavBarOption implements IDisplayComponent {
+class NavBarOption implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private String label;
     private String defaultIcon;
@@ -164,7 +186,9 @@ class NavBarOption implements IDisplayComponent {
     int y;
     private int width;
     private int height;
-    private boolean isSelected;
+    private boolean isActive;
+
+    private ITouchEventHandler nextHandler;
 
     public NavBarOption(PApplet starbucks, String label, String defaultIcon, String activeIcon, int x, int y, int width, int height) {
         this.starbucks = starbucks;
@@ -175,12 +199,12 @@ class NavBarOption implements IDisplayComponent {
         this.y = y;
         this.width = width;
         this.height = height;
-        isSelected = x==width;
+        isActive = x==0;
     }
 
     @Override
     public void display() {
-        if(isSelected){
+        if(isActive){
             setGradient(x, y, width, height);
         }
         drawLabels();
@@ -189,6 +213,30 @@ class NavBarOption implements IDisplayComponent {
     @Override
     public void addSubComponent(IDisplayComponent component) {
         
+    }
+
+    @Override
+    public void touch(int x, int y) {
+        boolean overX = x > this.x && x < (this.x + width);
+        boolean overY = y > this.y && y < (this.y + height);
+        
+        if(overX && overY)
+            toggleState(true);
+        else
+            toggleState(false);
+        
+            if(nextHandler != null)
+            nextHandler.touch(x, y);
+    }
+
+    @Override
+    public void release() {
+        
+    }
+
+    @Override
+    public void setNext(ITouchEventHandler next) {
+        nextHandler = next;
     }
 
     // linear gradient: vertical
@@ -210,9 +258,9 @@ class NavBarOption implements IDisplayComponent {
 
     private void drawLabels() {
         // icon
-        PImage icon = starbucks.loadImage(isSelected? activeIcon: defaultIcon);
+        PImage icon = starbucks.loadImage(isActive? activeIcon: defaultIcon);
         
-        starbucks.tint(255, isSelected? 255: 150);
+        starbucks.tint(255, isActive? 255: 150);
         starbucks.image(
             icon,
             x + (width - icon.width)/2,
@@ -222,7 +270,7 @@ class NavBarOption implements IDisplayComponent {
         // label
         starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 10));
 
-        starbucks.fill(255, isSelected? 255: 150);
+        starbucks.fill(255, isActive? 255: 150);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(10);
         starbucks.text(
@@ -231,6 +279,14 @@ class NavBarOption implements IDisplayComponent {
             // labelAlphabet.isEmpty()? y + (Constants.CELL_HEIGHT/2) + 6: y + (Constants.CELL_HEIGHT/2) + 2
             585
         );
+    }
+
+    public void toggleState(boolean state) {
+        isActive = state;
+        // if(!isSelected) {
+        //     isSelected = true;
+        //     // callback to frame to change screen
+        // }
     }
 
 }
