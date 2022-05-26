@@ -94,8 +94,8 @@ public class Device implements IApp, IPinAuthObserver  {
      * Sets up the Pin Screen
      */
     private void setUpPinScreen() {
-        pinStatusView = new PinStatusView(starbucks, 4);
-        pinView = new PinView(starbucks, 4);
+        pinStatusView = new PinStatusView(starbucks, getPinOption());
+        pinView = new PinView(starbucks, getPinOption());
         keyPad = new KeyPad(starbucks);
         pinScreen = new PinScreen(starbucks);
         pinEntryMachine = new PinEntryMachine(starbucks);
