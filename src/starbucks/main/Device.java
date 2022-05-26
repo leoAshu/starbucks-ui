@@ -8,6 +8,7 @@ public class Device implements IApp, IPinAuthObserver  {
     private PApplet starbucks;
     private static Device theDevice;
 
+    private IApp app;
     private KeyPad keyPad;
     private PinView pinView;
     private PinScreen pinScreen;
@@ -49,7 +50,7 @@ public class Device implements IApp, IPinAuthObserver  {
     @Override
     public void touch(int x, int y) {
         if(authenticated) {
-            // App Screen
+            app.touch(x, y);
         } else 
             pinScreen.touch(x, y);
     }
@@ -57,7 +58,7 @@ public class Device implements IApp, IPinAuthObserver  {
     @Override
     public void release() {
         if(authenticated) {
-            // App Screen
+            app.release();
         } else 
             pinScreen.release();
     }
@@ -88,6 +89,7 @@ public class Device implements IApp, IPinAuthObserver  {
             this.authenticated = true;
         else
             setUpPinScreen();
+        app = AppController.getNewAppController(starbucks);
     }
 
     /**  
@@ -149,10 +151,7 @@ public class Device implements IApp, IPinAuthObserver  {
 
     private void screenDisplay() {
         if(authenticated) {
-            // App Screen
-            starbucks.image(starbucks.loadImage(Constants.MAIN_SCREEN_BG_PATH), 0, Constants.NOTIF_BAR_HEIGHT);
-            starbucks.fill(0);
-            starbucks.text("MyCardsScreen", starbucks.width/2, starbucks.height/2);
+            app.display();
         } else 
             pinScreen.display();
     }
