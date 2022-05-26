@@ -13,6 +13,7 @@ public class Device implements IApp, IPinAuthObserver  {
     private PinScreen pinScreen;
     private boolean authenticated;
     private PImage notificationBar;
+    private PinStatusView pinStatusView;
     private PinEntryMachine pinEntryMachine;
 
     private String pin;
@@ -71,7 +72,6 @@ public class Device implements IApp, IPinAuthObserver  {
             Constants.NOTIF_BAR_HEIGHT
         );
         screenDisplay();
-        pinEntryMachine.display();
     }
 
     @Override
@@ -94,19 +94,23 @@ public class Device implements IApp, IPinAuthObserver  {
      * Sets up the Pin Screen
      */
     private void setUpPinScreen() {
+        pinStatusView = new PinStatusView(starbucks, 4);
         pinView = new PinView(starbucks, 4);
         keyPad = new KeyPad(starbucks);
         pinScreen = new PinScreen(starbucks);
         pinEntryMachine = new PinEntryMachine(starbucks);
         pinEntryMachine.setPin(pin);
 
+        pinScreen.addSubComponent(pinStatusView);
         pinScreen.addSubComponent(pinView);
         pinScreen.addSubComponent(keyPad);
 
+        ((IKeyPadSubject)keyPad).attach(pinStatusView);
         ((IKeyPadSubject)keyPad).attach(pinView);
         ((IKeyPadSubject)keyPad).attach(pinEntryMachine);
 
         ((IPinAuthSubject)pinEntryMachine).attach(this);
+        ((IPinAuthSubject)pinEntryMachine).attach(pinStatusView);
     }
 
     /**
