@@ -1,5 +1,6 @@
 import processing.core.PApplet;
 
+/** Pin Entry Machine - Context for State Pattern */
 public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver {
     private PApplet starbucks;
     private String pin;
