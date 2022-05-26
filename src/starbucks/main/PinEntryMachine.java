@@ -1,10 +1,14 @@
 import processing.core.PApplet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /** Pin Entry Machine - Context for State Pattern */
-public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver {
+public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinAuthSubject {
     private PApplet starbucks;
     private String pin;
     private boolean authenticated;
+    private List<IPinAuthObserver> observers;
     
     // pin machine states
     private NoPinState noPinState;
@@ -32,6 +36,8 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver {
      */
     public PinEntryMachine(PApplet starbucks) {
         this.starbucks = starbucks;
+        observers = new ArrayList<IPinAuthObserver>();
+
         noPinState = new NoPinState(this);
         onePinState = new OnePinState(this);
         twoPinState = new TwoPinState(this);
@@ -170,11 +176,30 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver {
             number(key);
     }
 
+    @Override
+    public void attach(IPinAuthObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IPinAuthObserver observer) {
+        int i = observers.indexOf(observer);
+        if (i >= 0)
+            observers.remove(i);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(IPinAuthObserver observer: observers)
+            observer.authEvent(authenticated);
+    }
+
     private void authenticate() {
         if(pin.equals(d1+d2+d3+d4+d5+d6))
             authenticated = true;
         else
             currentState.invalidPin();
+        notifyObservers();
     }
     
     public void display() {
@@ -187,4 +212,5 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver {
         starbucks.text("d6: "+d6, 330, 102);
         starbucks.text("" + authenticated, starbucks.width/2, 120);
     }
+
 }

@@ -4,7 +4,7 @@ import processing.core.PImage;
 /**
  * Authentication Proxy for App Controller
  */
-public class Device implements IApp  {
+public class Device implements IApp, IPinAuthObserver  {
     private PApplet starbucks;
     private static Device theDevice;
 
@@ -74,6 +74,11 @@ public class Device implements IApp  {
         pinEntryMachine.display();
     }
 
+    @Override
+    public void authEvent(boolean isAuthenticated) {
+        authenticated = isAuthenticated;
+    }
+
     /**
      * Device Starup Process.  
      * Starts Up with Default 4-Pin Option
@@ -100,6 +105,8 @@ public class Device implements IApp  {
 
         ((IKeyPadSubject)keyPad).attach(pinView);
         ((IKeyPadSubject)keyPad).attach(pinEntryMachine);
+
+        ((IPinAuthSubject)pinEntryMachine).attach(this);
     }
 
     /**
@@ -139,6 +146,8 @@ public class Device implements IApp  {
     private void screenDisplay() {
         if(authenticated) {
             // App Screen
+            starbucks.image(starbucks.loadImage(Constants.MAIN_SCREEN_BG_PATH), 0, Constants.NOTIF_BAR_HEIGHT);
+            starbucks.fill(0);
             starbucks.text("MyCardsScreen", starbucks.width/2, starbucks.height/2);
         } else 
             pinScreen.display();

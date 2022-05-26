@@ -56,8 +56,8 @@ public class PinView implements IDisplayComponent, ITouchEventHandler, IKeyPadOb
         } else {
             if(pinDigitsCount < pinOption) {
                 pinDigitsCount += 1;
-                // if(pinDigitsCount == pinOption)
-                //     pinDigitsCount = 0;
+                if(pinDigitsCount == pinOption)
+                    pinDigitsCount = 0;
              }
         }
     }

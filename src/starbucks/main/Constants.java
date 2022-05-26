@@ -24,6 +24,7 @@ public class Constants {
     // images
     public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
     public static final String PIN_SCREEN_BG_PATH = "../../assets/images/pinscreen-bg.png";
+    public static final String MAIN_SCREEN_BG_PATH = "../../assets/images/mainscreen-bg.png";
 
     // fonts
     public static final String ROBOTO_LIGHT_PATH = "../../assets/fonts/Roboto-Light.ttf";
