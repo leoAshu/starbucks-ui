@@ -8,8 +8,12 @@ public class Constants {
     public static final int CELL_HEIGHT = 70;
 
     // notification bar
-    public static final int NOTIF_BAR_HEIGHT = 31;
     public static final int NOTIF_BAR_WIDTH = 375;
+    public static final int NOTIF_BAR_HEIGHT = 31;
+
+    // app bar
+    public static final int APP_BAR_WIDTH = 375;
+    public static final int APP_BAR_HEIGHT = 55;
 
     // pin screen
     public static final int PIN_BLOCK_Y = 130;

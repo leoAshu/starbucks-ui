@@ -55,5 +55,10 @@ public class Screen implements IScreen, IDisplayComponent {
             prev.setNext((ITouchEventHandler) component);
         }
     }
+
+    @Override
+    public String name() {
+        return (this.getClass().getName()).split("\\.")[0];
+    }
     
 }

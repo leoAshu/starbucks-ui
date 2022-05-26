@@ -14,4 +14,8 @@ public class MyCardsScreen extends Screen {
         starbucks.text("MyCardsScreen", starbucks.width/2, starbucks.height/2);
     }
     
+    @Override
+    public String name() {
+        return "My Cards";
+    }
 }
