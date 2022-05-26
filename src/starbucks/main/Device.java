@@ -8,10 +8,11 @@ public class Device implements IApp  {
     private PApplet starbucks;
     private static Device theDevice;
 
+    private KeyPad keyPad;
+    private PinView pinView;
+    private PinScreen pinScreen;
     private boolean authenticated;
     private PImage notificationBar;
-    private PinScreen pinScreen;
-    private KeyPad keyPad;
 
     private Device(PApplet starbucks) {
         this.starbucks = starbucks;
@@ -43,9 +44,11 @@ public class Device implements IApp  {
      */
     private void setUpPinScreen() {
         keyPad = new KeyPad(starbucks);
+        pinView = new PinView(starbucks, 4);
         pinScreen = new PinScreen(starbucks);
 
         pinScreen.addSubComponent(keyPad);
+        pinScreen.addSubComponent(pinView);
     }
 
 
