@@ -19,7 +19,7 @@ public class Frame implements IFrame, IDisplayComponent {
         currentScreen = initial;
 
         appBar = new AppBar(this.starbucks, currentScreen.name());
-        navBar = new NavBar(starbucks);
+        navBar = new NavBar(starbucks, this);
 
         components = new ArrayList<IDisplayComponent>();
         addSubComponent(appBar);
@@ -30,6 +30,8 @@ public class Frame implements IFrame, IDisplayComponent {
     @Override
     public void setCurrentScreen(IScreen screen) {
         currentScreen = screen;
+        appBar.setScreenName(currentScreen.name());
+        components.set(1, (IDisplayComponent)currentScreen);
     }
 
     @Override
@@ -79,6 +81,10 @@ class AppBar implements IDisplayComponent {
         this.screenName = screenName;
     }
 
+    public void setScreenName(String name) {
+        screenName = name;
+    }
+
     public void display() {
         // background
         starbucks.image(
@@ -112,10 +118,16 @@ class NavBar implements IDisplayComponent {
     private PApplet starbucks;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> options;
+    // testing purpose
+    // replace with command pattern
+    private IFrame frame;
 
-    public NavBar(PApplet starbucks) {
+    public NavBar(PApplet starbucks, IFrame frame) {
         this.starbucks = starbucks;
+        this.frame = frame;
+
         options = new ArrayList<IDisplayComponent>();
+
         addNavBarOptions();
     }
 
@@ -160,7 +172,8 @@ class NavBar implements IDisplayComponent {
                     x, 
                     starbucks.height - Constants.NAV_BAR_HEIGHT,
                     starbucks.width/5, 
-                    Constants.NAV_BAR_HEIGHT
+                    Constants.NAV_BAR_HEIGHT,
+                    this
                 )
             );
             x += starbucks.width/5;
@@ -178,6 +191,21 @@ class NavBar implements IDisplayComponent {
         }
     }
 
+    public void changeScreen(String navOption) {
+        frame.setCurrentScreen(getScreenFromLabel(navOption));
+    }
+
+    private IScreen getScreenFromLabel(String label) {
+        switch(label) {
+            case "Cards": return new MyCardsScreen(starbucks);
+            case "Payments": return new PaymentsScreen(starbucks);
+            case "My Rewards": return new RewardsScreen(starbucks);
+            case "Stores": return new StoresScreen(starbucks);
+            case "Settings": return new SettingsScreen(starbucks);
+            default: return new MyCardsScreen(starbucks);
+        }
+    }
+
 }
 
 class NavBarOption implements IDisplayComponent, ITouchEventHandler {
@@ -190,10 +218,11 @@ class NavBarOption implements IDisplayComponent, ITouchEventHandler {
     private int width;
     private int height;
     private boolean isActive;
+    private NavBar navBar;
 
     private ITouchEventHandler nextHandler;
 
-    public NavBarOption(PApplet starbucks, String label, String defaultIcon, String activeIcon, int x, int y, int width, int height) {
+    public NavBarOption(PApplet starbucks, String label, String defaultIcon, String activeIcon, int x, int y, int width, int height, NavBar navBar) {
         this.starbucks = starbucks;
         this.label = label;
         this.defaultIcon = defaultIcon;
@@ -203,6 +232,7 @@ class NavBarOption implements IDisplayComponent, ITouchEventHandler {
         this.width = width;
         this.height = height;
         isActive = x==0;
+        this.navBar = navBar;
     }
 
     @Override
@@ -285,11 +315,12 @@ class NavBarOption implements IDisplayComponent, ITouchEventHandler {
     }
 
     public void toggleState(boolean state) {
+        if(isActive == false && state == true) {
+            isActive = state;
+            navBar.changeScreen(label);
+            return;
+        }
         isActive = state;
-        // if(!isSelected) {
-        //     isSelected = true;
-        //     // callback to frame to change screen
-        // }
     }
 
 }
