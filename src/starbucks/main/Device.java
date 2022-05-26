@@ -13,6 +13,7 @@ public class Device implements IApp  {
     private PinScreen pinScreen;
     private boolean authenticated;
     private PImage notificationBar;
+    private PinEntryMachine pinEntryMachine;
 
     private String pin;
     private boolean fourPin;
@@ -21,7 +22,6 @@ public class Device implements IApp  {
     private Device(PApplet starbucks) {
         this.starbucks = starbucks;
         this.notificationBar = starbucks.loadImage(Constants.NOTIF_BAR_IMAGE_PATH);
-        // startUp();
     }
 
     /**
@@ -71,6 +71,7 @@ public class Device implements IApp  {
             Constants.NOTIF_BAR_HEIGHT
         );
         screenDisplay();
+        pinEntryMachine.display();
     }
 
     /**
@@ -91,11 +92,14 @@ public class Device implements IApp  {
         pinView = new PinView(starbucks, 4);
         keyPad = new KeyPad(starbucks);
         pinScreen = new PinScreen(starbucks);
+        pinEntryMachine = new PinEntryMachine(starbucks);
+        pinEntryMachine.setPin(pin);
 
         pinScreen.addSubComponent(pinView);
         pinScreen.addSubComponent(keyPad);
 
         ((IKeyPadSubject)keyPad).attach(pinView);
+        ((IKeyPadSubject)keyPad).attach(pinEntryMachine);
     }
 
     /**
