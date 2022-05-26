@@ -9,7 +9,7 @@ public class Constants {
 
     // notification bar
     public static final int NOTIF_BAR_WIDTH = 375;
-    public static final int NOTIF_BAR_HEIGHT = 31;
+    public static final int NOTIF_BAR_HEIGHT = 32;
 
     // app bar
     public static final int APP_BAR_WIDTH = 375;

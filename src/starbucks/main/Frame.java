@@ -15,10 +15,10 @@ public class Frame implements IFrame, IDisplayComponent {
     public Frame(PApplet starbucks, IScreen initial) {
         this.starbucks = starbucks;
         currentScreen = initial;
-        appBar = new AppBar(starbucks, currentScreen.name());
+        appBar = new AppBar(this.starbucks, currentScreen.name());
         components = new ArrayList<IDisplayComponent>();
-        addSubComponent((IDisplayComponent)currentScreen);
         addSubComponent(appBar);
+        addSubComponent((IDisplayComponent)currentScreen);
     }
 
     @Override
@@ -40,8 +40,6 @@ public class Frame implements IFrame, IDisplayComponent {
 
     @Override
     public void display() {
-        // if(currentScreen != null)
-        //     currentScreen.display();
         for(IDisplayComponent component: components)
             component.display();
     }

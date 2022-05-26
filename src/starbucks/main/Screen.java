@@ -40,7 +40,12 @@ public class Screen implements IScreen, IDisplayComponent {
 
     @Override
     public void display() {
-        starbucks.image(background, 0, Constants.NOTIF_BAR_HEIGHT);
+        starbucks.image(
+            background,
+            0,
+            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT
+        );
+
         for(IDisplayComponent component: components)
             component.display();
     }
