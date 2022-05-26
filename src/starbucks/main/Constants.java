@@ -17,6 +17,9 @@ public class Constants {
     public static final int PIN_BLOCK_SIZE = 45;
     public static final int PIN_BLOCK_PADDING = 16;
 
+    // supported pin options
+    public static final int FOUR_PIN_OPTION = 4;
+    public static final int SIX_PIN_OPTION = 6;
 
     // images
     public static final String NOTIF_BAR_IMAGE_PATH = "../../assets/images/notification-bar-1.5x.png";
