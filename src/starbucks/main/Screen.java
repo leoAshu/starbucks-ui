@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PImage;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -17,13 +16,13 @@ public class Screen implements IScreen, IDisplayComponent {
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;
 
-    private PImage background;
+    private String backgroundPath;
 
     public Screen(PApplet starbucks, String bgPath) {
         this.starbucks = starbucks;
         this.components = new ArrayList<IDisplayComponent>();
 
-        background = starbucks.loadImage(bgPath);
+        backgroundPath = bgPath;
     }
 
     @Override
@@ -40,11 +39,13 @@ public class Screen implements IScreen, IDisplayComponent {
 
     @Override
     public void display() {
-        starbucks.image(
-            background,
-            0,
-            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT
-        );
+        if(backgroundPath != null){
+            starbucks.image(
+                starbucks.loadImage(backgroundPath),
+                0,
+                Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT
+            );
+        }
 
         for(IDisplayComponent component: components)
             component.display();
