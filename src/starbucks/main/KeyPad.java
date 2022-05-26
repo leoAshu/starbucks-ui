@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 /** Key Pad */
-public class KeyPad implements IDisplayComponent, ITouchEventHandler {
+public class KeyPad implements IDisplayComponent, ITouchEventHandler, IKeyPadSubject {
     private PApplet starbucks;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> buttons;
+    private List<IKeyPadObserver> observers;
 
     private int keyCount;
     private String lastKey;
@@ -18,6 +19,7 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
 
         this.starbucks = starbucks;
         buttons = new ArrayList<IDisplayComponent>();
+        observers = new ArrayList<IKeyPadObserver>();
 
         addSubComponent(new KeyPadButton(starbucks, this, 0, 312, "1"));
         addSubComponent(new KeyPadButton(starbucks, this, 125, 312, "2", "A B C"));
@@ -42,8 +44,6 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
             component.display();
 
         drawBorders();
-        starbucks.text(keyCount, starbucks.width/2, 100);
-        starbucks.text("[" + lastKey + "]", starbucks.width/2, 120);
     }
 
     @Override
@@ -70,8 +70,25 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
     }
 
     @Override
-    public void setNext(ITouchEventHandler next) {
-           
+    public void setNext(ITouchEventHandler next) {   
+    }
+
+    @Override
+    public void attach(IKeyPadObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IKeyPadObserver observer) {
+        int i = observers.indexOf(observer);
+        if(i>=0)
+            observers.remove(i);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(IKeyPadObserver observer: observers)
+            observer.keyEventUpdate(keyCount, lastKey);
     }
     
     private void drawBorders() {
@@ -94,6 +111,8 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler {
                 keyCount -= 1;
         } else 
             keyCount += 1;
+
+        notifyObservers();
     }
 
 }

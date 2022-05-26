@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-public class PinView implements IDisplayComponent, ITouchEventHandler {
+public class PinView implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
     private PApplet starbucks;
     private int pinOption;
     private int pinDigitsCount;
@@ -29,7 +29,6 @@ public class PinView implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void addSubComponent(IDisplayComponent component) {
-
     }
 
     @Override
@@ -47,6 +46,20 @@ public class PinView implements IDisplayComponent, ITouchEventHandler {
     @Override
     public void setNext(ITouchEventHandler next) {
         nextHandler = next;
+    }
+
+    @Override
+    public void keyEventUpdate(int keyCount, String key) {
+        if(key.equalsIgnoreCase("X")) {
+            if(pinDigitsCount > 0)
+                pinDigitsCount -= 1;
+        } else {
+            if(pinDigitsCount < pinOption) {
+                pinDigitsCount += 1;
+                // if(pinDigitsCount == pinOption)
+                //     pinDigitsCount = 0;
+             }
+        }
     }
 
     void emptyBlock(int x) {

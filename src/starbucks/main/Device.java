@@ -43,12 +43,14 @@ public class Device implements IApp  {
      * Sets up the Pin Screen
      */
     private void setUpPinScreen() {
-        keyPad = new KeyPad(starbucks);
         pinView = new PinView(starbucks, 4);
+        keyPad = new KeyPad(starbucks);
         pinScreen = new PinScreen(starbucks);
 
-        pinScreen.addSubComponent(keyPad);
         pinScreen.addSubComponent(pinView);
+        pinScreen.addSubComponent(keyPad);
+
+        ((IKeyPadSubject)keyPad).attach(pinView);
     }
 
 
