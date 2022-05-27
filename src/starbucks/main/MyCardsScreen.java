@@ -4,6 +4,7 @@ public class MyCardsScreen extends Screen {
 
     public MyCardsScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_DARK);
+        addSubComponent(new AppBar(starbucks, name()));
     }
 
     @Override
