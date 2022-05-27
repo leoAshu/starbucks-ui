@@ -18,6 +18,13 @@ public class Constants {
     // bottom nav bar
     public static final int NAV_BAR_WIDTH = 375;
     public static final int NAV_BAR_HEIGHT = 55;
+
+    // bottom nav bar options
+    public static final String NAV_LABEL_CARDS = "Cards";
+    public static final String NAV_LABEL_PAYMENTS = "Payments";
+    public static final String NAV_LABEL_REWARDS = "Rewards";
+    public static final String NAV_LABEL_STORES = "Stores";
+    public static final String NAV_LABEL_SETTINGS = "Settings";
     public static final String[] NAV_OPTION_LABELS = new String[]{
         "Cards",
         "Payments",
@@ -42,20 +49,18 @@ public class Constants {
     public static final String SCREEN_BG_DARK = "../../assets/images/screen-bg-dark.png";
     public static final String SCREEN_BG_LIGHT = "../../assets/images/screen-bg-light.png";
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
-    public static final String[] NAV_OPTION_ICONS = new String[]{
-        "../../assets/images/icon-cards.png",
-        "../../assets/images/icon-payments.png",
-        "../../assets/images/icon-rewards.png",
-        "../../assets/images/icon-stores.png",
-        "../../assets/images/icon-settings.png"
-    };
-    public static final String[] ACTIVE_NAV_OPTION_ICONS = new String[]{
-        "../../assets/images/icon-cards-active.png",
-        "../../assets/images/icon-payments-active.png",
-        "../../assets/images/icon-rewards-active.png",
-        "../../assets/images/icon-stores-active.png",
-        "../../assets/images/icon-settings-active.png"
-    };
+    
+    // nav bar icons
+    public static final String NAV_ICON_CARDS = "../../assets/images/icon-cards.png";
+    public static final String NAV_ACTIVE_ICON_CARDS = "../../assets/images/icon-cards-active.png";
+    public static final String NAV_ICON_PAYMENTS = "../../assets/images/icon-payments.png";
+    public static final String NAV_ACTIVE_ICON_PAYMENTS = "../../assets/images/icon-payments-active.png";
+    public static final String NAV_ICON_REWARDS = "../../assets/images/icon-rewards.png";
+    public static final String NAV_ACTIVE_ICON_REWARDS = "../../assets/images/icon-rewards-active.png";
+    public static final String NAV_ICON_STORES = "../../assets/images/icon-stores.png";
+    public static final String NAV_ACTIVE_ICON_STORES = "../../assets/images/icon-stores-active.png";
+    public static final String NAV_ICON_SETTINGS = "../../assets/images/icon-settings.png";
+    public static final String NAV_ACTIVE_ICON_SETTINGS = "../../assets/images/icon-settings-active.png";
 
     // fonts
     public static final String ROBOTO_LIGHT_PATH = "../../assets/fonts/Roboto-Light.ttf";
