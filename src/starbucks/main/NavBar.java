@@ -5,28 +5,30 @@ import java.util.ArrayList;
 
 class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private int y;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> options;
 
     public NavBar(PApplet starbucks) {
         this.starbucks = starbucks;
         options = new ArrayList<IDisplayComponent>();
+        y = starbucks.height - Constants.NAV_BAR_HEIGHT;
     }
 
-    @Override
-    public void addNavBarOption(String label, String iconPath, String activeIconPath, INavBarCommand command) {
-        int x = options.size() * starbucks.width/5;
-        NavBarOption option = new NavBarOption(
-            starbucks,
-            label,
-            iconPath,
-            activeIconPath, 
-            x,
-            starbucks.height - Constants.NAV_BAR_HEIGHT,
-            starbucks.width/5
-        );
-        option.setCommand(command);
-        addSubComponent(option);
+    public void setUp(List<INavBarCommand> commands) {
+        int x = 0;
+        int optionWidth = Constants.NAV_BAR_WIDTH/commands.size();
+        for(int i=0; i<commands.size(); i++) {
+            NavBarOption option = new NavBarOption(
+                starbucks,
+                x,
+                y,
+                optionWidth
+            );
+            option.setCommand(commands.get(i));
+            addSubComponent(option);
+            x += optionWidth;
+        }
     }
 
     @Override

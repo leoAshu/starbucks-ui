@@ -4,27 +4,20 @@ import processing.core.PImage;
 /** Nav Bar Option */
 public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
-    private String label;
-    private String iconPath;
-    private String activeIconPath;
-    int x;
-    int y;
+    private int x;
+    private int y;
     private int width;
     private boolean isActive;
     
     private INavBarCommand command;
     private ITouchEventHandler nextHandler;
     
-    public NavBarOption(PApplet starbucks, String label, String iconPath, String activeIconPath, int x, int y, int width) {
+    public NavBarOption(PApplet starbucks, int x, int y, int width) {
         this.starbucks = starbucks;
-        this.label = label;
-        this.iconPath = iconPath;
-        this.activeIconPath = activeIconPath;
         this.x = x;
         this.y = y;
         this.width = width;
         isActive = x==0;
-        // this.navBar = navBar;
     }
 
     /**
@@ -98,7 +91,7 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
 
     private void drawLabels() {
         // icon
-        PImage icon = starbucks.loadImage(isActive? activeIconPath: iconPath);
+        PImage icon = starbucks.loadImage(isActive? command.getActiveIconPath(): command.getIconPath());
         
         starbucks.tint(255, isActive? 255: 150);
         starbucks.image(
@@ -114,7 +107,7 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(10);
         starbucks.text(
-            label,
+            command.getLabel(),
             x + width/2,
             585
         );

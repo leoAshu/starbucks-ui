@@ -1,5 +1,8 @@
 import processing.core.PApplet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Main App Controller Class
  */
@@ -12,12 +15,6 @@ public class AppController implements IApp {
     private IScreen rewardsScreen;
     private IScreen storesScreen;
     private IScreen settingsScreen;
-
-    private INavBarCommand displayMyCards;
-    private INavBarCommand displayPayments;
-    private INavBarCommand displayRewards;
-    private INavBarCommand displayStores;
-    private INavBarCommand displaySettings;
 
     private IFrame frame;
     
@@ -54,6 +51,7 @@ public class AppController implements IApp {
     }
 
     private void init() {
+        
         myCardsScreen = new MyCardsScreen(starbucks);
         paymentsScreen = new PaymentsScreen(starbucks);
         rewardsScreen = new RewardsScreen(starbucks);
@@ -63,14 +61,17 @@ public class AppController implements IApp {
         frame = new Frame(starbucks, myCardsScreen);
 
         // setup command pattern
-        displayMyCards  = new NavBarCommand();
-        displayPayments = new NavBarCommand();
-        displayRewards  = new NavBarCommand();
-        displayStores         = new NavBarCommand();
-        displaySettings = new NavBarCommand();
-
+        INavBarCommand command;
+        List<INavBarCommand> commands = new ArrayList<INavBarCommand>();
+        
+        // Cards option
+        command = new NavBarCommand(
+            Constants.NAV_LABEL_CARDS,
+            Constants.NAV_ICON_CARDS,
+            Constants.NAV_ACTIVE_ICON_CARDS
+        );
         // set receiver
-        displayMyCards.setReceiver(
+        command.setReceiver(
             new INavBarReceiver() {
                 /** Command Action */
                 public void doAction() {
@@ -78,7 +79,17 @@ public class AppController implements IApp {
                 }
             }
         );
-        displayPayments.setReceiver(
+        // add command
+        commands.add(command);
+
+        // define command for Payments option
+        command = new NavBarCommand(
+            Constants.NAV_LABEL_PAYMENTS,
+            Constants.NAV_ICON_PAYMENTS,
+            Constants.NAV_ACTIVE_ICON_PAYMENTS
+        );
+        // set receiver
+        command.setReceiver(
             new INavBarReceiver() {
                 /** Command Action */
                 public void doAction() {
@@ -86,7 +97,17 @@ public class AppController implements IApp {
                 }
             }
         );
-        displayRewards.setReceiver(
+        // add command
+        commands.add(command);
+
+        // Rewards option
+        command = new NavBarCommand(
+            Constants.NAV_LABEL_REWARDS,
+            Constants.NAV_ICON_REWARDS,
+            Constants.NAV_ACTIVE_ICON_REWARDS
+        );
+        // set receiver
+        command.setReceiver(
             new INavBarReceiver() {
                 /** Command Action */
                 public void doAction() {
@@ -94,7 +115,17 @@ public class AppController implements IApp {
                 }
             }
         );
-        displayStores.setReceiver(
+        // add command
+        commands.add(command);
+
+        // Stores option
+        command = new NavBarCommand(
+            Constants.NAV_LABEL_STORES,
+            Constants.NAV_ICON_STORES,
+            Constants.NAV_ACTIVE_ICON_STORES
+        );
+        // set receiver
+        command.setReceiver(
             new INavBarReceiver() {
                 /** Command Action */
                 public void doAction() {
@@ -102,7 +133,17 @@ public class AppController implements IApp {
                 }
             }
         );
-        displaySettings.setReceiver(
+        // add command
+        commands.add(command);
+
+        // Settings option
+        command = new NavBarCommand(
+            Constants.NAV_LABEL_SETTINGS,
+            Constants.NAV_ICON_SETTINGS,
+            Constants.NAV_ACTIVE_ICON_SETTINGS
+        );
+        // set receiver
+        command.setReceiver(
             new INavBarReceiver() {
                 /** Command Action */
                 public void doAction() {
@@ -110,38 +151,10 @@ public class AppController implements IApp {
                 }
             }
         );
-
-        // configure nav bar
-        frame.addNavBarOption(
-            Constants.NAV_LABEL_CARDS,
-            Constants.NAV_ICON_CARDS,
-            Constants.NAV_ACTIVE_ICON_CARDS,
-            displayMyCards
-        );
-        frame.addNavBarOption(
-            Constants.NAV_LABEL_PAYMENTS,
-            Constants.NAV_ICON_PAYMENTS,
-            Constants.NAV_ACTIVE_ICON_PAYMENTS,
-            displayPayments
-        );
-        frame.addNavBarOption(
-            Constants.NAV_LABEL_REWARDS,
-            Constants.NAV_ICON_REWARDS,
-            Constants.NAV_ACTIVE_ICON_REWARDS,
-            displayRewards
-        );
-        frame.addNavBarOption(
-            Constants.NAV_LABEL_STORES,
-            Constants.NAV_ICON_STORES,
-            Constants.NAV_ACTIVE_ICON_STORES,
-            displayStores
-        );
-        frame.addNavBarOption(
-            Constants.NAV_LABEL_SETTINGS,
-            Constants.NAV_ICON_SETTINGS,
-            Constants.NAV_ACTIVE_ICON_SETTINGS,
-            displaySettings
-        );
+        // add command
+        commands.add(command);
+        
+        frame.setupNavBar(commands);
     }
     
 }

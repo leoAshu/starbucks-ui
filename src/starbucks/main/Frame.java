@@ -61,12 +61,12 @@ public class Frame implements IFrame, IDisplayComponent {
     }
 
     @Override
-    public void addNavBarOption(String label, String iconPath, String activeIconPath, INavBarCommand command) {
+    public void setupNavBar(List<INavBarCommand> commands) {
         if(navBar == null) {
             navBar = new NavBar(starbucks);
             addSubComponent(navBar);
         }
-        navBar.addNavBarOption(label, iconPath, activeIconPath, command);
+        navBar.setUp(commands);
     }
 
 }

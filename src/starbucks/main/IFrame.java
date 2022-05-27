@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Frame Interface
  */
@@ -27,10 +29,7 @@ public interface IFrame {
 
     /**
      * Initializes a Nav Bar and adds Nav Bar Optiins
-     * @param label String label
-     * @param iconPath String path of the default icon
-     * @param activeIcon String path of the icon on active
-     * @param command INavBarCommand command to be invoked on touch
+     * @param commands List of INavBarCommand commands
      */
-    void addNavBarOption(String label, String iconPath, String activeIconPath, INavBarCommand command);
+    void setupNavBar(List<INavBarCommand> commands);
 }
