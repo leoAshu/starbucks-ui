@@ -4,6 +4,7 @@ public class SettingsScreen extends Screen {
     
     public SettingsScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_LIGHT);
+        addSubComponent(new AppBar(starbucks, name()));
     }
 
     @Override

@@ -4,6 +4,7 @@ public class StoresScreen extends Screen {
     
     public StoresScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_LIGHT);
+        addSubComponent(new AppBar(starbucks, name()));
     }
 
     @Override

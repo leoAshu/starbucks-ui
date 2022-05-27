@@ -4,6 +4,7 @@ public class RewardsScreen extends Screen {
     
     public RewardsScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_LIGHT);
+        addSubComponent(new AppBar(starbucks, name()));
     }
 
     @Override
