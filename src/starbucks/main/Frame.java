@@ -10,6 +10,7 @@ public class Frame implements IFrame, IDisplayComponent {
     private PApplet starbucks;
     private NavBar navBar;
     private IScreen currentScreen;
+    private ITouchEventHandler chain;
     private List<IDisplayComponent> components;
 
     public Frame(PApplet starbucks, IScreen initial) {
@@ -27,20 +28,18 @@ public class Frame implements IFrame, IDisplayComponent {
     }
 
     @Override
-    public void touch(int x, int y) {
-        // needs chain of responsibility
-        // might have to modify screens
-        // screens should implement ITouchEventHandler
-        if(y < Constants.NOTIF_BAR_HEIGHT) {
-            // starbucks.text("Notification Bar Touched!", starbucks.width/2, starbucks.height/2);
-        } else if( y < (Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT)) {
-            // starbucks.text("App Bar Touched!", starbucks.width/2, starbucks.height/2);
-        } else if(y < (starbucks.height - Constants.NAV_BAR_HEIGHT)) {
-            // starbucks.text("Screen Touched!", starbucks.width/2, starbucks.height/2);
-        } else {
-            // starbucks.text("Nav Bar Touched!", starbucks.width/2, starbucks.height/2);
-            navBar.touch(x, y);
+    public void setupNavBar(List<INavBarCommand> commands) {
+        if(navBar == null) {
+            navBar = new NavBar(starbucks);
+            addSubComponent(navBar);
         }
+        navBar.setUp(commands);
+    }
+
+    @Override
+    public void touch(int x, int y) {
+        if(chain != null)
+            chain.touch(x, y);
     }
 
     @Override
@@ -58,15 +57,12 @@ public class Frame implements IFrame, IDisplayComponent {
     @Override
     public void addSubComponent(IDisplayComponent component) {
         components.add(component);
-    }
-
-    @Override
-    public void setupNavBar(List<INavBarCommand> commands) {
-        if(navBar == null) {
-            navBar = new NavBar(starbucks);
-            addSubComponent(navBar);
-        }
-        navBar.setUp(commands);
+        if(components.size() == 1)
+            chain = (ITouchEventHandler) component;
+        else {
+            ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2);
+            prev.setNext((ITouchEventHandler) component);
+        } 
     }
 
 }

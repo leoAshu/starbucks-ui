@@ -11,6 +11,12 @@ public interface IFrame {
     void setCurrentScreen(IScreen screen);
 
     /**
+     * Initializes a Nav Bar and adds Nav Bar Optiins
+     * @param commands List of INavBarCommand commands
+     */
+    void setupNavBar(List<INavBarCommand> commands);
+
+    /**
      * Send a Touch Event
      * @param x Screen X Coord
      * @param y Screen Y Coord
@@ -27,9 +33,4 @@ public interface IFrame {
      */
     void display();
 
-    /**
-     * Initializes a Nav Bar and adds Nav Bar Optiins
-     * @param commands List of INavBarCommand commands
-     */
-    void setupNavBar(List<INavBarCommand> commands);
 }

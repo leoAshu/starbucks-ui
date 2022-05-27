@@ -11,10 +11,11 @@ import java.util.ArrayList;
  * Chain of Responsibility Patterns.
  * 
  */
-public class Screen implements IScreen, IDisplayComponent {
+public class Screen implements IScreen, IDisplayComponent, ITouchEventHandler {
     protected PApplet starbucks;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;
+    private ITouchEventHandler nextHandler;
 
     private String backgroundPath;
 
@@ -26,15 +27,24 @@ public class Screen implements IScreen, IDisplayComponent {
     }
 
     @Override
+    public String name() {
+        return (this.getClass().getName()).split("\\.")[0];
+    }
+
+    @Override
     public void touch(int x, int y) {
         if(chain != null)
             chain.touch(x, y);
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
     }
 
     @Override
     public void release() {
         if(chain != null)
             chain.release();
+        if(nextHandler != null)
+            nextHandler.release();
     }
 
     @Override
@@ -63,8 +73,8 @@ public class Screen implements IScreen, IDisplayComponent {
     }
 
     @Override
-    public String name() {
-        return (this.getClass().getName()).split("\\.")[0];
+    public void setNext(ITouchEventHandler next) {
+        nextHandler = next;
     }
     
 }
