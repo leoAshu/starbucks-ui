@@ -36,13 +36,13 @@ public class Frame implements IFrame, IDisplayComponent {
         // might have to modify screens
         // screens should implement ITouchEventHandler
         if(y < Constants.NOTIF_BAR_HEIGHT) {
-            starbucks.text("Notification Bar Touched!", starbucks.width/2, starbucks.height/2);
+            // starbucks.text("Notification Bar Touched!", starbucks.width/2, starbucks.height/2);
         } else if( y < (Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT)) {
-            starbucks.text("App Bar Touched!", starbucks.width/2, starbucks.height/2);
+            // starbucks.text("App Bar Touched!", starbucks.width/2, starbucks.height/2);
         } else if(y < (starbucks.height - Constants.NAV_BAR_HEIGHT)) {
-            starbucks.text("Screen Touched!", starbucks.width/2, starbucks.height/2);
+            // starbucks.text("Screen Touched!", starbucks.width/2, starbucks.height/2);
         } else {
-            starbucks.text("Nav Bar Touched!", starbucks.width/2, starbucks.height/2);
+            // starbucks.text("Nav Bar Touched!", starbucks.width/2, starbucks.height/2);
             navBar.touch(x, y);
         }
     }
