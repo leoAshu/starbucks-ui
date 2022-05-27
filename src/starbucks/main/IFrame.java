@@ -25,4 +25,12 @@ public interface IFrame {
      */
     void display();
 
+    /**
+     * Initializes a Nav Bar and adds Nav Bar Optiins
+     * @param label String label
+     * @param iconPath String path of the default icon
+     * @param activeIcon String path of the icon on active
+     * @param command INavBarCommand command to be invoked on touch
+     */
+    void addNavBarOption(String label, String iconPath, String activeIconPath, INavBarCommand command);
 }
