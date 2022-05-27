@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 public class Frame implements IFrame, IDisplayComponent {
     private PApplet starbucks;
-    private AppBar appBar;
     private NavBar navBar;
     private IScreen currentScreen;
     private List<IDisplayComponent> components;
@@ -18,11 +17,9 @@ public class Frame implements IFrame, IDisplayComponent {
         this.starbucks = starbucks;
         currentScreen = initial;
 
-        appBar = new AppBar(this.starbucks, currentScreen.name());
         navBar = new NavBar(starbucks, this);
 
         components = new ArrayList<IDisplayComponent>();
-        addSubComponent(appBar);
         addSubComponent((IDisplayComponent)currentScreen);
         addSubComponent(navBar);
     }
@@ -30,8 +27,7 @@ public class Frame implements IFrame, IDisplayComponent {
     @Override
     public void setCurrentScreen(IScreen screen) {
         currentScreen = screen;
-        appBar.setScreenName(currentScreen.name());
-        components.set(1, (IDisplayComponent)currentScreen);
+        components.set(0, (IDisplayComponent)currentScreen);
     }
 
     @Override
@@ -49,8 +45,6 @@ public class Frame implements IFrame, IDisplayComponent {
             starbucks.text("Nav Bar Touched!", starbucks.width/2, starbucks.height/2);
             navBar.touch(x, y);
         }
-        // if(currentScreen != null)
-        //     currentScreen.touch(x, y);
     }
 
     @Override
