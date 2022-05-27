@@ -66,9 +66,10 @@ public class Frame implements IFrame, IDisplayComponent {
 
 }
 
-class AppBar implements IDisplayComponent {
+class AppBar implements IDisplayComponent, ITouchEventHandler {
     PApplet starbucks;
     private String screenName;
+    private ITouchEventHandler nextHandler;
 
     public AppBar(PApplet starbucks, String screenName) {
         this.starbucks = starbucks;
@@ -105,6 +106,23 @@ class AppBar implements IDisplayComponent {
     @Override
     public void addSubComponent(IDisplayComponent component) {
 
+    }
+
+    @Override
+    public void touch(int x, int y) {
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
+    }
+
+    @Override
+    public void release() {
+        if(nextHandler != null)
+            nextHandler.release();
+    }
+
+    @Override
+    public void setNext(ITouchEventHandler next) {
+        nextHandler = next;
     }
 }
 
