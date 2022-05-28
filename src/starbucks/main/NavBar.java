@@ -57,7 +57,7 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(chain != null)
+        if(isNavBarTouched(x, y) && chain != null)
             chain.touch(x, y);
     }
 
@@ -80,6 +80,10 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
             starbucks.stroke(c);
             starbucks.line(x, i, x+w, i);
         }
+    }
+
+    private boolean isNavBarTouched(int x, int y) {
+        return y > (starbucks.height - Constants.NAV_BAR_HEIGHT);
     }
 
 }
