@@ -1,10 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import processing.core.PApplet;
 
 public class MyCardsScreen extends Screen {
 
     public MyCardsScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_DARK);
-        addSubComponent(new AppBar(starbucks, name()));
+        setUpScreen();
     }
 
     @Override
@@ -16,4 +19,16 @@ public class MyCardsScreen extends Screen {
     public String name() {
         return "My Cards";
     }
+
+    private void setUpScreen() {
+        // app bar
+        addSubComponent(new AppBar(starbucks, name()));
+
+        // tab view
+        List<Tab> tabs = new ArrayList<Tab>();
+        tabs.add(new MyCardsMainTab(starbucks));
+        tabs.add(new MyCardsPayTab(starbucks));
+        addSubComponent((IDisplayComponent)new TabManagerView(starbucks, tabs, 0));
+    }
+
 }
