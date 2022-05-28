@@ -4,13 +4,7 @@ public class MyCardsMainTab extends Tab {
 
     public MyCardsMainTab(PApplet starbucks) {
         super(starbucks);
-    }
-    
-    @Override
-    public void display() {
-        super.display();
-        
-        cardFrontView();
+        setUpTabContents();
     }
 
     @Override
@@ -22,15 +16,8 @@ public class MyCardsMainTab extends Tab {
         }
     }
 
-    public void cardFrontView() {
-        // card
-        starbucks.image(
-            starbucks.loadImage(Constants.CARD_FRONT),
-            (starbucks.width - Constants.CARD_WIDTH)/2,
-            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING,
-            Constants.CARD_WIDTH, 
-            Constants.CARD_HEIGHT
-        );
+    private void setUpTabContents() {
+        addSubComponent(new CardFrontView(starbucks));
     }
 
 }

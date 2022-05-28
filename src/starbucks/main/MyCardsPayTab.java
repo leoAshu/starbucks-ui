@@ -6,13 +6,7 @@ public class MyCardsPayTab extends Tab {
     public MyCardsPayTab(PApplet starbucks) {
         super(starbucks);
         card = new CardDecorator(Card.getCard());
-    }
-    
-    @Override
-    public void display() {
-        super.display();
-
-        cardBackView();
+        setUpTabContents();
     }
 
     @Override
@@ -24,27 +18,8 @@ public class MyCardsPayTab extends Tab {
         }
     }
 
-    public void cardBackView() {
-        // card
-        starbucks.image(
-            starbucks.loadImage(Constants.CARD_BACK),
-            (starbucks.width - Constants.CARD_WIDTH)/2,
-            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING,
-            Constants.CARD_WIDTH, 
-            Constants.CARD_HEIGHT
-        );
-
-        // card number
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 18));
-        
-        starbucks.fill(0);
-        starbucks.textSize(24);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.text(
-            card.cardNum(),
-            220,
-            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING
-        );
+    private void setUpTabContents() {
+        addSubComponent(new CardBackView(starbucks, card));
     }
 
 }
