@@ -9,17 +9,25 @@ public class MyCardsPayTab extends Tab {
         setUpTabContents();
     }
 
-    @Override
-    public void touch(int x, int y) {
-        boolean overX = x > (starbucks.width/2 - 40) && x <(starbucks.width/2 + 40);
-        boolean overY = y > (starbucks.height/2 - 20) && y <(starbucks.height/2 + 20);
-        if(overX && overY) {
-            tabManager.setTab(0);
-        }
-    }
-
     private void setUpTabContents() {
         addSubComponent(new CardBackView(starbucks, card));
+
+        // setup pay button
+        ICommand command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            public void onClick() {
+                tabManager.setTab(0);
+            }
+        });
+
+        RoundButton button = new RoundButton(
+            starbucks,
+            "Done!",
+            null,
+            Constants.ROUND_BUTTON
+        );
+        button.setCommand(command);
+        addSubComponent(button);
     }
 
 }

@@ -19,18 +19,16 @@ public class Constants {
     public static final int NAV_BAR_WIDTH = 375;
     public static final int NAV_BAR_HEIGHT = 55;
 
+    // round button
+    public static final int ROUND_BUTTON_X = 280;
+    public static final int ROUND_BUTTON_Y = 278;
+    public static final int ROUND_BUTTON_SIZE = 70;
+
     // card
     public static final int CARD_WIDTH = 303;
     public static final int CARD_HEIGHT = 195;
     public static final int CARD_TOP_PADDING = 35;
     public static final int CARD_NUM_TOP_PADDING = 87;
-
-    // bottom nav bar options
-    public static final String NAV_LABEL_CARDS = "Cards";
-    public static final String NAV_LABEL_PAYMENTS = "Payments";
-    public static final String NAV_LABEL_REWARDS = "Rewards";
-    public static final String NAV_LABEL_STORES = "Stores";
-    public static final String NAV_LABEL_SETTINGS = "Settings";
 
     // pin screen
     public static final int PIN_BLOCK_Y = 130;
@@ -42,6 +40,13 @@ public class Constants {
     public static final int FOUR_PIN_OPTION = 4;
     public static final int SIX_PIN_OPTION = 6;
 
+    // bottom nav bar options
+    public static final String NAV_LABEL_CARDS = "Cards";
+    public static final String NAV_LABEL_PAYMENTS = "Payments";
+    public static final String NAV_LABEL_REWARDS = "Rewards";
+    public static final String NAV_LABEL_STORES = "Stores";
+    public static final String NAV_LABEL_SETTINGS = "Settings";
+
     // images
     public static final String APP_BAR_BG = "../../assets/images/app-bar.png";
     public static final String PIN_SCREEN_BG = "../../assets/images/pinscreen-bg.png";
@@ -50,6 +55,10 @@ public class Constants {
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
+    public static final String ROUND_BUTTON = "../../assets/images/static-button-bg.png";
+
+    // icons
+    public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
     
     // nav bar icons
     public static final String NAV_ICON_CARDS = "../../assets/images/icon-cards.png";
