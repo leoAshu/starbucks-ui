@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class Screen implements IScreen, IDisplayComponent, ITouchEventHandler {
     protected PApplet starbucks;
     private ITouchEventHandler chain;
-    private List<IDisplayComponent> components;
     private ITouchEventHandler nextHandler;
+    private List<IDisplayComponent> components;
 
     private String backgroundPath;
 
