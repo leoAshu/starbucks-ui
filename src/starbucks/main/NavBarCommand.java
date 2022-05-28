@@ -1,4 +1,4 @@
-/** Menu Command */
+/** Nav Bar Command */
 public class NavBarCommand implements INavBarCommand {
     String label;
     String iconPath;
