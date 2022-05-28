@@ -28,7 +28,7 @@ public class MyCardsScreen extends Screen {
         List<Tab> tabs = new ArrayList<Tab>();
         tabs.add(new MyCardsMainTab(starbucks));
         tabs.add(new MyCardsPayTab(starbucks));
-        addSubComponent((IDisplayComponent)new TabManagerView(starbucks, tabs, 0));
+        addSubComponent((IDisplayComponent)new TabManagerView(tabs, 0));
     }
 
 }

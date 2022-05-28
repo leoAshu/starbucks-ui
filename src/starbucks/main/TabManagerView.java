@@ -1,14 +1,10 @@
-import processing.core.PApplet;
-
 import java.util.List;
 
 public class TabManagerView implements ITabManager, IDisplayComponent, ITouchEventHandler {
-    private PApplet starbucks;
     private List<Tab> tabs;
     private int currentTabIndex;
 
-    public TabManagerView(PApplet starbucks, List<Tab> tabs, int currentTabIndex) {
-        this.starbucks = starbucks;
+    public TabManagerView(List<Tab> tabs, int currentTabIndex) {
         this.tabs = tabs;
         this.currentTabIndex = currentTabIndex;
         setUpTabs();
@@ -33,10 +29,6 @@ public class TabManagerView implements ITabManager, IDisplayComponent, ITouchEve
     @Override
     public void display() {
         tabs.get(currentTabIndex).display();
-        starbucks.fill(255);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.textSize(20);
-        starbucks.text(""+currentTabIndex, starbucks.width/2, Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + 14);
     }
 
     @Override
