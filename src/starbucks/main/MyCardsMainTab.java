@@ -10,15 +10,7 @@ public class MyCardsMainTab extends Tab {
     public void display() {
         super.display();
         
-        starbucks.fill(194);
-        starbucks.stroke(2);
-        starbucks.rectMode(PApplet.CENTER);
-        starbucks.rect(starbucks.width/2, starbucks.height/2, 80, 40);
-
-        starbucks.fill(0);
-        starbucks.textSize(16);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.text("Main Tab", starbucks.width/2, starbucks.height/2+4);
+        cardFrontView();
     }
 
     @Override
@@ -28,6 +20,17 @@ public class MyCardsMainTab extends Tab {
         if(overX && overY) {
             tabManager.setTab(1);
         }
+    }
+
+    public void cardFrontView() {
+        // card
+        starbucks.image(
+            starbucks.loadImage(Constants.CARD_FRONT),
+            (starbucks.width - Constants.CARD_WIDTH)/2,
+            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING,
+            Constants.CARD_WIDTH, 
+            Constants.CARD_HEIGHT
+        );
     }
 
 }

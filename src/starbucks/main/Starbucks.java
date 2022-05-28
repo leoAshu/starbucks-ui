@@ -6,7 +6,7 @@ public class Starbucks extends PApplet {
 
     public void settings() {
         size(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        app = (IApp) Device.getNewDevice(this, "1234");
+        app = (IApp) Device.getNewDevice(this, "");
         // grid = new Grid(this);
     }
 

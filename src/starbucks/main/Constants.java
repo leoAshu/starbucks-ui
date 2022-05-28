@@ -19,19 +19,18 @@ public class Constants {
     public static final int NAV_BAR_WIDTH = 375;
     public static final int NAV_BAR_HEIGHT = 55;
 
+    // card
+    public static final int CARD_WIDTH = 303;
+    public static final int CARD_HEIGHT = 195;
+    public static final int CARD_TOP_PADDING = 35;
+    public static final int CARD_NUM_TOP_PADDING = 87;
+
     // bottom nav bar options
     public static final String NAV_LABEL_CARDS = "Cards";
     public static final String NAV_LABEL_PAYMENTS = "Payments";
     public static final String NAV_LABEL_REWARDS = "Rewards";
     public static final String NAV_LABEL_STORES = "Stores";
     public static final String NAV_LABEL_SETTINGS = "Settings";
-    public static final String[] NAV_OPTION_LABELS = new String[]{
-        "Cards",
-        "Payments",
-        "My Rewards",
-        "Stores",
-        "Settings"
-    };
 
     // pin screen
     public static final int PIN_BLOCK_Y = 130;
@@ -49,6 +48,8 @@ public class Constants {
     public static final String SCREEN_BG_DARK = "../../assets/images/screen-bg-dark.png";
     public static final String SCREEN_BG_LIGHT = "../../assets/images/screen-bg-light.png";
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
+    public static final String CARD_FRONT = "../../assets/images/card-front.png";
+    public static final String CARD_BACK = "../../assets/images/card-back.png";
     
     // nav bar icons
     public static final String NAV_ICON_CARDS = "../../assets/images/icon-cards.png";

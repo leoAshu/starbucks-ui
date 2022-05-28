@@ -9,16 +9,8 @@ public class MyCardsPayTab extends Tab {
     @Override
     public void display() {
         super.display();
-        
-        starbucks.fill(194);
-        starbucks.stroke(2);
-        starbucks.rectMode(PApplet.CENTER);
-        starbucks.rect(starbucks.width/2, starbucks.height/2, 80, 40);
 
-        starbucks.fill(0);
-        starbucks.textSize(16);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.text("Pay Tab", starbucks.width/2, starbucks.height/2+4);
+        cardBackView();
     }
 
     @Override
@@ -28,6 +20,29 @@ public class MyCardsPayTab extends Tab {
         if(overX && overY) {
             tabManager.setTab(0);
         }
+    }
+
+    public void cardBackView() {
+        // card
+        starbucks.image(
+            starbucks.loadImage(Constants.CARD_BACK),
+            (starbucks.width - Constants.CARD_WIDTH)/2,
+            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING,
+            Constants.CARD_WIDTH, 
+            Constants.CARD_HEIGHT
+        );
+
+        // card number
+        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 18));
+        
+        starbucks.fill(0);
+        starbucks.textSize(24);
+        starbucks.textAlign(PApplet.CENTER);
+        starbucks.text(
+            Card.getCard().cardNum(),
+            220,
+            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING
+        );
     }
 
 }
