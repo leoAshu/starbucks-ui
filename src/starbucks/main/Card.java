@@ -1,4 +1,7 @@
-public class Card {
+/**
+ * Card Class for Managing Card Balance & Transactions
+ */
+public class Card implements ICard {
     private static Card theCard;
 
     private double balance;
@@ -22,18 +25,22 @@ public class Card {
         return theCard;
     }
 
-    public double balance() {
-        return balance;
-    }
-
+    @Override
     public String cardNum() {
         return cardNum;
     }
 
+    @Override
     public String cardCode() {
         return cardCode;
     }
 
+    @Override
+    public String balance() {
+        return "" + balance;
+    }
+
+    @Override
     public void setCard(String cardNum, String cardCode) {
         this.cardNum = cardNum;
         this.cardCode = cardCode;

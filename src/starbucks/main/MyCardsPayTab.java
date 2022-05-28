@@ -1,9 +1,11 @@
 import processing.core.PApplet;
 
 public class MyCardsPayTab extends Tab {
+    ICard card;
 
     public MyCardsPayTab(PApplet starbucks) {
         super(starbucks);
+        card = new CardDecorator(Card.getCard());
     }
     
     @Override
@@ -39,7 +41,7 @@ public class MyCardsPayTab extends Tab {
         starbucks.textSize(24);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.text(
-            Card.getCard().cardNum(),
+            card.cardNum(),
             220,
             Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING
         );
