@@ -19,10 +19,15 @@ public class Constants {
     public static final int NAV_BAR_WIDTH = 375;
     public static final int NAV_BAR_HEIGHT = 55;
 
-    // round button
-    public static final int ROUND_BUTTON_X = 280;
-    public static final int ROUND_BUTTON_Y = 278;
-    public static final int ROUND_BUTTON_SIZE = 70;
+    // pay/done button
+    public static final int PAY_BUTTON_X = 280;
+    public static final int PAY_BUTTON_Y = 278;
+    public static final int PAY_BUTTON_SIZE = 70;
+    public static final int PAY_BUTTON_ICON_LEFT_PADDING = 30;
+    public static final int PAY_BUTTON_ICON_TOP_PADDING = 12;
+    public static final int PAY_BUTTON_LABEL_LEFT_PADDING = 36;
+    public static final int PAY_BUTTON_LABEL_TOP_PADDING = 52;
+    public static final int DONE_BUTTON_LABEL_TOP_PADDING = 40;
 
     // card
     public static final int CARD_WIDTH = 303;
@@ -55,7 +60,7 @@ public class Constants {
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
-    public static final String ROUND_BUTTON = "../../assets/images/static-button-bg.png";
+    public static final String PAY_BUTTON = "../../assets/images/static-button-bg.png";
 
     // icons
     public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
