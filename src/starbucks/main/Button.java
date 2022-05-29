@@ -148,11 +148,10 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     private void drawBoxButton() {
         // background
-        starbucks.tint(255, 255);
         starbucks.image(
             starbucks.loadImage(backgroundPath),
-            x, // 85
-            y, // 350
+            x,
+            y,
             width,
             height
         );
@@ -179,7 +178,6 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     private void drawRoundButton() {
         // background
-        starbucks.tint(255, 255);
         starbucks.image(
             starbucks.loadImage(backgroundPath),
             x,
@@ -210,7 +208,9 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     private boolean isTouched(int x, int y) {
         if(shape == Shape.BOX) {
-            return false;
+            boolean overX = x > this.x && x < this.x + width;
+            boolean overY = y > this.y && y < this.y + height;
+            return overX && overY;
         }
         else {
             int distance = (int)

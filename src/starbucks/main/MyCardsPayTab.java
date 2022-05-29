@@ -29,7 +29,7 @@ public class MyCardsPayTab extends Tab {
             "Done!",
             Constants.PAY_BUTTON_LABEL_LEFT_PADDING,
             Constants.DONE_BUTTON_LABEL_TOP_PADDING,
-            Constants.ROBOTO_REG_PATH,
+            Constants.ROBOTO_BOLD_PATH,
             16,
             0,
             Constants.PAY_BUTTON

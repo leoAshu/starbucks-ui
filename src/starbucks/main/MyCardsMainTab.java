@@ -29,7 +29,7 @@ public class MyCardsMainTab extends Tab {
             "Pay",
             Constants.PAY_BUTTON_LABEL_LEFT_PADDING,
             Constants.PAY_BUTTON_LABEL_TOP_PADDING,
-            Constants.ROBOTO_REG_PATH,
+            Constants.ROBOTO_BOLD_PATH,
             16,
             0,
             Constants.ICON_DOLLAR,
@@ -40,11 +40,11 @@ public class MyCardsMainTab extends Tab {
         payButton.setCommand(command);
         addSubComponent(payButton);
 
-        // setup pay button
+        // setup balance button
         command = new Command();
         command.setReceiver(new ICommandReceiver() {
             public void onClick() {
-                
+                tabManager.setTab(1);
             }
         });
 
@@ -56,7 +56,6 @@ public class MyCardsMainTab extends Tab {
             Constants.BALANCE_BUTTON_HEIGHT,
             Button.Shape.BOX,
             card.balance(),
-            // "$ 0.00",
             Constants.BALANCE_BUTTON_WIDTH/2,
             Constants.BALANCE_BUTTON_HEIGHT/2 + 10,
             Constants.ROBOTO_REG_PATH,
@@ -64,7 +63,7 @@ public class MyCardsMainTab extends Tab {
             255,
             Constants.BALANCE_BUTTON
         );
-        payButton.setCommand(command);
+        balanceButton.setCommand(command);
         addSubComponent(balanceButton);
     }
 
