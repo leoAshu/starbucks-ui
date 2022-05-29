@@ -37,7 +37,7 @@ public class Card implements ICard {
 
     @Override
     public String balance() {
-        return "" + balance;
+        return String.format("%.2f", balance);
     }
 
     @Override
