@@ -44,7 +44,7 @@ class RoundButton implements ICommandInvoker, IDisplayComponent, ITouchEventHand
                 290
             );
 
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_BLACK_PATH, 16));
+        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_BOLD_PATH, 16));
         starbucks.fill(0);
         starbucks.textSize(16);
         starbucks.textAlign(PApplet.CENTER);
