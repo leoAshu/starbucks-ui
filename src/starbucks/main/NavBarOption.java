@@ -93,6 +93,9 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
             546
         );
 
+        // reset tint
+        starbucks.tint(255, 255);
+
         // label
         starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 10));
 
