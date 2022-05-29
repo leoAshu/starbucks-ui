@@ -10,6 +10,9 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private String label;
     private int labelLeftPadding;
     private int labelTopPadding;
+    private String labelFont;
+    private int labelFontSize;
+    private int labelFontColor;
     private String iconPath;
     private int iconLeftPadding;
     private int iconTopPadding;
@@ -24,7 +27,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     }
 
     // x = y
-    public Button(PApplet starbucks, int x, int y, int size, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String iconPath, int iconLeftPadding, int iconTopPadding, String backgroundPath) {
+    public Button(PApplet starbucks, int x, int y, int size, Shape shape, String label, int labelLeftPadding, int labelTopPadding,  String labelFont, int labelFontSize, int labelFontColor, String iconPath, int iconLeftPadding, int iconTopPadding, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
         this.y = y;
@@ -34,13 +37,17 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.label = label;
         this.labelLeftPadding = labelLeftPadding;
         this.labelTopPadding = labelTopPadding;
+        this.labelFont = labelFont;
+        this.labelFontSize = labelFontSize;
+        this.labelFontColor = labelFontColor;
         this.iconPath = iconPath;
         this.iconLeftPadding = iconLeftPadding;
         this.iconTopPadding = iconTopPadding;
         this.backgroundPath = backgroundPath;
     }
 
-    public Button(PApplet starbucks, int x, int y, int size, Shape shape, String label, int labelX, int labelY, String backgroundPath) {
+    // x = y with no icon
+    public Button(PApplet starbucks, int x, int y, int size, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
         this.y = y;
@@ -48,12 +55,16 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.height = size;
         this.shape = shape;
         this.label = label;
-        this.labelLeftPadding = labelX;
-        this.labelTopPadding = labelY;
+        this.labelLeftPadding = labelLeftPadding;
+        this.labelTopPadding = labelTopPadding;
+        this.labelFont = labelFont;
+        this.labelFontSize = labelFontSize;
+        this.labelFontColor = labelFontColor;
         this.backgroundPath = backgroundPath;
     }
 
-    public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String label, int labelX, int labelY, String iconPath, int iconX, int iconY, String backgroundPath) {
+    // x != y
+    public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String iconPath, int iconX, int iconY, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
         this.y = y;
@@ -61,11 +72,31 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.height = height;
         this.shape = shape;
         this.label = label;
-        this.labelLeftPadding = labelX;
-        this.labelTopPadding = labelY;
+        this.labelLeftPadding = labelLeftPadding;
+        this.labelTopPadding = labelTopPadding;
+        this.labelFont = labelFont;
+        this.labelFontSize = labelFontSize;
+        this.labelFontColor = labelFontColor;
         this.iconPath = iconPath;
         this.iconLeftPadding = iconX;
         this.iconTopPadding = iconY;
+        this.backgroundPath = backgroundPath;
+    }
+
+    // x != y with no icon
+    public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String backgroundPath) {
+        this.starbucks = starbucks;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.shape = shape;
+        this.label = label;
+        this.labelLeftPadding = labelLeftPadding;
+        this.labelTopPadding = labelTopPadding;
+        this.labelFont = labelFont;
+        this.labelFontSize = labelFontSize;
+        this.labelFontColor = labelFontColor;
         this.backgroundPath = backgroundPath;
     }
 
@@ -82,7 +113,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     @Override
     public void display() {
         if(shape == Shape.BOX)
-            return;
+            drawBoxButton();
         else
             drawRoundButton();
     }
@@ -115,6 +146,37 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         nextHandler = next;
     }
 
+    private void drawBoxButton() {
+        // background
+        starbucks.tint(255, 255);
+        starbucks.image(
+            starbucks.loadImage(backgroundPath),
+            x, // 85
+            y, // 350
+            width,
+            height
+        );
+
+        // icon
+        if(iconPath != null)
+            starbucks.image(
+                starbucks.loadImage(iconPath),
+                x + iconLeftPadding,
+                y + iconTopPadding
+            );
+
+        // label
+        starbucks.textFont(starbucks.createFont(labelFont, 16));
+        starbucks.fill(labelFontColor);
+        starbucks.textSize(labelFontSize);
+        starbucks.textAlign(PApplet.CENTER);
+        starbucks.text(
+            label,
+            x + labelLeftPadding,
+            y + labelTopPadding
+        );
+    }
+
     private void drawRoundButton() {
         // background
         starbucks.tint(255, 255);
@@ -135,9 +197,9 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
             );
 
         // label
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_BOLD_PATH, 16));
-        starbucks.fill(0);
-        starbucks.textSize(16);
+        starbucks.textFont(starbucks.createFont(labelFont, 16));
+        starbucks.fill(labelFontColor);
+        starbucks.textSize(labelFontSize);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.text(
             label,

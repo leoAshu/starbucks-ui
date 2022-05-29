@@ -29,6 +29,12 @@ public class Constants {
     public static final int PAY_BUTTON_LABEL_TOP_PADDING = 52;
     public static final int DONE_BUTTON_LABEL_TOP_PADDING = 40;
 
+    // card balance button
+    public static final int BALANCE_BUTTON_X = 124;
+    public static final int BALANCE_BUTTON_Y = 350;
+    public static final int BALANCE_BUTTON_WIDTH = 140;
+    public static final int BALANCE_BUTTON_HEIGHT = 60;
+
     // card
     public static final int CARD_WIDTH = 303;
     public static final int CARD_HEIGHT = 195;
@@ -61,6 +67,7 @@ public class Constants {
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
     public static final String PAY_BUTTON = "../../assets/images/static-button-bg.png";
+    public static final String BALANCE_BUTTON = "../../assets/images/balance-button-bg.png";
 
     // icons
     public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
