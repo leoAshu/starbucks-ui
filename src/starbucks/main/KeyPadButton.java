@@ -95,9 +95,26 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
 
     private void drawButtonBackground() {
         if(isClicked)
-            solidFill(x+1, y+1, Constants.CELL_WIDTH-2, Constants.CELL_HEIGHT-2);
+            Utility.solidFill(
+                starbucks,
+                x+1,
+                y+1,
+                Constants.CELL_WIDTH-2,
+                Constants.CELL_HEIGHT-2,
+                102
+            );
         else
-            setGradient(x+1, y+1, Constants.CELL_WIDTH-2, Constants.CELL_HEIGHT-2);
+            Utility.setVerticalGradient(
+                starbucks,
+                x+1,
+                y+1,
+                Constants.CELL_WIDTH-2,
+                Constants.CELL_HEIGHT-2,
+                y + Constants.CELL_HEIGHT - 30,
+                102,
+                60,
+                4
+            );
     }
 
     private void drawButtonLabels() {
@@ -130,34 +147,6 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
                 x + (Constants.CELL_WIDTH - icon.width)/2,
                 y + (Constants.CELL_HEIGHT - icon.height)/2
             );
-        }
-    }
-
-    // solid color
-    private void solidFill(int x, int y, int w, int h) {
-        starbucks.noFill();
-        for (int i = y; i <= y+h; i++) {
-            float inter = PApplet.map(i, y, y+h, 0, 1);
-            int c = starbucks.lerpColor(102, 102, inter);
-            starbucks.stroke(c);
-            starbucks.line(x, i, x+w, i);
-        }
-    }
-  
-    // linear gradient: vertical
-    private void setGradient(int x, int y, int w, int h) {
-        starbucks.noFill();
-        for (int i = y; i <= y+h-30; i++) {
-            float inter = PApplet.map(i, y, y+h-30, 0, 1);
-            int c = starbucks.lerpColor(102, 60, inter);
-            starbucks.stroke(c);
-            starbucks.line(x, i, x+w, i);
-        }
-        for (int i = y+h-30; i <= y+h; i++) {
-            float inter = PApplet.map(i, y+h-30, y+h, 0, 1);
-            int c = starbucks.lerpColor(60, 4, inter);
-            starbucks.stroke(c);
-            starbucks.line(x, i, x+w, i);
         }
     }
 

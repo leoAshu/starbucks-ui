@@ -33,11 +33,14 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
-        setGradient(
-            0 ,
+        Utility.setVerticalGradient(
+            starbucks,
+            0,
             starbucks.height - Constants.NAV_BAR_HEIGHT,
             Constants.NAV_BAR_WIDTH,
-            Constants.NAV_BAR_HEIGHT
+            Constants.NAV_BAR_HEIGHT,
+            58,
+            28
         );
 
         for(IDisplayComponent option: options)
@@ -69,17 +72,6 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
     @Override
     public void setNext(ITouchEventHandler next) {
         
-    }
-
-    // linear gradient: vertical
-    private void setGradient(int x, int y, int w, int h) {
-        starbucks.noFill();
-        for (int i = y; i <= y+h; i++) {
-            float inter = PApplet.map(i, y, y+h, 0, 1);
-            int c = starbucks.lerpColor(58, 28, inter);
-            starbucks.stroke(c);
-            starbucks.line(x, i, x+w, i);
-        }
     }
 
     private boolean isNavBarTouched(int x, int y) {

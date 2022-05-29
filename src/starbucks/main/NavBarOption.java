@@ -37,9 +37,19 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
 
     @Override
     public void display() {
-        if(isActive){
-            setGradient(x, y, width, Constants.NAV_BAR_HEIGHT);
-        }
+        if(isActive)
+            Utility.setVerticalGradient(
+                starbucks,
+                x,
+                y,
+                width,
+                Constants.NAV_BAR_HEIGHT,
+                y + Constants.CELL_HEIGHT - 30,
+                80,
+                64,
+                47
+            );
+        
         drawLabels();
     }
 
@@ -70,23 +80,6 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
     @Override
     public void setNext(ITouchEventHandler next) {
         nextHandler = next;   
-    }
-
-    // linear gradient: vertical
-    private void setGradient(int x, int y, int w, int h) {
-        starbucks.noFill();
-        for (int i = y; i <= y+h-30; i++) {
-            float inter = PApplet.map(i, y, y+h-30, 0, 1);
-            int c = starbucks.lerpColor(80, 64, inter);
-            starbucks.stroke(c);
-            starbucks.line(x, i, x+w, i);
-        }
-        for (int i = y+h-30; i <= y+h; i++) {
-            float inter = PApplet.map(i, y+h-30, y+h, 0, 1);
-            int c = starbucks.lerpColor(64, 47, inter);
-            starbucks.stroke(c);
-            starbucks.line(x, i, x+w, i);
-        }
     }
 
     private void drawLabels() {
