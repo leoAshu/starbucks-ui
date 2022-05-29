@@ -18,14 +18,22 @@ public class MyCardsMainTab extends Tab {
             }
         });
 
-        RoundButton button = new RoundButton(
+        Button payButton = new Button(
             starbucks,
+            Constants.PAY_BUTTON_X,
+            Constants.PAY_BUTTON_Y,
+            Constants.PAY_BUTTON_SIZE,
+            Button.Shape.ROUND,
             "Pay",
+            Constants.PAY_BUTTON_LABEL_LEFT_PADDING,
+            Constants.PAY_BUTTON_LABEL_TOP_PADDING,
             Constants.ICON_DOLLAR,
-            Constants.ROUND_BUTTON
+            Constants.PAY_BUTTON_ICON_LEFT_PADDING,
+            Constants.PAY_BUTTON_ICON_TOP_PADDING,
+            Constants.PAY_BUTTON
         );
-        button.setCommand(command);
-        addSubComponent(button);
+        payButton.setCommand(command);
+        addSubComponent(payButton);
     }
 
 }
