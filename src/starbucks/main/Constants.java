@@ -19,6 +19,15 @@ public class Constants {
     public static final int NAV_BAR_WIDTH = 375;
     public static final int NAV_BAR_HEIGHT = 55;
 
+    // overlay
+    public static final int OVERLAY_HEIGHT = 308;
+
+    // overlay cancel buton
+    public static final int OVERLAY_CANCEL_Y = 510;
+    public static final int OVERLAY_CANCEL_WIDTH = 190;
+    public static final int OVERLAY_CANCEL_HEIGHT = 190;
+    public static final int OVERLAY_CANCEL_LABEL_TOP_PADDING = 32;
+
     // pay/done button
     public static final int PAY_BUTTON_X = 280;
     public static final int PAY_BUTTON_Y = 278;
@@ -73,8 +82,10 @@ public class Constants {
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
-    public static final String PAY_BUTTON = "../../assets/images/static-button-bg.png";
-    public static final String BALANCE_BUTTON = "../../assets/images/balance-button-bg.png";
+    public static final String PAY_BUTTON_BG = "../../assets/images/static-button-bg.png";
+    public static final String BALANCE_BUTTON_BG = "../../assets/images/balance-button-bg.png";
+    public static final String OVERLAY_BG = "../../assets/images/overlay-background.png";
+    public static final String OVERLAY_CANCEL_BUTTON_BG = "../../assets/images/cancel-button-bg.png";
 
     // icons
     public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
