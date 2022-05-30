@@ -83,6 +83,7 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
         command.setReceiver(new ICommandReceiver() {
             @Override
             public void onClick() {
+                AppController.getAppController(starbucks).hideOverlay();
             }
         });
 

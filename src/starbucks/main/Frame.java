@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Frame implements IFrame, IDisplayComponent {
     private PApplet starbucks;
     private NavBar navBar;
+    private Overlay overlay;
+    private boolean showOverlay;
     private IScreen currentScreen;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;
@@ -16,6 +18,7 @@ public class Frame implements IFrame, IDisplayComponent {
     public Frame(PApplet starbucks, IScreen initial) {
         this.starbucks = starbucks;
         currentScreen = initial;
+        overlay = new Overlay(starbucks);
 
         components = new ArrayList<IDisplayComponent>();
         addSubComponent((IDisplayComponent)currentScreen);
@@ -38,6 +41,15 @@ public class Frame implements IFrame, IDisplayComponent {
 
     @Override
     public void touch(int x, int y) {
+        if(showOverlay) {
+            if(isOverlayTouched(y))
+                overlay.touch(x, y);
+            else
+                hideOverlay();
+                
+            return;
+            
+        }
         if(chain != null)
             chain.touch(x, y);
     }
@@ -52,6 +64,9 @@ public class Frame implements IFrame, IDisplayComponent {
     public void display() {
         for(IDisplayComponent component: components)
             component.display();
+        
+        if(showOverlay)
+            overlay.display();
     }
 
     @Override
@@ -65,4 +80,15 @@ public class Frame implements IFrame, IDisplayComponent {
         } 
     }
 
+    public void showOverlay() {
+        showOverlay = true;
+    }
+
+    public void hideOverlay() {
+        showOverlay = false;
+    }
+
+    private boolean isOverlayTouched(int y) {
+        return y > (starbucks.height - Constants.OVERLAY_HEIGHT);
+    }
 }

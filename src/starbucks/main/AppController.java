@@ -156,5 +156,13 @@ public class AppController implements IApp {
         
         frame.setupNavBar(commands);
     }
+
+    public void showOverlay() {
+        frame.showOverlay();
+    }
+
+    public void hideOverlay() {
+        frame.hideOverlay();
+    }
     
 }

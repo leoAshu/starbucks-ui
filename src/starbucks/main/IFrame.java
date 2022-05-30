@@ -11,10 +11,19 @@ public interface IFrame {
     void setCurrentScreen(IScreen screen);
 
     /**
-     * Initializes a Nav Bar and adds Nav Bar Optiins
+     * Initializes a Nav Bar and adds Nav Bar Options
      * @param commands List of INavBarCommand commands
      */
     void setupNavBar(List<INavBarCommand> commands);
+
+    /**
+     * Initializes and displays an Overlay
+     * @param buttons
+     */
+    void showOverlay();
+
+    /** Hides the overlay */
+    void hideOverlay();
 
     /**
      * Send a Touch Event
