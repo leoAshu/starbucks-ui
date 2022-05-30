@@ -23,7 +23,7 @@ public class Constants {
     public static final int OVERLAY_HEIGHT = 308;
 
     // overlay butons
-    public static final int OVERLAY_BUTTON_WIDTH = 190;
+    public static final int OVERLAY_BUTTON_WIDTH = 290;
     public static final int OVERLAY_BUTTON_HEIGHT = 51;
     public static final int OVERLAY_BUTTON_LABEL_TOP_PADDING = 32;
     // cancel button

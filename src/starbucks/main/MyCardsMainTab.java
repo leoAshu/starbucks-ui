@@ -1,5 +1,8 @@
 import processing.core.PApplet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class MyCardsMainTab extends Tab {
     ICard card;
 
@@ -67,12 +70,52 @@ public class MyCardsMainTab extends Tab {
         ICommand command = new Command();
         command.setReceiver(new ICommandReceiver() {
             public void onClick() {
+                setUpOverlayOptions();
                 AppController.getAppController(starbucks).showOverlay();
             }
         });
         balanceButton.setCommand(command);
 
         return balanceButton;
+    }
+
+    private void setUpOverlayOptions() {
+        List<Button> options = new ArrayList<Button>();
+
+        options.add(overlayOption(Constants.OVERLAY_RELOAD_Y, "Reload Card"));
+        options.add(overlayOption(Constants.OVERLAY_REFRESH_Y, "Reload Balance"));
+        options.add(overlayOption(Constants.OVERLAY_MORE_Y, "More Options"));
+
+        AppController.getAppController(starbucks).addOptions(options);
+    }
+
+    private Button overlayOption(int y, String label) {
+        Button overlayOption = new Button(
+            starbucks,
+            starbucks.width/2 - Constants.OVERLAY_BUTTON_WIDTH/2,
+            y,
+            Constants.OVERLAY_BUTTON_WIDTH,
+            Constants.OVERLAY_BUTTON_HEIGHT,
+            Button.Shape.BOX,
+            label,
+            Constants.OVERLAY_BUTTON_WIDTH/2,
+            Constants.OVERLAY_BUTTON_LABEL_TOP_PADDING,
+            Constants.ROBOTO_BOLD_PATH,
+            20,
+            0,
+            Constants.OVERLAY_BUTTON_BG
+        );
+
+        ICommand command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            @Override
+            public void onClick() {
+                AppController.getAppController(starbucks).hideOverlay();
+            }
+        });
+        overlayOption.setCommand(command);
+
+        return overlayOption;
     }
 
 }
