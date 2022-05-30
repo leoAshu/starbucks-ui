@@ -53,7 +53,7 @@ public class MyCardsMainTab extends Tab {
         // setup balance button
         Button balanceButton = new Button(
             starbucks,
-            Constants.BALANCE_BUTTON_X,
+            (starbucks.width - Constants.BALANCE_BUTTON_WIDTH)/2,
             Constants.BALANCE_BUTTON_Y,
             Constants.BALANCE_BUTTON_WIDTH,
             Constants.BALANCE_BUTTON_HEIGHT,
@@ -92,7 +92,7 @@ public class MyCardsMainTab extends Tab {
     private Button overlayOption(int y, String label) {
         Button overlayOption = new Button(
             starbucks,
-            starbucks.width/2 - Constants.OVERLAY_BUTTON_WIDTH/2,
+            (starbucks.width - Constants.OVERLAY_BUTTON_WIDTH)/2,
             y,
             Constants.OVERLAY_BUTTON_WIDTH,
             Constants.OVERLAY_BUTTON_HEIGHT,

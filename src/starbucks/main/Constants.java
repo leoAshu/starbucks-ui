@@ -44,14 +44,12 @@ public class Constants {
     public static final int DONE_BUTTON_LABEL_TOP_PADDING = 40;
 
     // scan button
-    public static final int SCAN_BUTTON_X = 150;
     public static final int SCAN_BUTTON_Y = 340;
     public static final int SCAN_BUTTON_SIZE = 76;
     public static final int SCAN_BUTTON_LABEL_LEFT_PADDING = 38;
     public static final int SCAN_BUTTON_LABEL_TOP_PADDING = 22;
 
     // card balance button
-    public static final int BALANCE_BUTTON_X = 124;
     public static final int BALANCE_BUTTON_Y = 350;
     public static final int BALANCE_BUTTON_WIDTH = 140;
     public static final int BALANCE_BUTTON_HEIGHT = 60;

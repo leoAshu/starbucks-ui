@@ -47,7 +47,7 @@ public class MyCardsPayTab extends Tab {
         // setup scan now button
         Button scanNowButton = new Button(
             starbucks,
-            Constants.SCAN_BUTTON_X,
+            (starbucks.width - Constants.SCAN_BUTTON_SIZE)/2,
             Constants.SCAN_BUTTON_Y,
             Constants.SCAN_BUTTON_SIZE,
             Button.Shape.BOX,
