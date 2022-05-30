@@ -68,7 +68,7 @@ public class AppController implements IApp {
         INavBarCommand command;
         List<INavBarCommand> commands = new ArrayList<INavBarCommand>();
         
-        // Cards option
+        // Cards Screen Nav Option
         command = new NavBarCommand(
             Constants.NAV_LABEL_CARDS,
             Constants.NAV_ICON_CARDS,
@@ -86,7 +86,7 @@ public class AppController implements IApp {
         // add command
         commands.add(command);
 
-        // define command for Payments option
+        // Payments Screen Nav Option
         command = new NavBarCommand(
             Constants.NAV_LABEL_PAYMENTS,
             Constants.NAV_ICON_PAYMENTS,
@@ -104,7 +104,7 @@ public class AppController implements IApp {
         // add command
         // commands.add(command);
 
-        // Rewards option
+        // Rewards Screen Nav Option
         command = new NavBarCommand(
             Constants.NAV_LABEL_REWARDS,
             Constants.NAV_ICON_REWARDS,
@@ -122,7 +122,7 @@ public class AppController implements IApp {
         // add command
         // commands.add(command);
 
-        // Stores option
+        // Stores Screen Nav Option
         command = new NavBarCommand(
             Constants.NAV_LABEL_STORES,
             Constants.NAV_ICON_STORES,
@@ -140,7 +140,7 @@ public class AppController implements IApp {
         // add command
         // commands.add(command);
 
-        // Settings option
+        // Settings Screen Nav Option
         command = new NavBarCommand(
             Constants.NAV_LABEL_SETTINGS,
             Constants.NAV_ICON_SETTINGS,
@@ -156,7 +156,7 @@ public class AppController implements IApp {
             }
         );
         // add command
-        // commands.add(command);
+        commands.add(command);
         
         frame.setupNavBar(commands);
     }
