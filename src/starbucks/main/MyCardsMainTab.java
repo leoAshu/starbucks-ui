@@ -11,15 +11,12 @@ public class MyCardsMainTab extends Tab {
 
     private void setUpTabContents() {
         addSubComponent(new CardFrontView(starbucks));
+        addSubComponent(payButton());
+        addSubComponent(balanceButton());
+    }
 
+    private Button payButton() {
         // setup pay button
-        ICommand command = new Command();
-        command.setReceiver(new ICommandReceiver() {
-            public void onClick() {
-                tabManager.setTab(1);
-            }
-        });
-
         Button payButton = new Button(
             starbucks,
             Constants.PAY_BUTTON_X,
@@ -35,19 +32,22 @@ public class MyCardsMainTab extends Tab {
             Constants.ICON_DOLLAR,
             Constants.PAY_BUTTON_ICON_LEFT_PADDING,
             Constants.PAY_BUTTON_ICON_TOP_PADDING,
-            Constants.PAY_BUTTON
+            Constants.PAY_BUTTON_BG
         );
-        payButton.setCommand(command);
-        addSubComponent(payButton);
 
-        // setup balance button
-        command = new Command();
+        ICommand command = new Command();
         command.setReceiver(new ICommandReceiver() {
             public void onClick() {
                 tabManager.setTab(1);
             }
         });
+        payButton.setCommand(command);
 
+        return payButton;
+    }
+
+    private Button balanceButton() {
+        // setup balance button
         Button balanceButton = new Button(
             starbucks,
             Constants.BALANCE_BUTTON_X,
@@ -61,10 +61,18 @@ public class MyCardsMainTab extends Tab {
             Constants.ROBOTO_REG_PATH,
             32,
             255,
-            Constants.BALANCE_BUTTON
+            Constants.BALANCE_BUTTON_BG
         );
+
+        ICommand command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            public void onClick() {
+                AppController.getAppController(starbucks).showOverlay();
+            }
+        });
         balanceButton.setCommand(command);
-        addSubComponent(balanceButton);
+
+        return balanceButton;
     }
 
 }

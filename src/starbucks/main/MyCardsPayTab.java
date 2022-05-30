@@ -11,15 +11,12 @@ public class MyCardsPayTab extends Tab {
 
     private void setUpTabContents() {
         addSubComponent(new CardBackView(starbucks, card));
+        addSubComponent(doneButton());
+        addSubComponent(scanNowButton());
+    }
 
-        // setup pay button
-        ICommand command = new Command();
-        command.setReceiver(new ICommandReceiver() {
-            public void onClick() {
-                tabManager.setTab(0);
-            }
-        });
-
+    private Button doneButton() {
+        // setup done button
         Button doneButton = new Button(
             starbucks,
             Constants.PAY_BUTTON_X,
@@ -32,21 +29,23 @@ public class MyCardsPayTab extends Tab {
             Constants.ROBOTO_BOLD_PATH,
             16,
             0,
-            Constants.PAY_BUTTON
+            Constants.PAY_BUTTON_BG
         );
-        doneButton.setCommand(command);
-        addSubComponent(doneButton);
 
-
-        // setup scan button
-        command = new Command();
+        ICommand command = new Command();
         command.setReceiver(new ICommandReceiver() {
             public void onClick() {
-                // make payment
+                tabManager.setTab(0);
             }
         });
+        doneButton.setCommand(command);
 
-        Button scanButton = new Button(
+        return doneButton;
+    }
+
+    private Button scanNowButton() {
+        // setup scan now button
+        Button scanNowButton = new Button(
             starbucks,
             Constants.SCAN_BUTTON_X,
             Constants.SCAN_BUTTON_Y,
@@ -60,8 +59,16 @@ public class MyCardsPayTab extends Tab {
             255,
             Constants.COFFEE_CUP_ICON_WHITE
         );
-        scanButton.setCommand(command);
-        addSubComponent(scanButton);
+
+        ICommand command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            public void onClick() {
+                // make payment
+            }
+        });
+        scanNowButton.setCommand(command);
+
+        return scanNowButton;
     }
 
 }
