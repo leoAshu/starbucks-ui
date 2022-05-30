@@ -29,6 +29,13 @@ public class Constants {
     public static final int PAY_BUTTON_LABEL_TOP_PADDING = 52;
     public static final int DONE_BUTTON_LABEL_TOP_PADDING = 40;
 
+    // scan button
+    public static final int SCAN_BUTTON_X = 150;
+    public static final int SCAN_BUTTON_Y = 340;
+    public static final int SCAN_BUTTON_SIZE = 76;
+    public static final int SCAN_BUTTON_LABEL_LEFT_PADDING = 38;
+    public static final int SCAN_BUTTON_LABEL_TOP_PADDING = 22;
+
     // card balance button
     public static final int BALANCE_BUTTON_X = 124;
     public static final int BALANCE_BUTTON_Y = 350;
@@ -83,6 +90,7 @@ public class Constants {
     public static final String NAV_ACTIVE_ICON_STORES = "../../assets/images/icon-stores-active.png";
     public static final String NAV_ICON_SETTINGS = "../../assets/images/icon-settings.png";
     public static final String NAV_ACTIVE_ICON_SETTINGS = "../../assets/images/icon-settings-active.png";
+    public static final String COFFEE_CUP_ICON_WHITE = "../../assets/images/coffe-cup-white.png";
 
     // fonts
     public static final String ROBOTO_LIGHT_PATH = "../../assets/fonts/Roboto-Light.ttf";

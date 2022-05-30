@@ -36,6 +36,32 @@ public class MyCardsPayTab extends Tab {
         );
         doneButton.setCommand(command);
         addSubComponent(doneButton);
+
+
+        // setup scan button
+        command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            public void onClick() {
+                // make payment
+            }
+        });
+
+        Button scanButton = new Button(
+            starbucks,
+            Constants.SCAN_BUTTON_X,
+            Constants.SCAN_BUTTON_Y,
+            Constants.SCAN_BUTTON_SIZE,
+            Button.Shape.BOX,
+            "Scan Now",
+            Constants.SCAN_BUTTON_LABEL_LEFT_PADDING,
+            Constants.SCAN_BUTTON_SIZE + Constants.SCAN_BUTTON_LABEL_TOP_PADDING,
+            Constants.ROBOTO_MED_PATH,
+            20,
+            255,
+            Constants.COFFEE_CUP_ICON_WHITE
+        );
+        scanButton.setCommand(command);
+        addSubComponent(scanButton);
     }
 
 }
