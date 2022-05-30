@@ -52,6 +52,11 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
 
     }
 
+    public void addOptions(List<Button> options) {
+        for(IDisplayComponent option: options)
+            addSubComponent(option);
+    }
+
     private void background() {
         // background
         starbucks.image(
@@ -65,18 +70,18 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
         // cancel button
         Button cancelButton = new Button(
             starbucks,
-            starbucks.width/2 - Constants.OVERLAY_CANCEL_WIDTH/2,
+            starbucks.width/2 - Constants.OVERLAY_BUTTON_WIDTH/2,
             Constants.OVERLAY_CANCEL_Y,
-            Constants.OVERLAY_CANCEL_WIDTH,
-            Constants.OVERLAY_CANCEL_HEIGHT,
+            Constants.OVERLAY_BUTTON_WIDTH,
+            Constants.OVERLAY_BUTTON_HEIGHT,
             Button.Shape.BOX,
             "Cancel",
-            Constants.OVERLAY_CANCEL_WIDTH/2,
-            Constants.OVERLAY_CANCEL_LABEL_TOP_PADDING,
+            Constants.OVERLAY_BUTTON_WIDTH/2,
+            Constants.OVERLAY_BUTTON_LABEL_TOP_PADDING,
             Constants.ROBOTO_BOLD_PATH,
             20,
             255,
-            Constants.OVERLAY_CANCEL_BUTTON_BG
+            Constants.OVERLAY_BUTTON_BG_DARK
         );
 
         ICommand command = new Command();
