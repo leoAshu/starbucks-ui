@@ -88,6 +88,10 @@ public class Frame implements IFrame, IDisplayComponent {
         showOverlay = false;
     }
 
+    public void addOptionsToOverlay(List<Button> options) {
+        overlay.addOptions(options);
+    }
+
     private boolean isOverlayTouched(int y) {
         return y > (starbucks.height - Constants.OVERLAY_HEIGHT);
     }

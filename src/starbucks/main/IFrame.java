@@ -16,14 +16,16 @@ public interface IFrame {
      */
     void setupNavBar(List<INavBarCommand> commands);
 
-    /**
-     * Initializes and displays an Overlay
-     * @param buttons
-     */
+    /** Initializes and displays an Overlay */
     void showOverlay();
 
     /** Hides the overlay */
     void hideOverlay();
+
+    /** Adds custom buttons to overlay
+     * @param options list of buttons to be display on overlay
+     */
+    public void addOptionsToOverlay(List<Button> options);
 
     /**
      * Send a Touch Event

@@ -164,5 +164,10 @@ public class AppController implements IApp {
     public void hideOverlay() {
         frame.hideOverlay();
     }
+
+    public void addOptions(List<Button> options) {
+        if(frame != null)
+            frame.addOptionsToOverlay(options);
+    }
     
 }
