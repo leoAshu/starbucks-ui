@@ -60,6 +60,10 @@ public class AppController implements IApp {
 
         frame = new Frame(starbucks, myCardsScreen);
 
+        setupNavBar();
+    }
+
+    private void setupNavBar() {
         // setup command pattern
         INavBarCommand command;
         List<INavBarCommand> commands = new ArrayList<INavBarCommand>();
@@ -98,7 +102,7 @@ public class AppController implements IApp {
             }
         );
         // add command
-        commands.add(command);
+        // commands.add(command);
 
         // Rewards option
         command = new NavBarCommand(
@@ -116,7 +120,7 @@ public class AppController implements IApp {
             }
         );
         // add command
-        commands.add(command);
+        // commands.add(command);
 
         // Stores option
         command = new NavBarCommand(
@@ -134,7 +138,7 @@ public class AppController implements IApp {
             }
         );
         // add command
-        commands.add(command);
+        // commands.add(command);
 
         // Settings option
         command = new NavBarCommand(
@@ -152,7 +156,7 @@ public class AppController implements IApp {
             }
         );
         // add command
-        commands.add(command);
+        // commands.add(command);
         
         frame.setupNavBar(commands);
     }
