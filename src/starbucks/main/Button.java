@@ -146,6 +146,11 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         nextHandler = next;
     }
 
+    @Override
+    public ITouchEventHandler getNext() {
+        return nextHandler;
+    }
+
     private void drawBoxButton() {
         // background
         starbucks.image(

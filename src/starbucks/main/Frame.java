@@ -27,6 +27,9 @@ public class Frame implements IFrame, IDisplayComponent {
     @Override
     public void setCurrentScreen(IScreen screen) {
         currentScreen = screen;
+        ITouchEventHandler newChain = (ITouchEventHandler)currentScreen;
+        newChain.setNext(chain.getNext());
+        chain = (ITouchEventHandler)currentScreen;
         components.set(0, (IDisplayComponent)currentScreen);
     }
 
@@ -48,8 +51,8 @@ public class Frame implements IFrame, IDisplayComponent {
                 hideOverlay();
                 
             return;
-            
         }
+
         if(chain != null)
             chain.touch(x, y);
     }

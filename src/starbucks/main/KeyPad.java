@@ -74,6 +74,11 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler, IKeyPadSub
     }
 
     @Override
+    public ITouchEventHandler getNext() {
+        return null;
+    }
+
+    @Override
     public void attach(IKeyPadObserver observer) {
         observers.add(observer);
     }

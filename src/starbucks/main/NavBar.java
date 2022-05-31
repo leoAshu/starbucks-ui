@@ -74,6 +74,11 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
         
     }
 
+    @Override
+    public ITouchEventHandler getNext() {
+        return null;
+    }
+
     private boolean isNavBarTouched(int x, int y) {
         return y > (starbucks.height - Constants.NAV_BAR_HEIGHT);
     }

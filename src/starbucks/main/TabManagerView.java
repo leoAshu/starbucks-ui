@@ -50,5 +50,10 @@ public class TabManagerView implements ITabManager, IDisplayComponent, ITouchEve
     public void setNext(ITouchEventHandler next) {
        
     }
+
+    @Override
+    public ITouchEventHandler getNext() {
+        return null;
+    }
     
 }

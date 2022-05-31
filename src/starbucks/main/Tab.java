@@ -60,4 +60,9 @@ public class Tab implements ITab, IDisplayComponent, ITouchEventHandler {
         
     }
     
+    @Override
+    public ITouchEventHandler getNext() {
+        return null;
+    }
+
 }

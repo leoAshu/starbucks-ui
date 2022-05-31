@@ -17,4 +17,10 @@ public interface ITouchEventHandler {
      * @param next Next Handler Object
      */
     void setNext(ITouchEventHandler next);
+
+    /**
+     * Get Next Handler of Event Chain
+     * @return ITouchEventHandler
+     */
+    ITouchEventHandler getNext();
 }

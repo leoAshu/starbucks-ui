@@ -62,5 +62,10 @@ public class CardBackView implements IDisplayComponent, ITouchEventHandler {
     public void setNext(ITouchEventHandler next) {
         nextHandler = next;
     }
+
+    @Override
+    public ITouchEventHandler getNext() {
+        return nextHandler;
+    }
     
 }

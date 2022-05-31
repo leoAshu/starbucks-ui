@@ -93,6 +93,11 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         nextButton = next;
     }
 
+    @Override
+    public ITouchEventHandler getNext() {
+        return nextButton;
+    }
+
     private void drawButtonBackground() {
         if(isClicked)
             Utility.solidFill(

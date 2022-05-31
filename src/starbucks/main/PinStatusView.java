@@ -53,6 +53,11 @@ public class PinStatusView implements IDisplayComponent, ITouchEventHandler, IPi
     }
 
     @Override
+    public ITouchEventHandler getNext() {
+        return nextHandler;
+    }
+
+    @Override
     public void authEvent(boolean isAuthenticated) {
         isPinValid = isAuthenticated;
     }

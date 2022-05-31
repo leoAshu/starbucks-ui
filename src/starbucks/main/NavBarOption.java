@@ -82,6 +82,11 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         nextHandler = next;   
     }
 
+    @Override
+    public ITouchEventHandler getNext() {
+        return nextHandler;
+    }
+
     private void drawLabels() {
         // icon
         PImage icon = starbucks.loadImage(isActive? command.getActiveIconPath(): command.getIconPath());

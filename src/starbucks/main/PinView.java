@@ -49,6 +49,11 @@ public class PinView implements IDisplayComponent, ITouchEventHandler, IKeyPadOb
     }
 
     @Override
+    public ITouchEventHandler getNext() {
+        return nextHandler;
+    }
+
+    @Override
     public void keyEventUpdate(int keyCount, String key) {
         if(key.equalsIgnoreCase("X")) {
             if(pinDigitsCount > 0)
