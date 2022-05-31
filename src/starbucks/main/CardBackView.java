@@ -21,14 +21,22 @@ public class CardBackView implements IDisplayComponent, ITouchEventHandler {
             Constants.CARD_HEIGHT
         );
 
-        // card number
+        // card details
         starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 18));
         starbucks.fill(0);
-        starbucks.textSize(24);
+        starbucks.textSize(22);
         starbucks.textAlign(PApplet.CENTER);
+        // card number
         starbucks.text(
             card.cardNum(),
-            220,
+            180,
+            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING
+        );
+        // card code
+        starbucks.textSize(18);
+        starbucks.text(
+            card.cardCode(),
+            310,
             Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING
         );
     }

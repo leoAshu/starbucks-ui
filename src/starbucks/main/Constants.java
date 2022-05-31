@@ -58,7 +58,7 @@ public class Constants {
     public static final int CARD_WIDTH = 303;
     public static final int CARD_HEIGHT = 195;
     public static final int CARD_TOP_PADDING = 35;
-    public static final int CARD_NUM_TOP_PADDING = 87;
+    public static final int CARD_NUM_TOP_PADDING = 84;
 
     // pin screen
     public static final int PIN_BLOCK_Y = 130;
