@@ -77,6 +77,16 @@ public class Constants {
     public static final String NAV_LABEL_STORES = "Stores";
     public static final String NAV_LABEL_SETTINGS = "Settings";
 
+    // settings options
+    public static final int SETTINGS_ITEM_WIDTH = 343;
+    public static final int SETTINGS_ITEM_HEIGHT = 51;
+
+    // list items
+    public static final int LIST_ITEM_LABEL_TOP_PADDING = 32;
+    public static final int LIST_ITEM_LABEL_LEFT_PADDING = 20;
+    public static final int LIST_ITEM_ICON_TOP_PADDING = 18;
+    public static final int LIST_ITEM_ICON_LEFT_PADDING = 313;
+
     // images
     public static final String APP_BAR_BG = "../../assets/images/app-bar.png";
     public static final String PIN_SCREEN_BG = "../../assets/images/pinscreen-bg.png";
@@ -91,9 +101,13 @@ public class Constants {
     public static final String OVERLAY_BG = "../../assets/images/overlay-background.png";
     public static final String OVERLAY_BUTTON_BG = "../../assets/images/overlay-button-bg.png";
     public static final String OVERLAY_BUTTON_BG_DARK = "../../assets/images/overlay-button-bg-dark.png";
+    public static final String LIST_ITEM_FIRST_BG = "../../assets/images/list-item-first-bg.png";
+    public static final String LIST_ITEM_BG = "../../assets/images/list-item-bg.png";
+    public static final String LIST_ITEM_LAST_BG = "../../assets/images/list-item-last-bg.png";
 
     // icons
     public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
+    public static final String ICON_ARROW = "../../assets/images/icon-arrow.png";
     
     // nav bar icons
     public static final String NAV_ICON_CARDS = "../../assets/images/icon-cards.png";
