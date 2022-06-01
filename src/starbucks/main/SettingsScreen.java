@@ -1,10 +1,14 @@
 import processing.core.PApplet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class SettingsScreen extends Screen {
     
     public SettingsScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_LIGHT);
         addSubComponent(new AppBar(starbucks, name()));
+        setUpScreen();
     }
 
     @Override
@@ -15,5 +19,24 @@ public class SettingsScreen extends Screen {
     @Override
     public String name() {
         return "Settings";
+    }
+
+    private void setUpScreen() {
+        List<ListItem> items = new ArrayList<ListItem>();
+
+        ListItem item;
+        item = new ListItem("Add Card", Constants.ICON_ARROW);
+        items.add(item);
+
+        item = new ListItem("Delete Card", Constants.ICON_ARROW);
+        items.add(item);
+
+        item = new ListItem("Billings", Constants.ICON_ARROW);
+        items.add(item);
+
+        item = new ListItem("Passcode", Constants.ICON_ARROW);
+        items.add(item);
+
+        addSubComponent(new ListView(starbucks, 119, items));
     }
 }
