@@ -65,7 +65,12 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
     @Override
     public void touch(int x, int y) {
-        
+        if(isTouched(x, y) && command != null){
+            invoke();
+            return;
+        }
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
     }
 
     @Override
@@ -85,13 +90,15 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
     @Override
     public void setCommand(ICommand command) {
-        // TODO Auto-generated method stub
-        
+        this.command = command;
     }
 
     @Override
     public void invoke() {
-        // TODO Auto-generated method stub
-        
+        command.execute();
+    }
+
+    private boolean isTouched(int x, int y) {
+        return y > this.y && y < (this.y + Constants.SETTINGS_ITEM_HEIGHT);
     }
 }

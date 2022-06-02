@@ -61,8 +61,9 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(chain != null)
-            chain.touch(x, y);
+        if(isTouched(x, y))
+            if(chain != null)
+                chain.touch(x, y);
     }
 
     @Override
@@ -79,6 +80,11 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
     @Override
     public ITouchEventHandler getNext() {
         return nextHandler;
+    }
+
+    private boolean isTouched(int x, int y) {
+        boolean overY = y > this.y && y < (this.y + Constants.SETTINGS_ITEM_HEIGHT * items.size());
+        return overY;
     }
     
 }
