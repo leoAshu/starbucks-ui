@@ -1,12 +1,13 @@
 import processing.core.PApplet;
 
-public class ListItem implements IDisplayComponent, ITouchEventHandler {
+public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommandInvoker {
     private PApplet starbucks;
     private int y;
     private String label;
     private String iconPath;
     private String backgroundPath;
 
+    private ICommand command;
     private ITouchEventHandler nextHandler;
 
     public ListItem(String label, String iconPath) {
@@ -22,6 +23,10 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        // reduce opacity if command not set
+        if(command == null)
+            starbucks.tint(255, 120);
+
         // background
         starbucks.image(
             starbucks.loadImage(backgroundPath),
@@ -33,7 +38,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler {
 
         // label
         starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 18));
-        starbucks.fill(0);
+        starbucks.fill(0, command == null? 120: 255);
         starbucks.textSize(16);
         starbucks.textAlign(PApplet.LEFT);
         starbucks.text(
@@ -48,6 +53,9 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler {
             (starbucks.width - Constants.SETTINGS_ITEM_WIDTH)/2 + Constants.LIST_ITEM_ICON_LEFT_PADDING,
             y + Constants.LIST_ITEM_ICON_TOP_PADDING
         );
+
+        // reset tint
+        starbucks.tint(255, 255);
     }
 
     @Override
@@ -73,5 +81,17 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler {
     @Override
     public ITouchEventHandler getNext() {
         return nextHandler;
+    }
+
+    @Override
+    public void setCommand(ICommand command) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void invoke() {
+        // TODO Auto-generated method stub
+        
     }
 }
