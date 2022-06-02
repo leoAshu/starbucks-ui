@@ -43,6 +43,11 @@ public class Frame implements IFrame, IDisplayComponent {
     }
 
     @Override
+    public void setNavBarVisibility(boolean visibility) {
+        navBar.setVisibility(visibility);
+    }
+
+    @Override
     public void touch(int x, int y) {
         if(showOverlay) {
             if(isOverlayTouched(y))

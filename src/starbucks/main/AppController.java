@@ -169,6 +169,10 @@ public class AppController implements IApp {
         frame.setupNavBar(commands);
     }
 
+    public void setNavBarVisibility(boolean visibility) {
+        frame.setNavBarVisibility(visibility);
+    }
+
     public void showOverlay() {
         frame.showOverlay();
     }
@@ -192,7 +196,8 @@ public class AppController implements IApp {
         {
             case MY_CARDS: frame.setCurrentScreen(myCardsScreen); break;
             case SETTINGS: frame.setCurrentScreen (settingsScreen); break;
-            case ADD_CARD: frame.setCurrentScreen(addCardScreen); break;
+            case ADD_CARD: setNavBarVisibility(false);
+                frame.setCurrentScreen(addCardScreen); break;
           }
     }
     
