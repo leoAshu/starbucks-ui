@@ -22,11 +22,12 @@ public class SettingsScreen extends Screen {
     }
 
     private void setUpScreen() {
-        List<ListItem> items = new ArrayList<ListItem>();
-
         ListItem item;
         ICommand command;
+        List<ListItem> items;
         
+        // first list
+        items = new ArrayList<ListItem>();
         command = new Command();
         command.setReceiver(new ICommandReceiver() {
             @Override
@@ -49,5 +50,16 @@ public class SettingsScreen extends Screen {
         items.add(item);
 
         addSubComponent(new ListView(starbucks, 119, items));
+
+        // second list
+        items = new ArrayList<ListItem>();
+        item = new ListItem("About", Constants.ICON_ARROW);
+        items.add(item);
+
+        item = new ListItem("Help", Constants.ICON_ARROW);
+        items.add(item);
+
+        addSubComponent(new ListView(starbucks, 352, items));
+
     }
 }
