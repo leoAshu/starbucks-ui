@@ -15,9 +15,17 @@ public class AppController implements IApp {
     private IScreen rewardsScreen;
     private IScreen storesScreen;
     private IScreen settingsScreen;
+    private IScreen addCardScreen;
 
     private IFrame frame;
     
+    /** Enums for Screen Types */
+   // Screen references not needed from outside class are commented
+   public enum SCREENS {
+    MY_CARDS,
+    SETTINGS,
+    ADD_CARD,
+}
 
     private AppController(PApplet starbucks) {
         this.starbucks = starbucks;
@@ -51,12 +59,12 @@ public class AppController implements IApp {
     }
 
     private void init() {
-        
         myCardsScreen = new MyCardsScreen(starbucks);
         paymentsScreen = new PaymentsScreen(starbucks);
         rewardsScreen = new RewardsScreen(starbucks);
         storesScreen = new StoresScreen(starbucks);
         settingsScreen = new SettingsScreen(starbucks);
+        addCardScreen = new AddCardScreen(starbucks);
 
         frame = new Frame(starbucks, myCardsScreen);
 
@@ -172,6 +180,20 @@ public class AppController implements IApp {
     public void addOptions(List<Button> options) {
         if(frame != null)
             frame.addOptionsToOverlay(options);
+    }
+
+    /**
+     * Change the Current Active Screen
+     * @param s Enum Identifying Screen
+     */
+    public void setScreen(SCREENS s) 
+    {
+        switch(s)
+        {
+            case MY_CARDS: frame.setCurrentScreen(myCardsScreen); break;
+            case SETTINGS: frame.setCurrentScreen (settingsScreen); break;
+            case ADD_CARD: frame.setCurrentScreen(addCardScreen); break;
+          }
     }
     
 }
