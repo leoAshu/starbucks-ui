@@ -8,13 +8,16 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
     private int y;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> options;
+    private boolean isVisible;
 
     public NavBar(PApplet starbucks) {
         this.starbucks = starbucks;
         options = new ArrayList<IDisplayComponent>();
         y = starbucks.height - Constants.NAV_BAR_HEIGHT;
+        isVisible = true;
     }
 
+    @Override
     public void setUp(List<INavBarCommand> commands) {
         int x = 0;
         int optionWidth = Constants.NAV_BAR_WIDTH/commands.size();
@@ -32,7 +35,14 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
     }
 
     @Override
+    public void setVisibility(boolean visibility) {
+        isVisible = visibility;
+    }
+
+    @Override
     public void display() {
+        if(!isVisible)
+            return;
         Utility.setVerticalGradient(
             starbucks,
             0,
@@ -60,7 +70,7 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(isNavBarTouched(x, y) && chain != null)
+        if(isNavBarTouched(x, y) && chain != null && isVisible)
             chain.touch(x, y);
     }
 

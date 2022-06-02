@@ -7,4 +7,10 @@ public interface INavBar {
      * @param commands List of INavBarCommand commands to be invoked on touch
      */
     public void setUp(List<INavBarCommand> commands);
+
+    /** 
+     * Change the visibility of the nav bar
+     * @param visibility state of the nav bar's visibility
+     */
+    public void setVisibility(boolean visibility);
 }
