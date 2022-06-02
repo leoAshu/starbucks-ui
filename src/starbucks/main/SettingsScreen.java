@@ -25,7 +25,18 @@ public class SettingsScreen extends Screen {
         List<ListItem> items = new ArrayList<ListItem>();
 
         ListItem item;
+        ICommand command;
+        
+        command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            @Override
+            public void onClick() {
+                AppController.getAppController(starbucks)
+                    .setScreen(AppController.SCREENS.ADD_CARD);
+            }
+        });
         item = new ListItem("Add Card", Constants.ICON_ARROW);
+        item.setCommand(command);
         items.add(item);
 
         item = new ListItem("Delete Card", Constants.ICON_ARROW);
