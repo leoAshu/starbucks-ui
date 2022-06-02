@@ -83,8 +83,11 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
     }
 
     private boolean isTouched(int x, int y) {
+        int startX = (starbucks.width - Constants.SETTINGS_ITEM_WIDTH)/2;
+        int endX = (starbucks.width - Constants.SETTINGS_ITEM_WIDTH)/2 + Constants.SETTINGS_ITEM_WIDTH;
+        boolean overX = x > startX && x < endX;
         boolean overY = y > this.y && y < (this.y + Constants.SETTINGS_ITEM_HEIGHT * items.size());
-        return overY;
+        return overX && overY;
     }
     
 }
