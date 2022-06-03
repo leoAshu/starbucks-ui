@@ -98,7 +98,7 @@ public class Constants {
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
-    public static final String CARD_BACK_INPUT = "../../assets/images/card-back-input.png";
+    public static final String CARD_BACK_INPUT = "../../assets/images/card-input.png";
     public static final String PAY_BUTTON_BG = "../../assets/images/static-button-bg.png";
     public static final String BALANCE_BUTTON_BG = "../../assets/images/balance-button-bg.png";
     public static final String OVERLAY_BG = "../../assets/images/overlay-background.png";
