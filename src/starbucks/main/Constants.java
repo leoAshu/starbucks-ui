@@ -104,6 +104,7 @@ public class Constants {
     public static final String LIST_ITEM_FIRST_BG = "../../assets/images/list-item-first-bg.png";
     public static final String LIST_ITEM_BG = "../../assets/images/list-item-bg.png";
     public static final String LIST_ITEM_LAST_BG = "../../assets/images/list-item-last-bg.png";
+    public static final String APP_BAR_BUTTON_BG = "../../assets/images/app-bar-button-bg.png";
 
     // icons
     public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
