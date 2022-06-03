@@ -1,11 +1,23 @@
 import processing.core.PApplet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class CardInputView implements IDisplayComponent, ITouchEventHandler {
     PApplet starbucks;
+    private CardNumInputView numView;
+
+    private ITouchEventHandler chain;
     private ITouchEventHandler nextHandler;
+    private List<IDisplayComponent> components;
 
     public CardInputView(PApplet starbucks) {
         this.starbucks = starbucks;
+        numView = new CardNumInputView(starbucks);
+
+        components = new ArrayList<IDisplayComponent>();
+        
+        addSubComponent(numView);
     }
 
     @Override
@@ -18,21 +30,34 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler {
             Constants.CARD_WIDTH, 
             Constants.CARD_HEIGHT
         );
+
+        for(IDisplayComponent component: components)
+            component.display();
     }
 
     @Override
     public void addSubComponent(IDisplayComponent component) {
-        
+        components.add(component);
+        if(components.size() == 1)
+            chain = (ITouchEventHandler) component;
+        else {
+            ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2);
+            prev.setNext((ITouchEventHandler) component);
+        }
     }
 
     @Override
     public void touch(int x, int y) {
+        if(chain != null)
+            chain.touch(x, y);
         if(nextHandler != null)
             nextHandler.touch(x, y);
     }
 
     @Override
     public void release() {
+        if(chain != null)
+            chain.release();
         if(nextHandler != null)
             nextHandler.release();
     }
