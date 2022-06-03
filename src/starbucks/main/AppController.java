@@ -58,6 +58,25 @@ public class AppController implements IApp {
         frame.display();
     }
 
+    /**
+     * Change the Current Active Screen
+     * @param s Enum Identifying Screen
+     */
+    public void setScreen(SCREENS s) 
+    {
+        switch(s)
+        {
+            case MY_CARDS: frame.setCurrentScreen(myCardsScreen); 
+            break;
+            case SETTINGS: setNavBarVisibility(true);
+                            frame.setCurrentScreen (settingsScreen); 
+            break;
+            case ADD_CARD: setNavBarVisibility(false);
+                            frame.setCurrentScreen(addCardScreen); 
+            break;
+          }
+    }
+
     private void init() {
         myCardsScreen = new MyCardsScreen(starbucks);
         paymentsScreen = new PaymentsScreen(starbucks);
@@ -184,21 +203,6 @@ public class AppController implements IApp {
     public void addOptions(List<Button> options) {
         if(frame != null)
             frame.addOptionsToOverlay(options);
-    }
-
-    /**
-     * Change the Current Active Screen
-     * @param s Enum Identifying Screen
-     */
-    public void setScreen(SCREENS s) 
-    {
-        switch(s)
-        {
-            case MY_CARDS: frame.setCurrentScreen(myCardsScreen); break;
-            case SETTINGS: frame.setCurrentScreen (settingsScreen); break;
-            case ADD_CARD: setNavBarVisibility(false);
-                frame.setCurrentScreen(addCardScreen); break;
-          }
     }
     
 }
