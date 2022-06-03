@@ -1,20 +1,20 @@
 import processing.core.PApplet;
 
 /** 
- * CardNumInputView Screen SubComponent
- * Displays the entered card number digits
+ * CardCodeInputView Screen SubComponent
+ * Displays the entered card code digits
  */
-public class CardNumInputView implements IDisplayComponent, ITouchEventHandler {
+public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private boolean isFocused;
-    private StringBuffer cardNum;
+    private StringBuffer cardCode;
 
     private ITouchEventHandler nextHandler;
 
-    public CardNumInputView(PApplet starbucks) {
+    public CardCodeInputView(PApplet starbucks) {
         this.starbucks = starbucks;
-        isFocused = true;
-        cardNum = new StringBuffer("");
+        isFocused = false;
+        cardCode = new StringBuffer("");
     }
 
     @Override
@@ -27,31 +27,31 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler {
             starbucks.stroke(112);
         }
         starbucks.rect(
-            Constants.CARD_NUM_INPUT_X-2,
-            Constants.CARD_NUM_INPUT_Y-2,
-            Constants.CARD_NUM_INPUT_WIDTH+4,
-            Constants.CARD_INPUT_HEIGHT+4,
-            10
+            Constants.CARD_CODE_INPUT_X-2,
+            Constants.CARD_CODE_INPUT_Y-2,
+            Constants.CARD_CODE_INPUT_WIDTH+3,
+            Constants.CARD_INPUT_HEIGHT+3,
+            14
         );
 
         starbucks.image(
-            starbucks.loadImage(Constants.CARD_NUM_INPUT_BG),
-            Constants.CARD_NUM_INPUT_X,
-            Constants.CARD_NUM_INPUT_Y,
-            Constants.CARD_NUM_INPUT_WIDTH,
+            starbucks.loadImage(Constants.CARD_CODE_INPUT_BG),
+            Constants.CARD_CODE_INPUT_X,
+            Constants.CARD_CODE_INPUT_Y,
+            Constants.CARD_CODE_INPUT_WIDTH,
             Constants.CARD_INPUT_HEIGHT
         );
 
         // card number
-        boolean isEmpty = cardNum.toString().equals("");
+        boolean isEmpty = cardCode.toString().equals("");
         starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 18));
         starbucks.fill(0, isEmpty? 120: 255);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(18);
         starbucks.text(
-            isEmpty? "Starbucks Card Number": cardNum.toString(),
-            Constants.CARD_NUM_INPUT_X + Constants.CARD_NUM_INPUT_WIDTH/2,
-            Constants.CARD_NUM_INPUT_Y + Constants.CARD_INPUT_TOP_PADDING
+            isEmpty? "Code": cardCode.toString(),
+            Constants.CARD_CODE_INPUT_X + Constants.CARD_CODE_INPUT_WIDTH/2,
+            Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_TOP_PADDING
         );
     }
 
