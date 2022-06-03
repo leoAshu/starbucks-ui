@@ -14,6 +14,9 @@ public class Constants {
     // app bar
     public static final int APP_BAR_WIDTH = 375;
     public static final int APP_BAR_HEIGHT = 55;
+    public static final int APP_BAR_OPTION_WIDTH = 74;
+    public static final int APP_BAR_OPTION_HEIGHT = 35;
+    public static final int APP_BAR_OPTION_TOP_PADDING = 22;
 
     // bottom nav bar
     public static final int NAV_BAR_WIDTH = 375;
