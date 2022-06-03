@@ -14,3 +14,7 @@ Java is used to design and build the unit components of any app development fram
 - List View
 - Keypad
 - Button
+
+The core implementation and functioning of these components is done using Java, while Processing takes care of the visual aspect of these components.
+
+The primary objective of this project was to gain a better understanding of the various object-oriented design patterns. The design patterns help promote easier program changes and object reusability. Loosely coupled objects are easier to reuse and change. Keeping objects small and specialized promotes loose coupling.
