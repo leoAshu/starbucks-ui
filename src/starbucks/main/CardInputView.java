@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class CardInputView implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private CardNumInputView numView;
+    private CardCodeInputView codeView;
 
     private ITouchEventHandler chain;
     private ITouchEventHandler nextHandler;
@@ -14,10 +15,12 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler {
     public CardInputView(PApplet starbucks) {
         this.starbucks = starbucks;
         numView = new CardNumInputView(starbucks);
+        codeView = new CardCodeInputView(starbucks);
 
         components = new ArrayList<IDisplayComponent>();
         
         addSubComponent(numView);
+        addSubComponent(codeView);
     }
 
     @Override
