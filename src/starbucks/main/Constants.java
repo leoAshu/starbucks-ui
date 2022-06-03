@@ -62,6 +62,12 @@ public class Constants {
     public static final int CARD_HEIGHT = 195;
     public static final int CARD_TOP_PADDING = 35;
     public static final int CARD_NUM_TOP_PADDING = 83;
+    // card input
+    public static final int CARD_NUM_INPUT_X = 112;
+    public static final int CARD_NUM_INPUT_Y = 152;
+    public static final int CARD_NUM_INPUT_WIDTH = 213;
+    public static final int CARD_NUM_INPUT_HEIGHT = 30;
+    public static final int CARD_NUM_INPUT_TOP_PADDING = 22;
 
     // pin screen
     public static final int PIN_BLOCK_Y = 130;
@@ -99,6 +105,7 @@ public class Constants {
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
     public static final String CARD_BACK_INPUT = "../../assets/images/card-input.png";
+    public static final String CARD_NUM_INPUT_BG = "../../assets/images/card-num-input-bg.png";
     public static final String PAY_BUTTON_BG = "../../assets/images/static-button-bg.png";
     public static final String BALANCE_BUTTON_BG = "../../assets/images/balance-button-bg.png";
     public static final String OVERLAY_BG = "../../assets/images/overlay-background.png";
