@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CardInputView implements IDisplayComponent, ITouchEventHandler {
-    PApplet starbucks;
+    private PApplet starbucks;
     private CardNumInputView numView;
 
     private ITouchEventHandler chain;
