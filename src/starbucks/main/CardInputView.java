@@ -2,12 +2,10 @@ import processing.core.PApplet;
 
 public class CardInputView implements IDisplayComponent, ITouchEventHandler {
     PApplet starbucks;
-    private ICard card;
     private ITouchEventHandler nextHandler;
 
-    public CardInputView(PApplet starbucks, ICard card) {
+    public CardInputView(PApplet starbucks) {
         this.starbucks = starbucks;
-        this.card = card;
     }
 
     @Override
@@ -19,25 +17,6 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler {
             Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING - 20,
             Constants.CARD_WIDTH, 
             Constants.CARD_HEIGHT
-        );
-
-        // card details
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 18));
-        starbucks.fill(0);
-        starbucks.textSize(20);
-        starbucks.textAlign(PApplet.CENTER);
-        // card number
-        starbucks.text(
-            card.cardNum(),
-            174,
-            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING - 20
-        );
-        // card code
-        starbucks.textSize(18);
-        starbucks.text(
-            card.cardCode(),
-            308,
-            Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_NUM_TOP_PADDING - 20
         );
     }
 
