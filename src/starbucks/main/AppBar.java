@@ -79,6 +79,11 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
+        if(isAppBarTouched(x, y)){
+            chain.touch(x, y);
+            return;
+        }
+
         if(nextHandler != null)
             nextHandler.touch(x, y);
     }
@@ -97,5 +102,9 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
     @Override
     public ITouchEventHandler getNext() {
         return nextHandler;
+    }
+
+    private boolean isAppBarTouched(int x, int y) {
+        return y > Constants.NAV_BAR_HEIGHT && y < (Constants.NAV_BAR_HEIGHT + Constants.APP_BAR_HEIGHT);
     }
 }
