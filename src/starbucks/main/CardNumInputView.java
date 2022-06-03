@@ -6,18 +6,34 @@ import processing.core.PApplet;
  */
 public class CardNumInputView implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private boolean isFocused;
     private StringBuffer cardNum;
 
     private ITouchEventHandler nextHandler;
 
     public CardNumInputView(PApplet starbucks) {
         this.starbucks = starbucks;
-        cardNum = new StringBuffer();
+        isFocused = true;
+        cardNum = new StringBuffer("1234");
     }
 
     @Override
     public void display() {
         // text box
+        starbucks.strokeWeight(2);
+        if(isFocused) {
+            starbucks.stroke(43, 143, 104);
+        } else {
+            starbucks.stroke(112);
+        }
+        starbucks.rect(
+            Constants.CARD_NUM_INPUT_X-2,
+            Constants.CARD_NUM_INPUT_Y-2,
+            Constants.CARD_NUM_INPUT_WIDTH+4,
+            Constants.CARD_NUM_INPUT_HEIGHT+4,
+            10
+        );
+
         starbucks.image(
             starbucks.loadImage(Constants.CARD_NUM_INPUT_BG),
             Constants.CARD_NUM_INPUT_X,
