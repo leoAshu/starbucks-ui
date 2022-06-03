@@ -112,10 +112,17 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        // reduce opacity if command not set
+        if(command == null)
+            starbucks.tint(255, 120);
+        
         if(shape == Shape.BOX)
             drawBoxButton();
         else
             drawRoundButton();
+
+        // reset tint
+        starbucks.tint(255, 255);
     }
 
     @Override
@@ -171,7 +178,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
         // label
         starbucks.textFont(starbucks.createFont(labelFont, 16));
-        starbucks.fill(labelFontColor);
+        starbucks.fill(labelFontColor, command == null? 120: 255);
         starbucks.textSize(labelFontSize);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.text(
@@ -201,7 +208,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
         // label
         starbucks.textFont(starbucks.createFont(labelFont, 16));
-        starbucks.fill(labelFontColor);
+        starbucks.fill(labelFontColor, command == null? 120: 255);
         starbucks.textSize(labelFontSize);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.text(
