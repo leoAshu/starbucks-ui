@@ -79,7 +79,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(isAppBarTouched(x, y)){
+        if(isAppBarTouched(x, y) && chain != null){
             chain.touch(x, y);
             return;
         }
