@@ -152,7 +152,8 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
 
         for(i=0; i<code.length(); i++) {
             buffer.append(code.charAt(i));
-            buffer.append(" ");
+            if(i < (code.length()-1))
+                buffer.append(" ");
         }
 
         return buffer.toString();
