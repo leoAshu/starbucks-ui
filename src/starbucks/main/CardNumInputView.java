@@ -1,6 +1,7 @@
-import java.util.List;
-
 import processing.core.PApplet;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /** 
  * CardNumInputView Screen SubComponent
@@ -18,6 +19,8 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
         this.starbucks = starbucks;
         isFocused = true;
         cardNum = new StringBuffer("");
+
+        observers = new ArrayList<IFocusObserver>();
     }
 
     @Override
