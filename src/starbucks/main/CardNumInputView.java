@@ -1,15 +1,18 @@
+import java.util.List;
+
 import processing.core.PApplet;
 
 /** 
  * CardNumInputView Screen SubComponent
  * Displays the entered card number digits
  */
-public class CardNumInputView implements IDisplayComponent, ITouchEventHandler {
+public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject {
     private PApplet starbucks;
     private boolean isFocused;
     private StringBuffer cardNum;
 
     private ITouchEventHandler nextHandler;
+    private List<IFocusObserver> observers;
 
     public CardNumInputView(PApplet starbucks) {
         this.starbucks = starbucks;
@@ -78,6 +81,22 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler {
     @Override
     public ITouchEventHandler getNext() {
         return nextHandler;
+    }
+
+    @Override
+    public void attach(IFocusObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IFocusObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(IFocusObserver observer: observers)
+            observer.setFocus(false);
     }
     
 }

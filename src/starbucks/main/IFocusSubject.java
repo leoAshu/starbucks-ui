@@ -5,13 +5,13 @@ public interface IFocusSubject
      * Add Observer to Subscribers List
      * @param obj Observer Object
      */
-    void attach(IFocusObserver obj);
+    void attach(IFocusObserver observer);
 
     /**
      * Remove Observer from Subscription
      * @param obj Observer Object
      */
-    void removeObserver(IFocusObserver obj);
+    void removeObserver(IFocusObserver observer);
 
     /**
      * Trigger Events to Observers
