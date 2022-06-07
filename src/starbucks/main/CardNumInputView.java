@@ -68,12 +68,19 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
 
     @Override
     public void touch(int x, int y) {
-        
+        if(isTouched(x, y)) {
+            notifyObservers();
+            setFocus(true);
+            return;
+        }
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
     }
 
     @Override
     public void release() {
-        
+        if(nextHandler != null)
+            nextHandler.release();
     }
 
     @Override
@@ -105,6 +112,14 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
     @Override
     public void setFocus(boolean isFocused) {
         this.isFocused = isFocused;
+    }
+
+    private boolean isTouched(int x, int y) {
+        boolean overX, overY;
+        overX = x > Constants.CARD_NUM_INPUT_X && x < Constants.CARD_NUM_INPUT_X + Constants.CARD_NUM_INPUT_WIDTH;
+        overY = y > Constants.CARD_NUM_INPUT_Y && y < Constants.CARD_NUM_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
+
+        return overX && overY;
     }
     
 }
