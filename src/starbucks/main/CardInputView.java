@@ -16,6 +16,8 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler {
         this.starbucks = starbucks;
         numView = new CardNumInputView(starbucks);
         codeView = new CardCodeInputView(starbucks);
+        numView.attach((IFocusObserver)codeView);
+        codeView.attach((IFocusObserver)numView);
 
         components = new ArrayList<IDisplayComponent>();
         
