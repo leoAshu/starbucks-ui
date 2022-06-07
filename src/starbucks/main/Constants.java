@@ -66,6 +66,7 @@ public class Constants {
     public static final int CARD_INPUT_HEIGHT = 30;
     public static final int CARD_INPUT_TOP_PADDING = 22;
     // card number input
+    public static final int CARD_NUM_MAX_LENGTH = 9;
     public static final int CARD_NUM_INPUT_X = 112;
     public static final int CARD_NUM_INPUT_Y = 152;
     public static final int CARD_NUM_INPUT_WIDTH = 213;
