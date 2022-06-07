@@ -26,26 +26,28 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
     @Override
     public void display() {
         // text box
-        starbucks.strokeWeight(2);
-        if(isFocused) {
-            starbucks.stroke(43, 143, 104);
-        } else {
-            starbucks.stroke(112);
-        }
-        starbucks.rect(
-            Constants.CARD_NUM_INPUT_X-2,
-            Constants.CARD_NUM_INPUT_Y-2,
-            Constants.CARD_NUM_INPUT_WIDTH+4,
-            Constants.CARD_INPUT_HEIGHT+4,
-            10
-        );
-
         starbucks.image(
             starbucks.loadImage(Constants.CARD_NUM_INPUT_BG),
             Constants.CARD_NUM_INPUT_X,
             Constants.CARD_NUM_INPUT_Y,
             Constants.CARD_NUM_INPUT_WIDTH,
             Constants.CARD_INPUT_HEIGHT
+        );
+        // border
+        starbucks.fill(255, 0);
+        if(isFocused) {
+            starbucks.strokeWeight(3);
+            starbucks.stroke(43, 143, 104);
+        } else {
+            starbucks.strokeWeight(1);
+            starbucks.stroke(112);
+        }
+        starbucks.rect(
+            Constants.CARD_NUM_INPUT_X-2,
+            Constants.CARD_NUM_INPUT_Y-2,
+            Constants.CARD_NUM_INPUT_WIDTH+3,
+            Constants.CARD_INPUT_HEIGHT+3,
+            10
         );
 
         // card number

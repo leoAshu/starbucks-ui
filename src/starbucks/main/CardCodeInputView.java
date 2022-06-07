@@ -26,10 +26,20 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
     @Override
     public void display() {
         // text box
-        starbucks.strokeWeight(2);
+        starbucks.image(
+            starbucks.loadImage(Constants.CARD_CODE_INPUT_BG),
+            Constants.CARD_CODE_INPUT_X,
+            Constants.CARD_CODE_INPUT_Y,
+            Constants.CARD_CODE_INPUT_WIDTH,
+            Constants.CARD_INPUT_HEIGHT
+        );
+        // border
+        starbucks.fill(255, 0);
         if(isFocused) {
+            starbucks.strokeWeight(3);
             starbucks.stroke(43, 143, 104);
         } else {
+            starbucks.strokeWeight(1);
             starbucks.stroke(112);
         }
         starbucks.rect(
@@ -37,15 +47,7 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
             Constants.CARD_CODE_INPUT_Y-2,
             Constants.CARD_CODE_INPUT_WIDTH+3,
             Constants.CARD_INPUT_HEIGHT+3,
-            14
-        );
-
-        starbucks.image(
-            starbucks.loadImage(Constants.CARD_CODE_INPUT_BG),
-            Constants.CARD_CODE_INPUT_X,
-            Constants.CARD_CODE_INPUT_Y,
-            Constants.CARD_CODE_INPUT_WIDTH,
-            Constants.CARD_INPUT_HEIGHT
+            15
         );
 
         // card number
