@@ -3,7 +3,7 @@ import processing.core.PApplet;
 import java.util.List;
 import java.util.ArrayList;
 
-public class CardInputView implements IDisplayComponent, ITouchEventHandler {
+public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
     private PApplet starbucks;
     private CardNumInputView numView;
     private CardCodeInputView codeView;
@@ -75,6 +75,12 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler {
     @Override
     public ITouchEventHandler getNext() {
         return nextHandler;
+    }
+
+    @Override
+    public void keyEventUpdate(int keyCount, String key) {
+        numView.keyEventUpdate(keyCount, key);
+        codeView.keyEventUpdate(keyCount, key);
     }
     
 }

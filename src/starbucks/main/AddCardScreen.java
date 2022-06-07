@@ -4,10 +4,19 @@ import java.util.List;
 import processing.core.PApplet;
 
 public class AddCardScreen extends Screen {
+    private CardInputView cardInputView;
+    private KeyPad keyPad;
 
     public AddCardScreen(PApplet starbucks) {
         super(starbucks, Constants.SCREEN_BG_DARK);
-        setUpScreen();
+        cardInputView = new CardInputView(starbucks);
+        keyPad = new KeyPad(starbucks);
+        keyPad.attach((IKeyPadObserver)cardInputView);
+        
+        setUpAppBar();
+        addSubComponent(cardInputView);
+        addSubComponent(keyPad);
+
     }
     
     @Override
@@ -20,7 +29,7 @@ public class AddCardScreen extends Screen {
         return "Add Card";
     }
 
-    private void setUpScreen() {
+    private void setUpAppBar() {
         // app bar
         // app bar options
         Button option;
@@ -72,7 +81,5 @@ public class AddCardScreen extends Screen {
         options.add(option);
 
         addSubComponent(new AppBar(starbucks, name(), options));
-        addSubComponent(new CardInputView(starbucks));
-        addSubComponent(new KeyPad(starbucks));
     }
 }
