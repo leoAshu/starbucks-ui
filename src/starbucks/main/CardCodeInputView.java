@@ -1,20 +1,26 @@
 import processing.core.PApplet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /** 
  * CardCodeInputView Screen SubComponent
  * Displays the entered card code digits
  */
-public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler {
+public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject, IFocusObserver {
     private PApplet starbucks;
     private boolean isFocused;
     private StringBuffer cardCode;
 
     private ITouchEventHandler nextHandler;
+    private List<IFocusObserver> observers;
 
     public CardCodeInputView(PApplet starbucks) {
         this.starbucks = starbucks;
         isFocused = false;
         cardCode = new StringBuffer("");
+
+        observers = new ArrayList<IFocusObserver>();
     }
 
     @Override
@@ -62,12 +68,19 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler 
 
     @Override
     public void touch(int x, int y) {
-        
+        if(isTouched(x, y)) {
+            notifyObservers();
+            setFocus(true);
+            return;
+        }
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
     }
 
     @Override
     public void release() {
-        
+        if(nextHandler != null)
+            nextHandler.release();
     }
 
     @Override
@@ -78,6 +91,35 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler 
     @Override
     public ITouchEventHandler getNext() {
         return nextHandler;
+    }
+
+    @Override
+    public void attach(IFocusObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IFocusObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(IFocusObserver observer: observers)
+            observer.setFocus(false);
+    }
+
+    @Override
+    public void setFocus(boolean isFocused) {
+        this.isFocused = isFocused;
+    }
+
+    private boolean isTouched(int x, int y) {
+        boolean overX, overY;
+        overX = x > Constants.CARD_CODE_INPUT_X && x < Constants.CARD_CODE_INPUT_X + Constants.CARD_CODE_INPUT_WIDTH;
+        overY = y > Constants.CARD_CODE_INPUT_Y && y < Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
+
+        return overX && overY;
     }
     
 }
