@@ -7,9 +7,10 @@ import java.util.ArrayList;
  * CardCodeInputView Screen SubComponent
  * Displays the entered card code digits
  */
-public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject, IFocusObserver {
+public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject, IFocusObserver, IKeyPadObserver {
     private PApplet starbucks;
     private boolean isFocused;
+    private int count;
     private StringBuffer cardCode;
 
     private ITouchEventHandler nextHandler;
@@ -18,6 +19,7 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
     public CardCodeInputView(PApplet starbucks) {
         this.starbucks = starbucks;
         isFocused = false;
+        count = 0;
         cardCode = new StringBuffer("");
 
         observers = new ArrayList<IFocusObserver>();
@@ -122,6 +124,23 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
         overY = y > Constants.CARD_CODE_INPUT_Y && y < Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
 
         return overX && overY;
+    }
+
+    @Override
+    public void keyEventUpdate(int keyCount, String key) {
+        if(isFocused) {
+            if(key.equals("X")) {
+                if(count > 0) {
+                    count -= 1;
+                    cardCode.deleteCharAt(count);
+                }
+            } else {
+                if(count < Constants.CARD_CODE_MAX_LENGTH) {
+                    count += 1;
+                    cardCode.append(key);
+                }
+            }
+        }
     }
     
 }
