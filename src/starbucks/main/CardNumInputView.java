@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * CardNumInputView Screen SubComponent
  * Displays the entered card number digits
  */
-public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject {
+public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject, IFocusObserver {
     private PApplet starbucks;
     private boolean isFocused;
     private StringBuffer cardNum;
@@ -100,6 +100,11 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
     public void notifyObservers() {
         for(IFocusObserver observer: observers)
             observer.setFocus(false);
+    }
+
+    @Override
+    public void setFocus(boolean isFocused) {
+        this.isFocused = isFocused;
     }
     
 }
