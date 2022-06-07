@@ -57,7 +57,7 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
         starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 18));
         starbucks.fill(0, isEmpty? 120: 255);
         starbucks.textAlign(PApplet.CENTER);
-        starbucks.textSize(18);
+        starbucks.textSize(isEmpty? 18: 22);
         starbucks.text(
             isEmpty? "Starbucks Card Number": formatCardNum(cardNum.toString(), 3),
             Constants.CARD_NUM_INPUT_X + Constants.CARD_NUM_INPUT_WIDTH/2,
