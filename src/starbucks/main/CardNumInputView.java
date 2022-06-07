@@ -59,7 +59,7 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(18);
         starbucks.text(
-            isEmpty? "Starbucks Card Number": cardNum.toString(),
+            isEmpty? "Starbucks Card Number": formatCardNum(cardNum.toString(), 3),
             Constants.CARD_NUM_INPUT_X + Constants.CARD_NUM_INPUT_WIDTH/2,
             Constants.CARD_NUM_INPUT_Y + Constants.CARD_INPUT_TOP_PADDING
         );
@@ -118,14 +118,6 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
         this.isFocused = isFocused;
     }
 
-    private boolean isTouched(int x, int y) {
-        boolean overX, overY;
-        overX = x > Constants.CARD_NUM_INPUT_X && x < Constants.CARD_NUM_INPUT_X + Constants.CARD_NUM_INPUT_WIDTH;
-        overY = y > Constants.CARD_NUM_INPUT_Y && y < Constants.CARD_NUM_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
-
-        return overX && overY;
-    }
-
     @Override
     public void keyEventUpdate(int keyCount, String key) {
         if(isFocused) {
@@ -141,6 +133,27 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
                 }
             }
         }
+    }
+
+    private boolean isTouched(int x, int y) {
+        boolean overX, overY;
+        overX = x > Constants.CARD_NUM_INPUT_X && x < Constants.CARD_NUM_INPUT_X + Constants.CARD_NUM_INPUT_WIDTH;
+        overY = y > Constants.CARD_NUM_INPUT_Y && y < Constants.CARD_NUM_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
+
+        return overX && overY;
+    }
+
+    private String formatCardNum(String num, int groupSize) {
+        int i;
+        StringBuffer buffer = new StringBuffer();
+
+        for(i=0; i<num.length()-groupSize; i += groupSize) {
+            buffer.append(num.substring(i, i+groupSize));
+            buffer.append("  ");
+        }
+        buffer.append(num.substring(i));
+
+        return buffer.toString();
     }
     
 }

@@ -117,15 +117,7 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
     public void setFocus(boolean isFocused) {
         this.isFocused = isFocused;
     }
-
-    private boolean isTouched(int x, int y) {
-        boolean overX, overY;
-        overX = x > Constants.CARD_CODE_INPUT_X && x < Constants.CARD_CODE_INPUT_X + Constants.CARD_CODE_INPUT_WIDTH;
-        overY = y > Constants.CARD_CODE_INPUT_Y && y < Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
-
-        return overX && overY;
-    }
-
+ 
     @Override
     public void keyEventUpdate(int keyCount, String key) {
         if(isFocused) {
@@ -141,6 +133,14 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
                 }
             }
         }
+    }
+
+    private boolean isTouched(int x, int y) {
+        boolean overX, overY;
+        overX = x > Constants.CARD_CODE_INPUT_X && x < Constants.CARD_CODE_INPUT_X + Constants.CARD_CODE_INPUT_WIDTH;
+        overY = y > Constants.CARD_CODE_INPUT_Y && y < Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
+
+        return overX && overY;
     }
     
 }
