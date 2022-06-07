@@ -150,11 +150,16 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
         int i;
         StringBuffer buffer = new StringBuffer();
 
-        for(i=0; i<num.length()-groupSize; i += groupSize) {
-            buffer.append(num.substring(i, i+groupSize));
-            buffer.append("  ");
+        for(i=0; i<num.length(); i++) {
+            buffer.append(num.charAt(i));
+            buffer.append((i>0 && i%groupSize==2 && i<(num.length()-1))? "   ": " ");
         }
-        buffer.append(num.substring(i));
+
+        // for(i=0; i<num.length()-groupSize; i += groupSize) {
+        //     buffer.append(num.substring(i, i+groupSize));
+        //     buffer.append("  ");
+        // }
+        // buffer.append(num.substring(i));
 
         return buffer.toString();
     }

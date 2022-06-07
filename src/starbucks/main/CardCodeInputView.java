@@ -62,7 +62,7 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(isEmpty? 18: 20);
         starbucks.text(
-            isEmpty? "Code": cardCode.toString(),
+            isEmpty? "Code": formatCardNum(cardCode.toString()),
             Constants.CARD_CODE_INPUT_X + Constants.CARD_CODE_INPUT_WIDTH/2,
             Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_TOP_PADDING
         );
@@ -144,6 +144,18 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
         overY = y > Constants.CARD_CODE_INPUT_Y && y < Constants.CARD_CODE_INPUT_Y + Constants.CARD_INPUT_HEIGHT;
 
         return overX && overY;
+    }
+
+    private String formatCardNum(String code) {
+        int i;
+        StringBuffer buffer = new StringBuffer();
+
+        for(i=0; i<code.length(); i++) {
+            buffer.append(code.charAt(i));
+            buffer.append(" ");
+        }
+
+        return buffer.toString();
     }
     
 }
