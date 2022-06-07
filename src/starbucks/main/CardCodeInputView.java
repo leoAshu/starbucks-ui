@@ -54,10 +54,13 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
 
         // card number
         boolean isEmpty = cardCode.toString().equals("");
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 18));
+        starbucks.textFont(starbucks.createFont(
+            isEmpty? Constants.ROBOTO_REG_PATH: Constants.MONTSERRAT_MED_PATH,
+            20
+        ));
         starbucks.fill(0, isEmpty? 120: 255);
         starbucks.textAlign(PApplet.CENTER);
-        starbucks.textSize(isEmpty? 18: 22);
+        starbucks.textSize(isEmpty? 18: 20);
         starbucks.text(
             isEmpty? "Code": cardCode.toString(),
             Constants.CARD_CODE_INPUT_X + Constants.CARD_CODE_INPUT_WIDTH/2,
