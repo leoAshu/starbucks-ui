@@ -18,6 +18,22 @@ public class MyCardsMainTab extends Tab {
         addSubComponent(balanceButton());
     }
 
+    @Override
+    public void display() {
+        super.display();
+
+        // card balance
+        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 32));
+        starbucks.fill(255);
+        starbucks.textSize(32);
+        starbucks.textAlign(PApplet.CENTER);
+        starbucks.text(
+            card.balance(),
+            (starbucks.width - Constants.BALANCE_BUTTON_WIDTH)/2 + Constants.BALANCE_BUTTON_WIDTH/2,
+            Constants.BALANCE_BUTTON_Y + Constants.BALANCE_BUTTON_HEIGHT/2 + 10
+        );
+    }
+
     private Button payButton() {
         // setup pay button
         Button payButton = new Button(
@@ -58,12 +74,6 @@ public class MyCardsMainTab extends Tab {
             Constants.BALANCE_BUTTON_WIDTH,
             Constants.BALANCE_BUTTON_HEIGHT,
             Button.Shape.BOX,
-            card.balance(),
-            Constants.BALANCE_BUTTON_WIDTH/2,
-            Constants.BALANCE_BUTTON_HEIGHT/2 + 10,
-            Constants.ROBOTO_REG_PATH,
-            32,
-            255,
             Constants.BALANCE_BUTTON_BG
         );
 

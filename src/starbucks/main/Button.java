@@ -26,7 +26,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         ROUND
     }
 
-    // x = y
+    // height = width
     public Button(PApplet starbucks, int x, int y, int size, Shape shape, String label, int labelLeftPadding, int labelTopPadding,  String labelFont, int labelFontSize, int labelFontColor, String iconPath, int iconLeftPadding, int iconTopPadding, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
@@ -46,7 +46,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.backgroundPath = backgroundPath;
     }
 
-    // x = y with no icon
+    // height = width with no icon
     public Button(PApplet starbucks, int x, int y, int size, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
@@ -63,7 +63,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.backgroundPath = backgroundPath;
     }
 
-    // x != y
+    // height != width
     public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String iconPath, int iconX, int iconY, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
@@ -83,7 +83,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.backgroundPath = backgroundPath;
     }
 
-    // x != y with no icon
+    // height != width with no icon
     public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String backgroundPath) {
         this.starbucks = starbucks;
         this.x = x;
@@ -97,6 +97,17 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFont = labelFont;
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
+        this.backgroundPath = backgroundPath;
+    }
+
+    // height != width with no label & icon
+    public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String backgroundPath) {
+        this.starbucks = starbucks;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.shape = shape;
         this.backgroundPath = backgroundPath;
     }
 
@@ -177,15 +188,17 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
             );
 
         // label
-        starbucks.textFont(starbucks.createFont(labelFont, 16));
-        starbucks.fill(labelFontColor, command == null? 120: 255);
-        starbucks.textSize(labelFontSize);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.text(
-            label,
-            x + labelLeftPadding,
-            y + labelTopPadding
-        );
+        if(label != null) {
+            starbucks.textFont(starbucks.createFont(labelFont, 16));
+            starbucks.fill(labelFontColor, command == null? 120: 255);
+            starbucks.textSize(labelFontSize);
+            starbucks.textAlign(PApplet.CENTER);
+            starbucks.text(
+                label,
+                x + labelLeftPadding,
+                y + labelTopPadding
+            );
+        }
     }
 
     private void drawRoundButton() {
