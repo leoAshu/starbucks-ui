@@ -83,4 +83,8 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
         codeView.keyEventUpdate(keyCount, key);
     }
     
+    public void reset() {
+        numView.reset();
+        codeView.reset();
+    }
 }

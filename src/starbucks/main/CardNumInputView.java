@@ -163,5 +163,11 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
 
         return buffer.toString();
     }
+
+    public void reset() {
+        isFocused = true;
+        count = 0;
+        cardNum = new StringBuffer("");
+    }
     
 }

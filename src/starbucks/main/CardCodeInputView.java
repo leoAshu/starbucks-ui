@@ -158,5 +158,11 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
 
         return buffer.toString();
     }
+
+    public void reset() {
+        isFocused = false;
+        count = 0;
+        cardCode = new StringBuffer("");
+    }
     
 }
