@@ -56,8 +56,7 @@ public class AddCardScreen extends Screen {
         command.setReceiver(new ICommandReceiver() {
             @Override
             public void onClick() {
-                reset();
-                AppController.getAppController(starbucks).setScreen(AppController.SCREENS.SETTINGS);
+                back();   
             }
         });
         option.setCommand(command);
@@ -84,7 +83,9 @@ public class AddCardScreen extends Screen {
         addSubComponent(new AppBar(starbucks, name(), options));
     }
 
-    private void reset() {
+    private void back() {
         cardInputView.reset();
+        AppController.getAppController(starbucks).setScreen(AppController.SCREENS.SETTINGS);
     }
+
 }
