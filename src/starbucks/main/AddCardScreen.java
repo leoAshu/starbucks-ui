@@ -78,6 +78,14 @@ public class AddCardScreen extends Screen {
             255,
             Constants.APP_BAR_BUTTON_BG
         );
+        command = new Command();
+        command.setReceiver(new ICommandReceiver() {
+            @Override
+            public void onClick() {
+                next();
+            }
+        });
+        option.setCommand(command);
         options.add(option);
 
         addSubComponent(new AppBar(starbucks, name(), options));
@@ -88,4 +96,8 @@ public class AddCardScreen extends Screen {
         AppController.getAppController(starbucks).setScreen(AppController.SCREENS.SETTINGS);
     }
 
+    private void next() {
+        if(cardInputView.validate())
+            AppController.getAppController(starbucks).setScreen(AppController.SCREENS.MY_CARDS);
+    }
 }

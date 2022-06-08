@@ -87,4 +87,26 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
         numView.reset();
         codeView.reset();
     }
+
+    public boolean validate() {
+        return validateCardNumber() && validateCardCode();
+    }
+
+    private boolean validateCardNumber() {
+        String number = numView.getCardNumber();
+        if(number == "000000000" || number.length() < Constants.CARD_NUM_MAX_LENGTH) {
+            numView.reset();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCardCode() {
+        String code = codeView.getCardCode();
+        if(code.length() < Constants.CARD_CODE_MAX_LENGTH) {
+            codeView.reset();
+            return false;
+        }
+        return true;
+    }
 }

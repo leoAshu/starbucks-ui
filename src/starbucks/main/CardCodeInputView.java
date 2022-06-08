@@ -25,6 +25,10 @@ public class CardCodeInputView implements IDisplayComponent, ITouchEventHandler,
         observers = new ArrayList<IFocusObserver>();
     }
 
+    public String getCardCode() {
+        return cardCode.toString();
+    }
+
     @Override
     public void display() {
         // text box
