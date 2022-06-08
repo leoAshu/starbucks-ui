@@ -20,7 +20,7 @@ public interface IFrame {
      * Change the visibility of the nav bar
      * @param visibility state of the nav bar's visibility
      */
-    public void setNavBarVisibility(boolean visibility);
+    void setNavBarVisibility(boolean visibility);
 
     /** Initializes and displays an Overlay */
     void showOverlay();

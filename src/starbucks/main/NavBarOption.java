@@ -20,6 +20,11 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         isActive = x==0;
     }
 
+    @Override
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
     /**
      * Set Command for Nav Bar Option
      * @param command INavBarCommand command to be executed
@@ -120,5 +125,5 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
 
         return overX && overY;
     }
-    
+
 }

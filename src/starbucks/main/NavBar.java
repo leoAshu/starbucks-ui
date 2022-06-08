@@ -40,6 +40,16 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
     }
 
     @Override
+    public void setActiveOption(int index) {
+        for(int i=0; i<options.size(); i++) {
+            if(i == index)
+                ((NavBarOption)options.get(i)).setActive(true);
+            else
+            ((NavBarOption)options.get(i)).setActive(false);
+        }
+    }
+
+    @Override
     public void display() {
         if(!isVisible)
             return;

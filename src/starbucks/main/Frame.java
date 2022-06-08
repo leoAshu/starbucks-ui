@@ -27,10 +27,13 @@ public class Frame implements IFrame, IDisplayComponent {
     @Override
     public void setCurrentScreen(IScreen screen) {
         currentScreen = screen;
+
         ITouchEventHandler newChain = (ITouchEventHandler)currentScreen;
         newChain.setNext(chain.getNext());
         chain = (ITouchEventHandler)currentScreen;
+
         components.set(0, (IDisplayComponent)currentScreen);
+        updateNavBar();
     }
 
     @Override
@@ -40,6 +43,11 @@ public class Frame implements IFrame, IDisplayComponent {
             addSubComponent(navBar);
         }
         navBar.setUp(commands);
+    }
+
+    private void updateNavBar() {
+        if(currentScreen.getClass().getName().contains("MyCardsScreen"))
+            navBar.setActiveOption(0);
     }
 
     @Override
@@ -103,4 +111,5 @@ public class Frame implements IFrame, IDisplayComponent {
     private boolean isOverlayTouched(int y) {
         return y > (starbucks.height - Constants.OVERLAY_HEIGHT);
     }
+
 }
