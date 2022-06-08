@@ -64,12 +64,12 @@ public class AppController implements IApp {
      */
     public void setScreen(SCREENS s) 
     {
+        setNavBarVisibility(true);
         switch(s)
         {
             case MY_CARDS: frame.setCurrentScreen(myCardsScreen); 
             break;
-            case SETTINGS: setNavBarVisibility(true);
-                            frame.setCurrentScreen (settingsScreen); 
+            case SETTINGS: frame.setCurrentScreen(settingsScreen); 
             break;
             case ADD_CARD: setNavBarVisibility(false);
                             frame.setCurrentScreen(addCardScreen); 
