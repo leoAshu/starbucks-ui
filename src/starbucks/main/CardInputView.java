@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
     private PApplet starbucks;
+    private Card card;
     private CardNumInputView numView;
     private CardCodeInputView codeView;
 
@@ -89,11 +90,17 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
     }
 
     public boolean validate() {
-        return validateCardNumber() && validateCardCode();
+        String number = numView.getCardNumber();
+        String code = codeView.getCardCode();
+        if(validateCardNumber(number) && validateCardCode(code)) {
+            card = Card.getCard();
+            card.setCard(number, code);
+            return true;
+        }
+        return false;
     }
 
-    private boolean validateCardNumber() {
-        String number = numView.getCardNumber();
+    private boolean validateCardNumber(String number) {
         if(number == "000000000" || number.length() < Constants.CARD_NUM_MAX_LENGTH) {
             numView.reset();
             return false;
@@ -101,8 +108,7 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
         return true;
     }
 
-    private boolean validateCardCode() {
-        String code = codeView.getCardCode();
+    private boolean validateCardCode(String code) {
         if(code.length() < Constants.CARD_CODE_MAX_LENGTH) {
             codeView.reset();
             return false;
