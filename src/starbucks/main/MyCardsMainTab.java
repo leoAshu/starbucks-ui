@@ -23,9 +23,9 @@ public class MyCardsMainTab extends Tab {
         super.display();
 
         // card balance
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 32));
+        starbucks.textFont(starbucks.createFont(Constants.TIRO_REG_PATH, 36));
         starbucks.fill(255);
-        starbucks.textSize(32);
+        starbucks.textSize(36);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.text(
             card.balance(),

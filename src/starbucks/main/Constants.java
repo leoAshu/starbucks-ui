@@ -147,6 +147,7 @@ public class Constants {
     public static final String ROBOTO_MED_PATH = "../../assets/fonts/Roboto-Medium.ttf";
     public static final String ROBOTO_BOLD_PATH = "../../assets/fonts/Roboto-Bold.ttf";
     public static final String ROBOTO_BLACK_PATH = "../../assets/fonts/Roboto-Black.ttf";
+    public static final String TIRO_REG_PATH = "../../assets/fonts/Tiro-Regular.ttf";
     public static final String MONTSERRAT_MED_PATH = "../../assets/fonts/Montserrat-Medium.ttf";
 
 }
