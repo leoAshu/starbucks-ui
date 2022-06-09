@@ -75,7 +75,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         boolean overY = y > this.y && y < (this.y + Constants.CELL_HEIGHT);
         if(!isDisabled && overX && overY) {
             isClicked = true;
-            callBack();
+            return;
         }
         if(nextButton != null)
             nextButton.touch(x, y);
@@ -83,7 +83,11 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void release() {
-        isClicked = false;
+        if(isClicked) {
+            isClicked = false;
+            callBack();
+            return;
+        }
         if(nextButton != null)
             nextButton.release();
     }
