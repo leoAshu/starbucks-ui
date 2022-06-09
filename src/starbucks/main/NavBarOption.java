@@ -8,6 +8,7 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
     private int y;
     private int width;
     private boolean isActive;
+    private boolean isTouched;
     
     private INavBarCommand command;
     private ITouchEventHandler nextHandler;
@@ -18,6 +19,7 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         this.y = y;
         this.width = width;
         isActive = x==0;
+        isTouched = false;
     }
 
     @Override
@@ -65,7 +67,18 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
 
     @Override
     public void touch(int x, int y) {
-        if(isTouched(x, y)){
+        if(isTouched(x, y))
+            isTouched = true;
+        else
+            isTouched = false;
+        
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
+    }
+
+    @Override
+    public void release() {
+        if(isTouched) {
             if(!isActive)
                 invoke();
             isActive = true;
@@ -74,12 +87,7 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         }
         
         if(nextHandler != null)
-            nextHandler.touch(x, y);
-    }
-
-    @Override
-    public void release() {
-        
+            nextHandler.release();
     }
 
     @Override

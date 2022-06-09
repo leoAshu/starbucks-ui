@@ -9,12 +9,14 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
     private ITouchEventHandler chain;
     private List<IDisplayComponent> options;
     private boolean isVisible;
+    private boolean isTouched;
 
     public NavBar(PApplet starbucks) {
         this.starbucks = starbucks;
         options = new ArrayList<IDisplayComponent>();
         y = starbucks.height - Constants.NAV_BAR_HEIGHT;
         isVisible = true;
+        isTouched = false;
     }
 
     @Override
@@ -80,13 +82,18 @@ class NavBar implements INavBar, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(isNavBarTouched(x, y) && chain != null && isVisible)
+        if(isNavBarTouched(x, y) && chain != null && isVisible) {
+            isTouched = true;
             chain.touch(x, y);
+        }
     }
 
     @Override
     public void release() {
-        
+        if(isTouched) {
+            isTouched = false;
+            chain.release();
+        }
     }
 
     @Override
