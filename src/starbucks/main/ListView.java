@@ -7,6 +7,7 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private int y;
     private List<ListItem> items;
+    private boolean isTouched;
 
     private ITouchEventHandler chain;
     private ITouchEventHandler nextHandler;
@@ -16,6 +17,7 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
         this.starbucks = starbucks;
         this.y = y;
         this.items = items;
+        isTouched = false;
 
         components = new ArrayList<IDisplayComponent>();
         setUpListItems();
@@ -61,15 +63,28 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(isTouched(x, y))
+        if(isTouched(x, y)) {
+            isTouched = true;
             if(chain != null)
                 chain.touch(x, y);
+            return;
+        }
+        
+        if(nextHandler != null)
+            nextHandler.touch(x, y);
     }
 
     @Override
     public void release() {
-        if(chain != null)
-            chain.release();
+        if(isTouched) {
+            if(chain != null)
+                chain.release();
+            isTouched = false;
+            return;
+        }
+        
+        if(nextHandler != null)
+            nextHandler.release();
     }
 
     @Override
