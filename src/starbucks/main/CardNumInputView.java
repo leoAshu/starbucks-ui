@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  */
 public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, IFocusSubject, IFocusObserver, IKeyPadObserver {
     private PApplet starbucks;
+    private PFont roboto, montserrat;
     private boolean isFocused;
     private int count;
     private StringBuffer cardNum;
@@ -31,6 +33,12 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
 
     @Override
     public void display() {
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_REG_PATH, 18);
+
+        if(montserrat == null)
+            montserrat = starbucks.createFont(Constants.MONTSERRAT_MED_PATH, 20);
+
         // text box
         starbucks.image(
             starbucks.loadImage(Constants.CARD_NUM_INPUT_BG),
@@ -58,10 +66,7 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
 
         // card number
         boolean isEmpty = cardNum.toString().equals("");
-        starbucks.textFont(starbucks.createFont(
-            isEmpty? Constants.ROBOTO_REG_PATH: Constants.MONTSERRAT_MED_PATH,
-            20
-        ));
+        starbucks.textFont(isEmpty? roboto: montserrat);
         starbucks.fill(0, isEmpty? 120: 255);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(isEmpty? 18: 20);
