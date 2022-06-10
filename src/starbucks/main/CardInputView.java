@@ -21,6 +21,7 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
         codeView = new CardCodeInputView(starbucks);
         numView.attach((IFocusObserver)codeView);
         codeView.attach((IFocusObserver)numView);
+        background = starbucks.loadImage(Constants.CARD_BACK_INPUT);
 
         components = new ArrayList<IDisplayComponent>();
         
@@ -30,9 +31,6 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
 
     @Override
     public void display() {
-        if(background == null)
-            background = starbucks.loadImage(Constants.CARD_BACK_INPUT);
-
         // card
         starbucks.image(
             background,

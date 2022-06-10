@@ -12,13 +12,11 @@ public class CardBackView implements IDisplayComponent, ITouchEventHandler {
     public CardBackView(PApplet starbucks, ICard card) {
         this.starbucks = starbucks;
         this.card = card;
+        background = starbucks.loadImage(Constants.CARD_BACK);
     }
 
     @Override
     public void display() {
-        if(background == null)
-            background = starbucks.loadImage(Constants.CARD_BACK);
-
         if(roboto == null)
             roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
 

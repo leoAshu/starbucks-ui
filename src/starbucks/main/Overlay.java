@@ -1,16 +1,21 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.List;
 import java.util.ArrayList;
 
 class Overlay implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private PImage background;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;
 
     public Overlay(PApplet starbucks) {
         this.starbucks = starbucks;
+        background = starbucks.loadImage(Constants.OVERLAY_BG);
+
         components = new ArrayList<IDisplayComponent>();
+        
         addSubComponent(cancelButton());
     }
 
@@ -65,7 +70,7 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
     private void background() {
         // background
         starbucks.image(
-            starbucks.loadImage(Constants.OVERLAY_BG),
+            background,
             0,
             starbucks.height - Constants.OVERLAY_HEIGHT
         );

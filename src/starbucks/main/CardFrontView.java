@@ -8,13 +8,11 @@ public class CardFrontView implements IDisplayComponent, ITouchEventHandler {
 
     public CardFrontView(PApplet starbucks) {
         this.starbucks = starbucks;
+        background = starbucks.loadImage(Constants.CARD_FRONT);
     }
 
     @Override
     public void display() {
-        if(background == null)
-            background = starbucks.loadImage(Constants.CARD_FRONT);
-        
         // card
         starbucks.image(
             background,

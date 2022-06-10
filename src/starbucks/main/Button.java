@@ -17,10 +17,8 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private String labelFont;
     private int labelFontSize;
     private int labelFontColor;
-    // private String iconPath;
     private int iconLeftPadding;
     private int iconTopPadding;
-    // private String backgroundPath;
 
     private ICommand command;
     private ITouchEventHandler nextHandler;
@@ -44,12 +42,10 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFont = labelFont;
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
-        // this.iconPath = iconPath;
         icon = starbucks.loadImage(iconPath);
         this.iconLeftPadding = iconLeftPadding;
         this.iconTopPadding = iconTopPadding;
-        // this.backgroundPath = backgroundPath;
-        this.background = starbucks.loadImage(backgroundPath);   
+        background = starbucks.loadImage(backgroundPath);   
     }
 
     // height = width with no icon
@@ -66,8 +62,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFont = labelFont;
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
-        // this.backgroundPath = backgroundPath;
-        this.background = starbucks.loadImage(backgroundPath);
+        background = starbucks.loadImage(backgroundPath);
     }
 
     // height != width
@@ -84,12 +79,10 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFont = labelFont;
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
-        // this.iconPath = iconPath;
-        this.icon = starbucks.loadImage(iconPath);
+        icon = starbucks.loadImage(iconPath);
         this.iconLeftPadding = iconX;
         this.iconTopPadding = iconY;
-        // this.backgroundPath = backgroundPath;
-        this.background = starbucks.loadImage(backgroundPath);
+        background = starbucks.loadImage(backgroundPath);
 
     }
 
@@ -107,8 +100,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFont = labelFont;
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
-        // this.backgroundPath = backgroundPath;
-        this.background = starbucks.loadImage(backgroundPath);
+        background = starbucks.loadImage(backgroundPath);
     }
 
     // height != width with no label & icon
@@ -119,8 +111,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.width = width;
         this.height = height;
         this.shape = shape;
-        // this.backgroundPath = backgroundPath;
-        this.background = starbucks.loadImage(backgroundPath);
+        background = starbucks.loadImage(backgroundPath);
     }
 
     @Override

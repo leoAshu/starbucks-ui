@@ -5,12 +5,13 @@ public class PinScreen extends Screen {
     
     PinScreen(PApplet starbucks) {
         super(starbucks, null);
+        background = starbucks.loadImage(Constants.PIN_SCREEN_BG);
     }
 
     @Override
     public void display() {
         starbucks.image(
-            starbucks.loadImage(Constants.PIN_SCREEN_BG),
+            background,
             0,
             Constants.NOTIF_BAR_HEIGHT
         );

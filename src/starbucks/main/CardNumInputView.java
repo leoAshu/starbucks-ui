@@ -25,6 +25,7 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
         isFocused = true;
         count = 0;
         cardNum = new StringBuffer("");
+        background = starbucks.loadImage(Constants.CARD_NUM_INPUT_BG);
 
         observers = new ArrayList<IFocusObserver>();
     }
@@ -35,9 +36,6 @@ public class CardNumInputView implements IDisplayComponent, ITouchEventHandler, 
 
     @Override
     public void display() {
-        if(background == null)
-            background = starbucks.loadImage(Constants.CARD_NUM_INPUT_BG);
-
         if(roboto == null)
             roboto = starbucks.createFont(Constants.ROBOTO_REG_PATH, 18);
 
