@@ -19,6 +19,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private int labelFontColor;
     private int iconLeftPadding;
     private int iconTopPadding;
+    private boolean isTouched;
 
     private ICommand command;
     private ITouchEventHandler nextHandler;
@@ -45,7 +46,8 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         icon = starbucks.loadImage(iconPath);
         this.iconLeftPadding = iconLeftPadding;
         this.iconTopPadding = iconTopPadding;
-        background = starbucks.loadImage(backgroundPath);   
+        background = starbucks.loadImage(backgroundPath);
+        isTouched = false; 
     }
 
     // height = width with no icon
@@ -63,6 +65,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
         background = starbucks.loadImage(backgroundPath);
+        isTouched = false;
     }
 
     // height != width
@@ -83,7 +86,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.iconLeftPadding = iconX;
         this.iconTopPadding = iconY;
         background = starbucks.loadImage(backgroundPath);
-
+        isTouched = false;
     }
 
     // height != width with no icon
@@ -101,6 +104,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.labelFontSize = labelFontSize;
         this.labelFontColor = labelFontColor;
         background = starbucks.loadImage(backgroundPath);
+        isTouched = false;
     }
 
     // height != width with no label & icon
@@ -112,6 +116,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         this.height = height;
         this.shape = shape;
         background = starbucks.loadImage(backgroundPath);
+        isTouched = false;
     }
 
     @Override
@@ -150,7 +155,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     @Override
     public void touch(int x, int y) {
         if(isTouched(x, y)) {
-            invoke();
+            isTouched = true;
             return;
         }
 
@@ -160,6 +165,12 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void release() {
+        if(isTouched) {
+            isTouched = false;
+            invoke();
+            return;
+        }
+
         if(nextHandler != null) {
             nextHandler.release();
         }
