@@ -1,10 +1,12 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
     private PApplet starbucks;
+    private PImage background;
     private Card card;
     private CardNumInputView numView;
     private CardCodeInputView codeView;
@@ -28,9 +30,12 @@ public class CardInputView implements IDisplayComponent, ITouchEventHandler, IKe
 
     @Override
     public void display() {
+        if(background == null)
+            background = starbucks.loadImage(Constants.CARD_BACK_INPUT);
+
         // card
         starbucks.image(
-            starbucks.loadImage(Constants.CARD_BACK_INPUT),
+            background,
             (starbucks.width - Constants.CARD_WIDTH)/2,
             Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING - 20,
             Constants.CARD_WIDTH, 

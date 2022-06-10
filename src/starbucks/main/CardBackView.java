@@ -1,9 +1,11 @@
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 public class CardBackView implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private PFont roboto;
+    private PImage background;
     private ICard card;
     private ITouchEventHandler nextHandler;
 
@@ -14,12 +16,15 @@ public class CardBackView implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        if(background == null)
+            background = starbucks.loadImage(Constants.CARD_BACK);
+
         if(roboto == null)
             roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
 
         // card
         starbucks.image(
-            starbucks.loadImage(Constants.CARD_BACK),
+            background,
             (starbucks.width - Constants.CARD_WIDTH)/2,
             Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING,
             Constants.CARD_WIDTH, 

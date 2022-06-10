@@ -1,7 +1,9 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class CardFrontView implements IDisplayComponent, ITouchEventHandler {
-    PApplet starbucks;
+    private PApplet starbucks;
+    private PImage background;
     private ITouchEventHandler nextHandler;
 
     public CardFrontView(PApplet starbucks) {
@@ -10,9 +12,12 @@ public class CardFrontView implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        if(background == null)
+            background = starbucks.loadImage(Constants.CARD_FRONT);
+        
         // card
         starbucks.image(
-            starbucks.loadImage(Constants.CARD_FRONT),
+            background,
             (starbucks.width - Constants.CARD_WIDTH)/2,
             Constants.NOTIF_BAR_HEIGHT + Constants.APP_BAR_HEIGHT + Constants.CARD_TOP_PADDING,
             Constants.CARD_WIDTH,

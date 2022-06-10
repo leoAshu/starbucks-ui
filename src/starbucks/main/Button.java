@@ -1,9 +1,11 @@
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private PFont font;
+    private PImage icon, background;
     private int x;
     private int y;
     private int width;
@@ -125,6 +127,12 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        if(icon == null && iconPath != null)
+            icon = starbucks.loadImage(iconPath);
+
+        if(background == null)
+            background = starbucks.loadImage(backgroundPath);
+
         if(font == null && label != null)
             font = starbucks.createFont(labelFont, labelFontSize);
 
@@ -177,7 +185,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private void drawBoxButton() {
         // background
         starbucks.image(
-            starbucks.loadImage(backgroundPath),
+            background,
             x,
             y,
             width,
@@ -187,7 +195,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         // icon
         if(iconPath != null)
             starbucks.image(
-                starbucks.loadImage(iconPath),
+                icon,
                 x + iconLeftPadding,
                 y + iconTopPadding
             );
@@ -209,7 +217,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private void drawRoundButton() {
         // background
         starbucks.image(
-            starbucks.loadImage(backgroundPath),
+            background,
             x,
             y,
             width,
@@ -219,7 +227,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         // icon
         if(iconPath != null)
             starbucks.image(
-                starbucks.loadImage(iconPath),
+                icon,
                 x + iconLeftPadding,
                 y + iconTopPadding
             );

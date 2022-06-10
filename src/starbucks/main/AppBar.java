@@ -1,5 +1,6 @@
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 class AppBar implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private PFont roboto;
+    private PImage background;
     private String screenName;
     private List<Button> options;
     
@@ -46,9 +48,12 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
         if(roboto == null)
             roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
 
+        if(background == null)
+            background = starbucks.loadImage(Constants.APP_BAR_BG);
+
         // background
         starbucks.image(
-            starbucks.loadImage(Constants.APP_BAR_BG),
+            background,
             0,
             Constants.NOTIF_BAR_HEIGHT,
             Constants.APP_BAR_WIDTH,
