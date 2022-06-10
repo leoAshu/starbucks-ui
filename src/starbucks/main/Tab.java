@@ -1,10 +1,12 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class Tab implements ITab, IDisplayComponent, ITouchEventHandler {
     protected PApplet starbucks;
+    protected PFont font;
     protected ITabManager tabManager;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MyCardsMainTab extends Tab {
-    ICard card;
+    private ICard card;
 
     public MyCardsMainTab(PApplet starbucks) {
         super(starbucks);
@@ -22,8 +22,11 @@ public class MyCardsMainTab extends Tab {
     public void display() {
         super.display();
 
+        if(font == null)
+            font = starbucks.createFont(Constants.TIRO_REG_PATH, 36);
+        
         // card balance
-        starbucks.textFont(starbucks.createFont(Constants.TIRO_REG_PATH, 36));
+        starbucks.textFont(font);
         starbucks.fill(255);
         starbucks.textSize(36);
         starbucks.textAlign(PApplet.CENTER);
