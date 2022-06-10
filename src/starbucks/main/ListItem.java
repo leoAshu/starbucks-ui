@@ -9,6 +9,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
     private int y;
     private String label;
     private String iconPath;
+    private boolean isTouched;
 
     private ICommand command;
     private ITouchEventHandler nextHandler;
@@ -16,6 +17,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
     public ListItem(String label, String iconPath) {
         this.label = label;
         this.iconPath = iconPath;
+        isTouched = false;
     }
 
     public void setItemProps(PApplet starbucks, int y, String backgroundPath) {
@@ -72,17 +74,25 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
     @Override
     public void touch(int x, int y) {
-        if(isTouched(x, y) && command != null){
-            invoke();
+        if(isTouched(x, y) && command != null) {
+            isTouched = true;
             return;
         }
+
         if(nextHandler != null)
             nextHandler.touch(x, y);
     }
 
     @Override
     public void release() {
-        
+        if(isTouched) {
+            isTouched = false;
+            invoke();
+            return;
+        }
+
+        if(nextHandler != null)
+            nextHandler.release();
     }
 
     @Override
