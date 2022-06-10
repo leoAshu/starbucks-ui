@@ -1,13 +1,14 @@
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommandInvoker {
     private PApplet starbucks;
     private PFont roboto;
+    private PImage background, icon;
     private int y;
     private String label;
     private String iconPath;
-    private String backgroundPath;
 
     private ICommand command;
     private ITouchEventHandler nextHandler;
@@ -20,7 +21,8 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
     public void setItemProps(PApplet starbucks, int y, String backgroundPath) {
         this.starbucks = starbucks;
         this.y = y;
-        this.backgroundPath = backgroundPath;
+        icon = starbucks.loadImage(iconPath);
+        background = starbucks.loadImage(backgroundPath);
     }
 
     @Override
@@ -34,7 +36,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
         // background
         starbucks.image(
-            starbucks.loadImage(backgroundPath),
+            background,
             (starbucks.width - Constants.SETTINGS_ITEM_WIDTH)/2,
             y,
             Constants.SETTINGS_ITEM_WIDTH,
@@ -54,7 +56,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
         // icon
         starbucks.image(
-            starbucks.loadImage(iconPath),
+            icon,
             (starbucks.width - Constants.SETTINGS_ITEM_WIDTH)/2 + Constants.LIST_ITEM_ICON_LEFT_PADDING,
             y + Constants.LIST_ITEM_ICON_TOP_PADDING
         );
