@@ -1,10 +1,12 @@
+import processing.core.PApplet;
+import processing.core.PFont;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import processing.core.PApplet;
-
 class AppBar implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private PFont font;
     private String screenName;
     private List<Button> options;
     
@@ -41,6 +43,9 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        if(font == null)
+            font = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
+
         // background
         starbucks.image(
             starbucks.loadImage(Constants.APP_BAR_BG),
@@ -51,7 +56,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
         );
 
         // screen name
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 64));
+        starbucks.textFont(font);
 
         starbucks.fill(255);
         starbucks.textAlign(PApplet.CENTER);
