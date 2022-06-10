@@ -6,6 +6,7 @@ import processing.core.PImage;
 public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private PFont roboto;
+    private PImage icon, activeIcon;
     private int x;
     private int y;
     private int width;
@@ -36,6 +37,8 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
     @Override
     public void setCommand(INavBarCommand command) {
         this.command = command;
+        icon = starbucks.loadImage(command.getIconPath());
+        activeIcon = starbucks.loadImage(command.getActiveIconPath());
     }
 
     /** Invoke Nav Bar Option */
@@ -105,13 +108,10 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         return nextHandler;
     }
 
-    private void drawLabels() {
-        // icon
-        PImage icon = starbucks.loadImage(isActive? command.getActiveIconPath(): command.getIconPath());
-        
+    private void drawLabels() {        
         starbucks.tint(255, isActive? 255: 150);
         starbucks.image(
-            icon,
+            isActive? activeIcon: icon,
             x + (width - icon.width)/2,
             546
         );
