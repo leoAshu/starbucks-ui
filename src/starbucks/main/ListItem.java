@@ -1,7 +1,9 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommandInvoker {
     private PApplet starbucks;
+    private PFont roboto;
     private int y;
     private String label;
     private String iconPath;
@@ -23,6 +25,9 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
     @Override
     public void display() {
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_REG_PATH, 16);
+
         // reduce opacity if command not set
         if(command == null)
             starbucks.tint(255, 120);
@@ -37,7 +42,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
         );
 
         // label
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_REG_PATH, 18));
+        starbucks.textFont(roboto);
         starbucks.fill(0, command == null? 120: 255);
         starbucks.textSize(16);
         starbucks.textAlign(PApplet.LEFT);
