@@ -19,6 +19,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
     public AppBar(PApplet starbucks, String screenName) {
         this.starbucks = starbucks;
         this.screenName = screenName;
+        background = starbucks.loadImage(Constants.APP_BAR_BG);
 
         components = new ArrayList<IDisplayComponent>();
     }
@@ -27,6 +28,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
         this.starbucks = starbucks;
         this.screenName = screenName;
         this.options = options;
+        background = starbucks.loadImage(Constants.APP_BAR_BG);
 
         components = new ArrayList<IDisplayComponent>();
 
@@ -47,9 +49,6 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
     public void display() {
         if(roboto == null)
             roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
-
-        if(background == null)
-            background = starbucks.loadImage(Constants.APP_BAR_BG);
 
         // background
         starbucks.image(
