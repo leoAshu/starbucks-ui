@@ -1,8 +1,10 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private PFont roboto;
     private KeyPad keyPad;
     private int x;
     private int y;
@@ -60,6 +62,9 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 26);
+
         drawButtonBackground();
         drawButtonLabels();
     }
@@ -127,7 +132,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     }
 
     private void drawButtonLabels() {
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 64));
+        starbucks.textFont(roboto);
 
         // value label
         starbucks.fill(255);
