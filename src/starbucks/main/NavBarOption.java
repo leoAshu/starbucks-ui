@@ -1,9 +1,11 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 /** Nav Bar Option */
 public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private PFont roboto;
     private int x;
     private int y;
     private int width;
@@ -44,6 +46,9 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
 
     @Override
     public void display() {
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 10);
+
         if(isActive)
             Utility.setVerticalGradient(
                 starbucks,
@@ -115,7 +120,7 @@ public class NavBarOption implements INavBarInvoker, IDisplayComponent, ITouchEv
         starbucks.tint(255, 255);
 
         // label
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 10));
+        starbucks.textFont(roboto);
 
         starbucks.fill(255, isActive? 255: 150);
         starbucks.textAlign(PApplet.CENTER);

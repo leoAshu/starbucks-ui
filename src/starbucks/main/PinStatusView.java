@@ -1,7 +1,9 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class PinStatusView implements IDisplayComponent, ITouchEventHandler, IPinAuthObserver, IKeyPadObserver {
     private PApplet starbucks;
+    private PFont roboto;
     private ITouchEventHandler nextHandler;
 
     private int pinOption;
@@ -18,7 +20,10 @@ public class PinStatusView implements IDisplayComponent, ITouchEventHandler, IPi
 
     @Override
     public void display() {
-        starbucks.textFont(starbucks.createFont(Constants.ROBOTO_MED_PATH, 64));
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 16);
+
+        starbucks.textFont(roboto);
 
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(16);
