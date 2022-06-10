@@ -1,7 +1,9 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
+    private PFont font;
     private int x;
     private int y;
     private int width;
@@ -123,6 +125,9 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
+        if(font == null && label != null)
+            font = starbucks.createFont(labelFont, labelFontSize);
+
         // reduce opacity if command not set
         if(command == null)
             starbucks.tint(255, 120);
@@ -189,7 +194,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
 
         // label
         if(label != null) {
-            starbucks.textFont(starbucks.createFont(labelFont, 16));
+            starbucks.textFont(font);
             starbucks.fill(labelFontColor, command == null? 120: 255);
             starbucks.textSize(labelFontSize);
             starbucks.textAlign(PApplet.CENTER);
@@ -220,15 +225,17 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
             );
 
         // label
-        starbucks.textFont(starbucks.createFont(labelFont, 16));
-        starbucks.fill(labelFontColor, command == null? 120: 255);
-        starbucks.textSize(labelFontSize);
-        starbucks.textAlign(PApplet.CENTER);
-        starbucks.text(
-            label,
-            x + labelLeftPadding,
-            y + labelTopPadding
-        );
+        if(label != null) {
+            starbucks.textFont(font);
+            starbucks.fill(labelFontColor, command == null? 120: 255);
+            starbucks.textSize(labelFontSize);
+            starbucks.textAlign(PApplet.CENTER);
+            starbucks.text(
+                label,
+                x + labelLeftPadding,
+                y + labelTopPadding
+            );
+        }
     }
 
     private boolean isTouched(int x, int y) {
