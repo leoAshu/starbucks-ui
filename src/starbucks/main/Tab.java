@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Tab implements ITab, IDisplayComponent, ITouchEventHandler {
     protected PApplet starbucks;
-    protected PFont font;
+    protected PFont tiro;
     protected ITabManager tabManager;
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;

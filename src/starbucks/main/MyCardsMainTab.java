@@ -22,11 +22,11 @@ public class MyCardsMainTab extends Tab {
     public void display() {
         super.display();
 
-        if(font == null)
-            font = starbucks.createFont(Constants.TIRO_REG_PATH, 36);
+        if(tiro == null)
+            tiro = starbucks.createFont(Constants.TIRO_REG_PATH, 36);
         
         // card balance
-        starbucks.textFont(font);
+        starbucks.textFont(tiro);
         starbucks.fill(255);
         starbucks.textSize(36);
         starbucks.textAlign(PApplet.CENTER);

@@ -3,7 +3,7 @@ import processing.core.PFont;
 
 public class CardBackView implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
-    private PFont font;
+    private PFont roboto;
     private ICard card;
     private ITouchEventHandler nextHandler;
 
@@ -14,8 +14,8 @@ public class CardBackView implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
-        if(font == null)
-            font = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
 
         // card
         starbucks.image(
@@ -27,7 +27,7 @@ public class CardBackView implements IDisplayComponent, ITouchEventHandler {
         );
 
         // card details
-        starbucks.textFont(font);
+        starbucks.textFont(roboto);
         starbucks.fill(0);
         starbucks.textSize(22);
         starbucks.textAlign(PApplet.CENTER);

@@ -6,7 +6,7 @@ import java.util.List;
 
 class AppBar implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
-    private PFont font;
+    private PFont roboto;
     private String screenName;
     private List<Button> options;
     
@@ -43,8 +43,8 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void display() {
-        if(font == null)
-            font = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
+        if(roboto == null)
+            roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 22);
 
         // background
         starbucks.image(
@@ -56,7 +56,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
         );
 
         // screen name
-        starbucks.textFont(font);
+        starbucks.textFont(roboto);
 
         starbucks.fill(255);
         starbucks.textAlign(PApplet.CENTER);
