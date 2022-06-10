@@ -72,8 +72,13 @@ public class Frame implements IFrame, IDisplayComponent {
 
     @Override
     public void release() {
-        if(currentScreen != null)
-            currentScreen.release();
+        if(showOverlay) {
+            overlay.release();
+            return;
+        }
+
+        if(chain != null)
+            chain.release();
     }
 
     @Override
