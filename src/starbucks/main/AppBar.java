@@ -11,6 +11,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
     private PImage background;
     private String screenName;
     private List<Button> options;
+    private boolean isTouched;
     
     private ITouchEventHandler chain;
     private ITouchEventHandler nextHandler;
@@ -20,6 +21,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
         this.starbucks = starbucks;
         this.screenName = screenName;
         background = starbucks.loadImage(Constants.APP_BAR_BG);
+        isTouched = false;
 
         components = new ArrayList<IDisplayComponent>();
     }
@@ -29,6 +31,7 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
         this.screenName = screenName;
         this.options = options;
         background = starbucks.loadImage(Constants.APP_BAR_BG);
+        isTouched = false;
 
         components = new ArrayList<IDisplayComponent>();
 
@@ -88,7 +91,8 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        if(isAppBarTouched(x, y) && chain != null){
+        if(isAppBarTouched(x, y) && chain != null) {
+            isTouched = true;
             chain.touch(x, y);
             return;
         }
@@ -99,6 +103,12 @@ class AppBar implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void release() {
+        if(isTouched && chain != null) {
+            isTouched = false;
+            chain.release();
+            return;
+        }
+
         if(nextHandler != null)
             nextHandler.release();
     }
