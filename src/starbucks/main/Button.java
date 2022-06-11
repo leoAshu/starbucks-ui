@@ -5,7 +5,7 @@ import processing.core.PImage;
 class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private PFont font;
-    private PImage icon, background;
+    private PImage icon, background, activeBackground;
     private int x;
     private int y;
     private int width;
@@ -107,6 +107,25 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         isTouched = false;
     }
 
+    // height != width with no icon
+    public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String label, int labelLeftPadding, int labelTopPadding, String labelFont, int labelFontSize, int labelFontColor, String backgroundPath, String activeBackgroundPath) {
+        this.starbucks = starbucks;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.shape = shape;
+        this.label = label;
+        this.labelLeftPadding = labelLeftPadding;
+        this.labelTopPadding = labelTopPadding;
+        this.labelFont = labelFont;
+        this.labelFontSize = labelFontSize;
+        this.labelFontColor = labelFontColor;
+        background = starbucks.loadImage(backgroundPath);
+        activeBackground = starbucks.loadImage(activeBackgroundPath);
+        isTouched = false;
+    }
+
     // height != width with no label & icon
     public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String backgroundPath) {
         this.starbucks = starbucks;
@@ -189,7 +208,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
     private void drawBoxButton() {
         // background
         starbucks.image(
-            background,
+            isTouched && (activeBackground != null)? activeBackground: background,
             x,
             y,
             width,
