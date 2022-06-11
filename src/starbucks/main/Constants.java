@@ -119,6 +119,8 @@ public class Constants {
     public static final String OVERLAY_BG = "../../assets/images/overlay-background.png";
     public static final String OVERLAY_BUTTON_BG = "../../assets/images/overlay-button-bg.png";
     public static final String OVERLAY_BUTTON_BG_DARK = "../../assets/images/overlay-button-bg-dark.png";
+    public static final String OVERLAY_BUTTON_PRESSED_BG = "../../assets/images/overlay-button-pressed-bg.png";
+    public static final String OVERLAY_BUTTON_PRESSED_BG_DARK = "../../assets/images/overlay-button-pressed-bg-dark.png";
     public static final String LIST_ITEM_FIRST_BG = "../../assets/images/list-item-first-bg.png";
     public static final String LIST_ITEM_BG = "../../assets/images/list-item-bg.png";
     public static final String LIST_ITEM_LAST_BG = "../../assets/images/list-item-last-bg.png";
