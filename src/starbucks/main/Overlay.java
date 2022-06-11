@@ -91,7 +91,8 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
             Constants.ROBOTO_BOLD_PATH,
             20,
             255,
-            Constants.OVERLAY_BUTTON_BG_DARK
+            Constants.OVERLAY_BUTTON_BG_DARK,
+            Constants.OVERLAY_BUTTON_PRESSED_BG_DARK
         );
 
         ICommand command = new Command();

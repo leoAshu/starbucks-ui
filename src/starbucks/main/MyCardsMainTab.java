@@ -116,7 +116,8 @@ public class MyCardsMainTab extends Tab {
             Constants.ROBOTO_BOLD_PATH,
             20,
             0,
-            Constants.OVERLAY_BUTTON_BG
+            Constants.OVERLAY_BUTTON_BG,
+            Constants.OVERLAY_BUTTON_PRESSED_BG
         );
 
         ICommand command = new Command();
