@@ -273,7 +273,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         if(shape == Shape.BOX) {
             boolean overX = x > this.x && x < this.x + width;
             boolean overY = y > this.y && y < this.y + height;
-            return overX && overY;
+            return overX && overY && command != null;
         }
         else {
             int distance = (int)
@@ -283,7 +283,7 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
                     Math.pow((Constants.PAY_BUTTON_Y + 35 - y), 2)
                 )
             );
-            return distance <= Constants.PAY_BUTTON_SIZE/2;
+            return distance <= Constants.PAY_BUTTON_SIZE/2 && command != null;
         }
     }
 
