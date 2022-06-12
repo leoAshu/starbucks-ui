@@ -22,10 +22,10 @@ public class SplashScreen extends Screen {
 
         starbucks.image(
             logo,
-            starbucks.width/2 - 100,
-            starbucks.height/2 - 100,
-            200,
-            200
+            starbucks.width/2 - 120,
+            starbucks.height/2 - 120,
+            240,
+            240
         );
     }
 }
