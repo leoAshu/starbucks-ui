@@ -104,10 +104,12 @@ public class Constants {
     public static final int LIST_ITEM_ICON_LEFT_PADDING = 313;
 
     // images
+    public static final String STARBUCKS_LOGO_SOLID = "../../assets/images/starbucks-logo-solid.png";
     public static final String APP_BAR_BG = "../../assets/images/app-bar.png";
     public static final String PIN_SCREEN_BG = "../../assets/images/pinscreen-bg.png";
     public static final String SCREEN_BG_DARK = "../../assets/images/screen-bg-dark.png";
     public static final String SCREEN_BG_LIGHT = "../../assets/images/screen-bg-light.png";
+    public static final String SPLASH_SCREEN_BG = "../../assets/images/splash-screen-bg.png";
     public static final String NOTIF_BAR_IMAGE = "../../assets/images/notification-bar-1.5x.png";
     public static final String CARD_FRONT = "../../assets/images/card-front.png";
     public static final String CARD_BACK = "../../assets/images/card-back.png";
