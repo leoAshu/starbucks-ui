@@ -116,6 +116,7 @@ public class Constants {
     public static final String CARD_CODE_INPUT_BG = "../../assets/images/card-code-input-bg.png";
     public static final String PAY_BUTTON_BG = "../../assets/images/static-button-bg.png";
     public static final String BALANCE_BUTTON_BG = "../../assets/images/balance-button-bg.png";
+    public static final String BALANCE_BUTTON_PRESSED_BG = "../../assets/images/balance-button-pressed-bg.png";
     public static final String OVERLAY_BG = "../../assets/images/overlay-background.png";
     public static final String OVERLAY_BUTTON_BG = "../../assets/images/overlay-button-bg.png";
     public static final String OVERLAY_BUTTON_BG_DARK = "../../assets/images/overlay-button-bg-dark.png";

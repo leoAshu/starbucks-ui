@@ -138,6 +138,19 @@ class Button implements ICommandInvoker, IDisplayComponent, ITouchEventHandler {
         isTouched = false;
     }
 
+    // height != width with no label & icon
+    public Button(PApplet starbucks, int x, int y, int width, int height, Shape shape, String backgroundPath, String activeBackgroundPath) {
+        this.starbucks = starbucks;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.shape = shape;
+        background = starbucks.loadImage(backgroundPath);
+        activeBackground = starbucks.loadImage(activeBackgroundPath);
+        isTouched = false;
+    }
+
     @Override
     public void setCommand(ICommand command) {
         this.command = command;
