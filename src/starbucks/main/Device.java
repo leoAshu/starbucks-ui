@@ -14,6 +14,7 @@ public class Device implements IApp, IPinAuthObserver  {
     private PinScreen pinScreen;
     private boolean authenticated;
     private PImage notificationBar;
+    private SplashScreen splashScreen;
     private PinStatusView pinStatusView;
     private PinEntryMachine pinEntryMachine;
 
@@ -89,6 +90,8 @@ public class Device implements IApp, IPinAuthObserver  {
             this.authenticated = true;
         else
             setUpPinScreen();
+        
+        splashScreen = new SplashScreen(starbucks);
         app = AppController.getNewAppController(starbucks);
     }
 
@@ -150,10 +153,14 @@ public class Device implements IApp, IPinAuthObserver  {
     }
 
     private void screenDisplay() {
-        if(authenticated) {
-            app.display();
-        } else 
-            pinScreen.display();
+        if (starbucks.millis() < 2000)
+            splashScreen.display();
+        else {
+            if(authenticated)
+                app.display();
+            else 
+                pinScreen.display();
+        }
     }
     
 }
