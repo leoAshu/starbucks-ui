@@ -153,7 +153,7 @@ public class Device implements IApp, IPinAuthObserver  {
     }
 
     private void screenDisplay() {
-        if (starbucks.millis() < 2000)
+        if (starbucks.millis() < 3000)
             splashScreen.display();
         else {
             if(authenticated)
