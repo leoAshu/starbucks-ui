@@ -77,7 +77,8 @@ public class MyCardsMainTab extends Tab {
             Constants.BALANCE_BUTTON_WIDTH,
             Constants.BALANCE_BUTTON_HEIGHT,
             Button.Shape.BOX,
-            Constants.BALANCE_BUTTON_BG
+            Constants.BALANCE_BUTTON_BG,
+            Constants.BALANCE_BUTTON_PRESSED_BG
         );
 
         ICommand command = new Command();
