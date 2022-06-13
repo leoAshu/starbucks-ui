@@ -7,6 +7,8 @@ import java.util.ArrayList;
 class Overlay implements IDisplayComponent, ITouchEventHandler {
     private PApplet starbucks;
     private PImage background;
+    private boolean isTouched;
+
     private ITouchEventHandler chain;
     private List<IDisplayComponent> components;
 
@@ -40,16 +42,19 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
 
     @Override
     public void touch(int x, int y) {
-        boolean isTouched = y > (starbucks.height - Constants.OVERLAY_HEIGHT);
-        if(isTouched && chain != null)
+        if(isTouched(y) && chain != null) {
+            isTouched = true;
             chain.touch(x, y);
+        }
 
     }
 
     @Override
     public void release() {
-        if(chain != null)
+        if(isTouched && chain != null) {
             chain.release();
+            isTouched = false;
+        }
     }
 
     @Override
@@ -105,6 +110,10 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
 
         cancelButton.setCommand(command);
         return cancelButton;
+    }
+
+    private boolean isTouched(int y) {
+        return y > (starbucks.height - Constants.OVERLAY_HEIGHT);
     }
 
 }
