@@ -68,8 +68,12 @@ class Overlay implements IDisplayComponent, ITouchEventHandler {
     }
 
     public void addOptions(List<Button> options) {
+        components.clear();
+
         for(IDisplayComponent option: options)
             addSubComponent(option);
+        
+        addSubComponent(cancelButton());
     }
 
     private void background() {
