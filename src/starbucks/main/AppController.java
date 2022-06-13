@@ -165,7 +165,7 @@ public class AppController implements IApp {
             }
         );
         // add command
-        // commands.add(command);
+        commands.add(command);
 
         // Settings Screen Nav Option
         command = new NavBarCommand(
