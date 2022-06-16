@@ -27,19 +27,19 @@ public class ListView implements IDisplayComponent, ITouchEventHandler {
         int itemY = y;
 
         // first list item
-        items.get(0).setItemProps(starbucks, itemY, Constants.LIST_ITEM_FIRST_BG);
+        items.get(0).setItemProps(starbucks, itemY, Constants.LIST_ITEM_FIRST_BG, Constants.LIST_ITEM_FIRST_PRESSED_BG);
         addSubComponent(items.get(0));
 
         // middle list items
         for(int i=1; i<items.size()-1; i++) {
             itemY += Constants.SETTINGS_ITEM_HEIGHT - 1;
-            items.get(i).setItemProps(starbucks, itemY, Constants.LIST_ITEM_BG);
+            items.get(i).setItemProps(starbucks, itemY, Constants.LIST_ITEM_BG, Constants.LIST_ITEM_PRESSED_BG);
             addSubComponent(items.get(i));
         }
 
         // last list item
         itemY += Constants.SETTINGS_ITEM_HEIGHT - 1;
-        items.get(items.size()-1).setItemProps(starbucks, itemY, Constants.LIST_ITEM_LAST_BG);
+        items.get(items.size()-1).setItemProps(starbucks, itemY, Constants.LIST_ITEM_LAST_BG, Constants.LIST_ITEM_LAST_PRESSED_BG);
         addSubComponent(items.get(items.size()-1));
 
     }

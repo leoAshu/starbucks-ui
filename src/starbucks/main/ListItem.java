@@ -5,7 +5,7 @@ import processing.core.PImage;
 public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommandInvoker {
     private PApplet starbucks;
     private PFont roboto;
-    private PImage background, icon;
+    private PImage activeBackground, background, icon;
     private int y;
     private String label;
     private String iconPath;
@@ -20,11 +20,12 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
         isTouched = false;
     }
 
-    public void setItemProps(PApplet starbucks, int y, String backgroundPath) {
+    public void setItemProps(PApplet starbucks, int y, String backgroundPath, String activeBackgroundPath) {
         this.starbucks = starbucks;
         this.y = y;
         icon = starbucks.loadImage(iconPath);
         background = starbucks.loadImage(backgroundPath);
+        activeBackground = starbucks.loadImage(activeBackgroundPath);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class ListItem implements IDisplayComponent, ITouchEventHandler, ICommand
 
         // background
         starbucks.image(
-            background,
+            isTouched? activeBackground: background,
             (starbucks.width - Constants.SETTINGS_ITEM_WIDTH)/2,
             y,
             Constants.SETTINGS_ITEM_WIDTH,
