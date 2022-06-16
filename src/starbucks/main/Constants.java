@@ -106,6 +106,8 @@ public class Constants {
     // images
     public static final String STARBUCKS_LOGO_SOLID = "../../assets/images/starbucks-logo-solid.png";
     public static final String APP_BAR_BG = "../../assets/images/app-bar.png";
+    public static final String APP_BAR_BUTTON_BG = "../../assets/images/app-bar-button-bg.png";
+    public static final String APP_BAR_BUTTON_PRESSED_BG = "../../assets/images/app-bar-button-pressed-bg.png";
     public static final String PIN_SCREEN_BG = "../../assets/images/pinscreen-bg.png";
     public static final String SCREEN_BG_DARK = "../../assets/images/screen-bg-dark.png";
     public static final String SCREEN_BG_LIGHT = "../../assets/images/screen-bg-light.png";
@@ -127,7 +129,6 @@ public class Constants {
     public static final String LIST_ITEM_FIRST_BG = "../../assets/images/list-item-first-bg.png";
     public static final String LIST_ITEM_BG = "../../assets/images/list-item-bg.png";
     public static final String LIST_ITEM_LAST_BG = "../../assets/images/list-item-last-bg.png";
-    public static final String APP_BAR_BUTTON_BG = "../../assets/images/app-bar-button-bg.png";
 
     // icons
     public static final String ICON_DOLLAR = "../../assets/images/icon-dollar.png";
