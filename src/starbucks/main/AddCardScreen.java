@@ -50,7 +50,8 @@ public class AddCardScreen extends Screen {
             Constants.ROBOTO_MED_PATH,
             14,
             255,
-            Constants.APP_BAR_BUTTON_BG
+            Constants.APP_BAR_BUTTON_BG,
+            Constants.APP_BAR_BUTTON_PRESSED_BG
         );
         command = new Command();
         command.setReceiver(new ICommandReceiver() {
@@ -76,7 +77,8 @@ public class AddCardScreen extends Screen {
             Constants.ROBOTO_MED_PATH,
             14,
             255,
-            Constants.APP_BAR_BUTTON_BG
+            Constants.APP_BAR_BUTTON_BG,
+            Constants.APP_BAR_BUTTON_PRESSED_BG
         );
         command = new Command();
         command.setReceiver(new ICommandReceiver() {
