@@ -10,7 +10,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     private int y;
     private String labelValue;
     private String labelAlphabet;
-    private PImage icon;
+    private PImage icon, activeIcon;
     private boolean isClicked;
     private boolean isDisabled;
 
@@ -49,7 +49,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         this.isDisabled = false;
       }
       
-      KeyPadButton(PApplet starbucks, KeyPad keyPad, int x, int y, PImage icon) {
+      KeyPadButton(PApplet starbucks, KeyPad keyPad, int x, int y, PImage icon, PImage activeIcon) {
         this.starbucks = starbucks;
         this.keyPad = keyPad;
         this.x = x;
@@ -57,6 +57,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         this.labelValue = "";
         this.labelAlphabet = "";
         this.icon = icon;
+        this.activeIcon = activeIcon;
         this.isDisabled = false;
       }
 
@@ -181,7 +182,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         // no labels
         if(labelValue.isEmpty() && labelAlphabet.isEmpty() && icon != null) {
             starbucks.image(
-                icon,
+                isClicked? activeIcon :icon,
                 x + (Constants.CELL_WIDTH - icon.width)/2,
                 y + (Constants.CELL_HEIGHT - icon.height)/2
             );

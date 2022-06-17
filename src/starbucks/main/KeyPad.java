@@ -35,7 +35,7 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler, IKeyPadSub
     
         addSubComponent(new KeyPadButton(starbucks, this, 0, 522));
         addSubComponent(new KeyPadButton(starbucks, this, 125, 522, "0"));
-        addSubComponent(new KeyPadButton(starbucks, this, 250, 522, starbucks.loadImage("../../assets/images/backspace.png")));
+        addSubComponent(new KeyPadButton(starbucks, this, 250, 522, starbucks.loadImage("../../assets/images/backspace.png"), starbucks.loadImage("../../assets/images/backspace-dark.png")));
     }
 
     @Override
