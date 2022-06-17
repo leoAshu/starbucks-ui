@@ -108,14 +108,38 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
     }
 
     private void drawButtonBackground() {
+        // if(isClicked)
+        //     Utility.solidFill(
+        //         starbucks,
+        //         x+1,
+        //         y+1,
+        //         Constants.CELL_WIDTH-2,
+        //         Constants.CELL_HEIGHT-2,
+        //         102
+        //     );
+        // else
+        //     Utility.setVerticalGradient(
+        //         starbucks,
+        //         x+1,
+        //         y+1,
+        //         Constants.CELL_WIDTH-2,
+        //         Constants.CELL_HEIGHT-2,
+        //         y + Constants.CELL_HEIGHT - 30,
+        //         102,
+        //         60,
+        //         4
+        //     );
         if(isClicked)
-            Utility.solidFill(
+            Utility.setVerticalGradient(
                 starbucks,
                 x+1,
                 y+1,
                 Constants.CELL_WIDTH-2,
                 Constants.CELL_HEIGHT-2,
-                102
+                y + Constants.CELL_HEIGHT - 30,
+                starbucks.color(221, 226, 232),
+                starbucks.color(206, 207, 211),
+                starbucks.color(186, 189, 197)
             );
         else
             Utility.setVerticalGradient(
@@ -125,9 +149,9 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
                 Constants.CELL_WIDTH-2,
                 Constants.CELL_HEIGHT-2,
                 y + Constants.CELL_HEIGHT - 30,
-                102,
-                60,
-                4
+                starbucks.color(108, 117, 126),
+                starbucks.color(87, 94, 107),
+                starbucks.color(67, 74, 86)
             );
     }
 
@@ -135,7 +159,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         starbucks.textFont(roboto);
 
         // value label
-        starbucks.fill(255);
+        starbucks.fill(isClicked? starbucks.color(76, 85, 93) :255);
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(26);
         starbucks.text(
@@ -145,7 +169,7 @@ public class KeyPadButton implements IDisplayComponent, ITouchEventHandler {
         );
     
         // alphabet label
-        starbucks.fill(255, 204);
+        starbucks.fill(isClicked? starbucks.color(76, 85, 93) :255, 204);
         starbucks.textSize(14);
         starbucks.text(
             labelAlphabet,

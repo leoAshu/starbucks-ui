@@ -103,7 +103,7 @@ public class KeyPad implements IDisplayComponent, ITouchEventHandler, IKeyPadSub
         starbucks.line(0, 312, starbucks.width, 312);
 
         // vertical borders
-        starbucks.stroke(102);
+        starbucks.stroke(starbucks.color(68, 75, 87));
         starbucks.strokeWeight(4);
         starbucks.line(125, 314, 125, starbucks.height);
         starbucks.line(250, 314, 250, starbucks.height);
