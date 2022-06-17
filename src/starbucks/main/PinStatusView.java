@@ -23,8 +23,8 @@ public class PinStatusView implements IDisplayComponent, ITouchEventHandler, IPi
         if(roboto == null)
             roboto = starbucks.createFont(Constants.ROBOTO_MED_PATH, 16);
 
+        starbucks.fill(255);
         starbucks.textFont(roboto);
-
         starbucks.textAlign(PApplet.CENTER);
         starbucks.textSize(16);
 
